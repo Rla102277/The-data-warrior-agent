@@ -2,7 +2,7 @@
 
 **Technical completion is not strategic success.**
 
-A Matt-style skill system for data engineers, analysts, and neighboring roles who must change a decision — not ship another artifact. Words and philosophy follow [The Data Warrior's Manuscript](https://github.com/Rla102277/the-data-warriors-manuscript). Process shape follows [mattpocock/skills](https://github.com/mattpocock/skills) (MIT process, not prose).
+A  skill system for data engineers, analysts, and neighboring roles who must change a decision — not ship another artifact. Words and philosophy follow [The Data Warrior's Manuscript](https://github.com/Rla102277/the-data-warriors-manuscript). Process shape follows [mattpocock/skills](https://github.com/mattpocock/skills) (MIT process, not prose).
 
 The human is the Data Warrior. AI augments judgment. **The Forge** is the Tools companion in this repo: a ground-gated software factory (`forge` CLI / job line) that builds one proven step, collects independent reviews, and stops for a person. The sword is not the warrior. This repo does **not** include Foundation estate knowledge or workplace inventories. The book remains readable without this software.
 
