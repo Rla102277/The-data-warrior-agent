@@ -17,7 +17,7 @@ from forge import __version__
 from forge.agents import AgentTaskResult, Supervisor
 from forge.configuration import load_settings
 from forge.dependency_graph import DependencyGraph
-from forge.discovery import MockFabricDiscoveryAdapter
+from forge.discovery import FixtureInventory
 from forge.metadata import IngestionLoadType, IngestionSpec, RetryPolicy
 from forge.policies import PolicyDecision, evaluate_action
 
@@ -42,19 +42,13 @@ def main(argv: list[str] | None = None) -> int:
     inv = sub.add_parser("inventory", help="Build inventory from Fixture discovery")
     inv.add_argument(
         "--fixture",
-        default="tests/fixtures/fabric/sample_inventory.yaml",
-        help="Path to Fabric inventory fixture",
+        default="tests/fixtures/inventory/sample.yaml",
+        help="Path to a tool-neutral inventory fixture",
     )
 
     disc = sub.add_parser("discover", help="Discover assets (fixture, ADF JSON, or dbt manifest)")
     disc.add_argument("--adf", help="Path to ADF pipeline JSON")
     disc.add_argument("--dbt-manifest", help="Path to dbt manifest.json")
-    disc.add_argument(
-        "--fabric-fixture",
-        default="tests/fixtures/fabric/sample_inventory.yaml",
-        help="Path to Fabric inventory fixture",
-    )
-
     dbt = sub.add_parser("dbt", help="dbt discovery / lineage / naming validation")
     dbt.add_argument(
         "dbt_command",
@@ -187,7 +181,7 @@ def cmd_doctor(_: argparse.Namespace) -> int:
         "default_workspace": settings.default_workspace,
         "layers": ["raw", "stage", "control", "transform", "analytics"],
         "dbt_project_name": "forge",
-        "shared_analytics_lakehouse": "lake_house_analytics",
+        "tools": "chosen after know-the-ground",
         "python": sys.version.split()[0],
         "factory": "Forge Line",
         "factory_path_present": factory_root.exists(),
@@ -203,7 +197,7 @@ def cmd_doctor(_: argparse.Namespace) -> int:
 
 def cmd_inventory(args: argparse.Namespace) -> int:
     path = Path(args.fixture)
-    inventory = MockFabricDiscoveryAdapter(path).discover()
+    inventory = FixtureInventory(path).discover()
     payload = {
         "inventory_id": inventory.inventory_id,
         "asset_count": len(inventory.assets),
@@ -226,13 +220,6 @@ def cmd_discover(args: argparse.Namespace) -> int:
             "source_count": inventory.source_count,
             "test_count": inventory.test_count,
             "naming_violations": inventory.naming_violations,
-        }
-    fabric_path = Path(args.fabric_fixture)
-    if fabric_path.exists():
-        inventory = MockFabricDiscoveryAdapter(fabric_path).discover()
-        result["fabric"] = {
-            "asset_count": len(inventory.assets),
-            "workspaces": sorted({a.workspace_name for a in inventory.assets}),
         }
     print(json.dumps(result, indent=2, default=str))
     return 0

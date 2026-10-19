@@ -8,7 +8,7 @@ factory: Forge Line
 cli: foundation
 jobsite_status: sunset_documented
 default_autonomy_level: 2
-default_platform_profile: fabric-first-foundation
+default_platform_profile: forge-default
 session_notes:
   - Restored factory/modernize CLI after accidental WIP deletion
   - Added factory approve/rework CLI wired to WorkflowEngine
@@ -68,11 +68,9 @@ phases:
       - factory/board.json (generated at runtime)
   M10:
     status: PASSED
-    notes: Pipeline YAML IMPLEMENTED; live fab apply NOT LIVE-TESTED
+    notes: Historical phase record. No vendor deploy pipeline is shipped.
     artifacts:
       - .azuredevops/pipelines/foundation-ci.yml
-      - .azuredevops/pipelines/fabric-fd-deploy.yml
-      - infrastructure/bicep/factory-control-plane.bicep
   M11:
     status: PASSED
     artifacts:

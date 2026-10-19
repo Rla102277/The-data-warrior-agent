@@ -1,7 +1,7 @@
 # tool-choice
 
 ## What it does
-Use when choosing between tools, platforms, or ingestion approaches for a data task and ego or resume pressure may dominate fitness.
+Choose a tool only after the ground is known. Do not assume a platform or vendor. Compare fitness to the single action, including the status quo.
 
 ## When to reach for it
 Use this discipline when the task matches the description above. Prefer `/ask-the-warrior` if you are unsure.

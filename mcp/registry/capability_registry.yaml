@@ -1,28 +1,8 @@
-# Foundation MCP capability registry (initial)
+# MCP capability registry.
+# Add a server only after the ground names that tool.
 # Mutation tools require policy gateway approval. Do not expose all tools to all agents.
 
 servers:
-  - id: microsoft-fabric-cli
-    purpose: Fabric workspace read/import via fab
-    authentication_mode: az_fab_login
-    mutation_capability: true
-    environment_scope: foundation_development_default
-    allowed_agent_roles: [fabric_engineer, release_engineer]
-    approval_requirements: production_and_legacy_mutations
-    audit_requirements: correlation_id_and_command_log
-    decision: ADOPT
-
-  - id: microsoft-datafactory-mcp
-    purpose: Fabric Data Factory MCP (not classic Azure Data Factory)
-    authentication_mode: azure_identity
-    mutation_capability: true
-    environment_scope: read_first
-    allowed_agent_roles: [modernization, discovery, fabric_engineer]
-    approval_requirements: any_factory_mutation
-    audit_requirements: tool_call_log
-    decision: ADAPT
-    notes: Classic ADF uses Azure SDK/REST adapters in Foundation, not this MCP.
-
   - id: azure-devops-mcp
     purpose: Work items, PRs, pipelines
     authentication_mode: ado_pat_or_identity

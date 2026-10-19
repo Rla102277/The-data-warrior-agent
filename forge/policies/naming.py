@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 
 BANNED_NAME_RE = re.compile(
-    r"(?<![A-Za-z0-9])(EDW_[A-Za-z0-9_]+|(?:dim|fact|vw|pl|lh|wh|sm|nb|ai|da)_[A-Za-z0-9_]+)",
+    r"(?<![A-Za-z0-9])(EDW_[A-Za-z0-9_]+|(?:dim|fact|vw)_[A-Za-z0-9_]+)",
     re.IGNORECASE,
 )
 MEDALLION_RE = re.compile(
@@ -16,20 +16,6 @@ MEDALLION_RE = re.compile(
 DBO_DDL_RE = re.compile(
     r"\bcreate\s+(?:or\s+alter\s+)?(?:table|view|procedure|proc|function)\s+\[?dbo\]?\.",
     re.IGNORECASE,
-)
-
-BANNED_PREFIXES = (
-    "pl_",
-    "lh_",
-    "wh_",
-    "sm_",
-    "nb_",
-    "ai_",
-    "da_",
-    "edw_",
-    "dim_",
-    "fact_",
-    "vw_",
 )
 
 BUSINESS_OBJECT_KINDS = frozenset(
@@ -56,11 +42,6 @@ def lint_naming_text(text: str) -> list[str]:
     if DBO_DDL_RE.search(text):
         findings.append("business object created in dbo schema")
     return findings
-
-
-def has_banned_fabric_prefix(name: str) -> bool:
-    lowered = name.lower()
-    return any(lowered.startswith(prefix) for prefix in BANNED_PREFIXES)
 
 
 def is_dbo_business_object(schema: str, name: str, item_type: str = "") -> bool:

@@ -17,4 +17,5 @@
 - Copying Matt Pocock skill prose (process shape only).
 - Invented Musashi quotations or unverified memoir details as skill text.
 - Replacing manuscript editorial work; chapter prose stays in the manuscript repo.
+- Pretending this agent enforces every chapter. Ethics, culture, and leadership stay doctrinal. See `docs/PARITY.md`.
 - Treating Forge, agents, or platforms as the measure of success.

@@ -1,8 +1,7 @@
 """MCP capability gateway: allowlist + policy before mutations.
 
-Fabric MCP = documentation/context unless verified otherwise.
-DataFactory.MCP = Fabric Data Factory (not classic ADF).
-Classic ADF uses Azure SDK/REST adapters.
+No vendor server is registered by default. Add a server only after the ground
+names that tool.
 """
 
 from __future__ import annotations
@@ -46,12 +45,7 @@ class McpGateway:
 
     @staticmethod
     def _notes(server: dict[str, Any]) -> str:
-        sid = server.get("id", "")
-        if sid == "microsoft-datafactory-mcp":
-            return "Targets Fabric Data Factory; not classic Azure Data Factory."
-        if "fabric" in sid and "cli" in sid:
-            return "Fabric CLI auth required for live calls; docs/context otherwise."
-        return server.get("purpose", "")
+        return str(server.get("purpose") or "")
 
     def authorize_tool(
         self,

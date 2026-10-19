@@ -7,29 +7,31 @@ from pathlib import Path
 from discovery.adf.parser import AdfPipelineParser
 from forge.core.models import EvidenceStatus
 from forge.dependency_graph import DependencyGraph
-from forge.discovery import MockFabricDiscoveryAdapter
+from forge.discovery import FixtureInventory
 
 ROOT = Path(__file__).resolve().parents[2]
+FIXTURE = ROOT / "tests/fixtures/inventory/sample.yaml"
 
 
-def test_fabric_fixture_discovery() -> None:
-    inventory = MockFabricDiscoveryAdapter(ROOT / "tests/fixtures/fabric/sample_inventory.yaml").discover()
+def test_fixture_inventory_discovery() -> None:
+    inventory = FixtureInventory(FIXTURE).discover()
     assert len(inventory.assets) == 4
-    fd = inventory.by_workspace("Foundation Development")
-    assert any(asset.item_name == "lake_house_analytics" for asset in fd)
+    development = inventory.by_workspace("Forge Development")
+    assert any(asset.item_name == "orders_daily" for asset in development)
     inaccessible = [asset for asset in inventory.assets if not asset.accessible]
     assert len(inaccessible) == 1
 
 
 def test_inventory_compare_does_not_treat_inaccessible_as_deleted() -> None:
-    adapter = MockFabricDiscoveryAdapter(ROOT / "tests/fixtures/fabric/sample_inventory.yaml")
+    adapter = FixtureInventory(FIXTURE)
     current = adapter.discover()
     previous = adapter.discover()
-    # Mark one accessible asset as removed from previous only.
-    previous.assets = [asset for asset in previous.assets if asset.item_name != "lake_house_web"]
+    previous.assets = [asset for asset in previous.assets if asset.item_name != "orders_daily"]
     diff = current.compare(previous)
     assert "inaccessible" in diff
     assert any("Operations" in item for item in diff["inaccessible"])
+    assert any("orders_daily" in item for item in diff["added"])
+    assert not any("legacy_operations_report" in item for item in diff["removed"])
 
 
 def test_adf_parser_builds_ir_and_graph() -> None:

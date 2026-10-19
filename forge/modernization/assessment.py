@@ -143,7 +143,7 @@ class ModernizationAssessor:
             ),
             DecisionHit(
                 decision_id="D13",
-                relevance="New Fabric artifacts must use spelled tool names (pipeline_*, not pl_).",
+                relevance="Name new objects in words the team can read. The ground names the tool; this repo does not prescribe a vendor prefix.",
             ),
         ]
         # Lookup + Copy pattern often maps to stage_load_config control rows (D8/D9).

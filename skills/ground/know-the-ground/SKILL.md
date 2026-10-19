@@ -10,6 +10,9 @@ This is the grill. Most data work fails here — not in execution, but in diagno
 
 Stated problem is not always the real problem. Your job is detective work before any forge build.
 
+## Tools
+Do not assume a platform, warehouse, lakehouse, or vendor. Record the tools already on the terrain. Bring a new tool only when the single action needs it, and only through tool choice. A favorite stack is not a diagnosis.
+
 ## Ground gate (required before any forge spec)
 Do not call `/to-spec` or `/the-forge` until the Scroll can answer the Way's questions:
 

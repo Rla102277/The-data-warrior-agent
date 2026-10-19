@@ -1,7 +1,7 @@
 """First full offline vertical slice: sale_transfer (D8).
 
 Stages: discover control metadata -> build ingestion spec -> validate policy/quality.
-Does not deploy to Fabric or enable schedules.
+Does not deploy and does not enable schedules. The target store is named by the caller.
 """
 
 from __future__ import annotations

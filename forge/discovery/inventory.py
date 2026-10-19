@@ -8,7 +8,7 @@ from uuid import uuid4
 
 from pydantic import BaseModel, Field
 
-from forge.core.models import EvidenceStatus, FabricItemType
+from forge.core.models import EvidenceStatus
 
 
 def utc_now() -> datetime:
@@ -21,7 +21,7 @@ class InventoryAsset(BaseModel):
     workspace_id: str | None = None
     workspace_name: str
     item_id: str | None = None
-    item_type: FabricItemType | str
+    item_type: str
     item_name: str
     folder_path: str | None = None
     definition_version: str | None = None

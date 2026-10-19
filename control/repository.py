@@ -1,6 +1,6 @@
 """Repositories for control metadata.
 
-Default implementation is in-memory / seed-file based so imports never hit Fabric.
+Default implementation is in-memory / seed-file based. Imports do not call a live platform.
 """
 
 from __future__ import annotations

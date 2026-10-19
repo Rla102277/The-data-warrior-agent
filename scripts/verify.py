@@ -44,6 +44,9 @@ way = (ROOT / "THE_WAY.md").read_text(encoding="utf-8")
 for role in ("Deshi", "Rōnin", "Kensei"):
     assert role in way
 assert "Forge" in way or "forge" in way
+assert "not six agents" in way
+parity = (ROOT / "docs/PARITY.md").read_text(encoding="utf-8")
+assert "Behavioral parity across hosts is open" in parity
 
 scroll = (ROOT / "skills/practice/the-scroll/SKILL.md").read_text().lower()
 assert "question per turn" in scroll and "superseded" in scroll

@@ -23,6 +23,7 @@ If the Scroll lacks the ground gate from `/know-the-ground`, stop and direct the
    Each file starts with `VERDICT: PASS` or `VERDICT: CHANGES`.
 6. On any CHANGES (max two rounds), return to build with the notes. Do not invent a third round without asking.
 7. When all reviews PASS, write `decision.md` starting with `APPROVE` or `ESCALATE` for a **human**. Stop. Never auto-promote to production.
+7a. Knowing when to stop is part of the line. If `forge job verify` fails, if Wind or Void says the fight cannot be won, or if the eighty-percent action is already clear, stop. Do not open another build round to avoid a human decision.
 8. If the `forge` CLI is present, advance stage via `forge job` commands. `forge job verify` must be clean before approval. You write artifact files; the CLI owns stage fields in `job.json`. `--authorized` attests the operator on this host. It is not cryptographic identity.
 
 ## Rules

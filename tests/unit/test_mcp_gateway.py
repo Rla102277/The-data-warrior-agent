@@ -14,16 +14,20 @@ def test_health_reports_configured_not_live() -> None:
 
 def test_mutation_denied_for_disallowed_role() -> None:
     result = McpGateway().authorize_tool(
-        server_id="microsoft-fabric-cli",
+        server_id="azure-devops-mcp",
         agent_role="discovery",
         action="update_item",
-        target={"workspace": "Foundation Development", "name": "pipeline_x"},
+        target={"workspace": "Forge Development", "name": "orders_daily"},
     )
     assert result["allowed"] is False
 
 
-def test_datafactory_mcp_note_separates_classic_adf() -> None:
-    server = McpGateway().get_server("microsoft-datafactory-mcp")
-    assert server is not None
-    note = McpGateway._notes(server)
-    assert "not classic" in note.lower() or "Fabric Data Factory" in note
+def test_unregistered_vendor_server_is_denied() -> None:
+    result = McpGateway().authorize_tool(
+        server_id="microsoft-fabric-cli",
+        agent_role="builder",
+        action="update_item",
+        target={"name": "orders_daily"},
+    )
+    assert result["allowed"] is False
+    assert "not in registry" in result["reason"]

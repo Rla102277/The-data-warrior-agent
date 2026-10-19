@@ -103,7 +103,7 @@ class AdfPipelineParser:
             input_dependencies=sorted(set(inputs)),
             output_dependencies=sorted(set(outputs)),
             retry_and_failure_policy={"activity_policies_observed": True},
-            target_recommendations=["Evaluate Fabric pipeline or metadata-driven orchestrator (D10)."],
+            target_recommendations=["Name the orchestrator on the ground. Do not assume a vendor."],
             compatibility_findings=findings,
             validation_requirements=[
                 "Do not auto-convert unsupported ADF behavior without compatibility evidence.",
@@ -158,7 +158,7 @@ class AdfPipelineParser:
         for activity in activities:
             if activity.activity_type in unsupportedish:
                 findings.append(
-                    f"Activity `{activity.name}` type `{activity.activity_type}` needs explicit Fabric compatibility assessment."
+                    f"Activity `{activity.name}` type `{activity.activity_type}` needs an explicit compatibility check for the chosen tool."
                 )
         return findings
 

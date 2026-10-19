@@ -1,11 +1,10 @@
 """Discovery adapters and inventory models."""
 
-from forge.discovery.fabric_adapter import FabricDiscoveryAdapter, MockFabricDiscoveryAdapter
+from forge.discovery.fixture import FixtureInventory
 from forge.discovery.inventory import AssetInventory, InventoryAsset
 
 __all__ = [
     "AssetInventory",
-    "FabricDiscoveryAdapter",
+    "FixtureInventory",
     "InventoryAsset",
-    "MockFabricDiscoveryAdapter",
 ]

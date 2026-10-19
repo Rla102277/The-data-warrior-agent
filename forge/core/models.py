@@ -30,24 +30,7 @@ class Layer(str, Enum):
     ANALYTICS = "analytics"
 
 
-class FabricItemType(str, Enum):
-    LAKEHOUSE = "Lakehouse"
-    WAREHOUSE = "Warehouse"
-    PIPELINE = "DataPipeline"
-    NOTEBOOK = "Notebook"
-    SEMANTIC_MODEL = "SemanticModel"
-    REPORT = "Report"
-    DATAFLOW = "Dataflow"
-    VARIABLE_LIBRARY = "VariableLibrary"
-    DATA_AGENT = "DataAgent"
-    COPY_JOB = "CopyJob"
-    EVENTSTREAM = "Eventstream"
-    EVENTHOUSE = "Eventhouse"
-    SQL_DATABASE = "SQLDatabase"
-    UNKNOWN = "Unknown"
-
-
-# Binding D13 workspace names.
+# Binding workspace names for the optional estate policy adapter.
 APPROVED_WORKSPACES = frozenset(
     {
         "Foundation Development",
@@ -69,24 +52,11 @@ LEGACY_WORKSPACES = frozenset(
     }
 )
 
-ALLOWED_ITEM_PREFIXES = (
-    "lake_house_",
-    "warehouse_",
-    "pipeline_",
-    "notebook_",
-    "semantic_model_",
-    "variable_library_",
-    "data_agent_",
-    "report_",
-)
-
-BANNED_ITEM_PREFIXES = ("pl_", "lh_", "wh_", "sm_", "nb_", "ai_", "da_", "EDW_", "dim_", "fact_", "vw_")
-
 TABLE_SHAPES = frozenset({"obt", "sum", "det", "hist", "map"})
 
 
 class WorkspaceRef(BaseModel):
-    """Reference to a Fabric workspace by approved name and optional id."""
+    """Named workspace. The platform is chosen on the ground, not here."""
 
     name: str
     workspace_id: str | None = None
@@ -104,19 +74,6 @@ class WorkspaceRef(BaseModel):
     @property
     def is_legacy(self) -> bool:
         return self.name in LEGACY_WORKSPACES or self.environment == Environment.LEGACY
-
-
-class FabricItemRef(BaseModel):
-    workspace: WorkspaceRef
-    name: str
-    item_type: FabricItemType = FabricItemType.UNKNOWN
-    item_id: str | None = None
-    folder_path: str | None = None
-
-    @field_validator("name")
-    @classmethod
-    def strip_name(cls, value: str) -> str:
-        return value.strip()
 
 
 class SourceSystemRef(BaseModel):

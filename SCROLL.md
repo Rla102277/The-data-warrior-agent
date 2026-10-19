@@ -41,6 +41,8 @@ Ship a companion skill system and Forge factory that rehearse [The Data Warrior'
 | D-011 | Keep The Forge software factory in this repo (skills + `forge`/`forge-line` runtime). Do **not** bring Foundation estate knowledge (`knowledge/platform`, ops inventories, ADO Fabric estate docs, rebuild ledgers, analytics SQL estates). | User, 2026-10-19: wanted the Forge; none of the existing Foundation knowledge should have been brought in. | Accepted | Restored Forge SDK from `1eb8679` without knowledge/platform, docs/platform, rebuild, automation, dbt, .azuredevops. |
 | D-012 | Align this repo's identity and ground gate to the manuscript mission/vision: technical completion ≠ strategic success; human is the Warrior; two demands (simplicity + discipline); Forge is Tools/instrument; book readable without software; measure decisions changed. | User, 2026-10-19: "reread the manuscript… Align to my mission and vision." | Accepted | Re-read preface, Ch1 working draft, editorial master plan, AGENTS invariants, MASTER_BRIEF philosophy. Updated THE_WAY, README, SCOPE, CLAUDE, AGENTS, know-the-ground, the-forge, ask-the-warrior. |
 | D-013 | Real Forge approval requires a recorded local test execution and three structured reviews bound to that build. Synthetic demo evidence cannot qualify a real job. `--authorized` is an operator attestation, not cryptographic identity. | User, 2026-10-19: finish the Forge evidence system. | Accepted | `forge/line/evidence.py`, adversarial tests, local-orders acceptance stopped at `APPROVAL_PENDING`. |
+| D-014 | Match the manuscript parity contract of 2026-10-19: five rings plus modern extensions, Council as perspectives, Scroll/Battle Map/Chronicle fields, and an honest limit that host behavioral parity is not yet passed. | User, 2026-10-19: manuscript was updated; match theory and practice. | Accepted | Manuscript `AGENT_PARITY_CONTRACT.md` at `16c16a2`. Agent `docs/PARITY.md`. README no longer claims textual PASS notes satisfy the evidence gate. |
+| D-015 | Do not ship a vendor platform. Microsoft Fabric is not a default profile, adapter, discovery path, or dependency. Tools are recorded on the ground and brought in only when the single action needs them. | User, 2026-10-19: remove all Fabric stuff; it belongs to know-the-ground and tools as needed. | Accepted | Removed `forge/fabric`, the Fabric discovery adapter, `fabric-first-foundation`, the `fabric` extra, and Fabric MCP servers. |
 
 ## Assumptions
 - "A system like Matthew's" means his product mechanics: user-invoked versus model-invoked, a router, README catalog, plugin manifest, docs pages, and symlink install. **Accepted in D-008.**
@@ -69,6 +71,7 @@ Ship a companion skill system and Forge factory that rehearse [The Data Warrior'
 - [x] Identity docs lead with manuscript mission; Forge positioned as Tools companion (D-012).
 - [x] Ground gate matches Way questions + single-action demand (D-012).
 - [x] Real jobs reject fabricated, stale, tampered, and synthetic evidence before approval (D-013). Local acceptance observed; CI still has to run on the pull request.
+- [x] No vendor platform is bundled. Tool choice follows the ground (D-015).
 - [ ] Live host transcript for `/know-the-ground` then `/the-forge` that stops if the decision is missing.
 - [ ] Optional: Council-perspective disciplines when manuscript People book is approved.
 

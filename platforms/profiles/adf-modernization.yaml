@@ -1,14 +1,12 @@
 id: adf-modernization
 name: ADF modernization assessment
-status: active
+status: optional
 supported_sources:
   - azure_data_factory
-supported_targets:
-  - foundation_metadata_orchestrator
-  - fabric_pipeline
-preferred_storage: warehouse_stage
-preferred_transformation: existing_stage_procs_then_dbt
-orchestration: D10_metadata_driven
+supported_targets: []
+preferred_storage: unset
+preferred_transformation: unset
+orchestration: named_on_the_ground
 deployment_adapter: assessment_only_until_approved
 testing_strategy:
   - ir_parse
@@ -20,5 +18,5 @@ required_agents:
   - reviewer-security
 required_validation_gates:
   - modernization_bar
-  - d12_no_cutover
-notes: Classic ADF via Azure SDK/REST. Do not confuse with Fabric Data Factory MCP.
+  - no_cutover_without_approval
+notes: Optional assessment of a classic pipeline export. The replacement tool is chosen after know-the-ground.

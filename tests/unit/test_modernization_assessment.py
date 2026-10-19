@@ -33,7 +33,7 @@ def test_cutover_denied_without_approval() -> None:
     assert result.decision == PolicyDecision.DENY
 
 
-def test_d13_rejects_pl_prefix_on_create() -> None:
+def test_short_tool_prefix_is_not_a_vendor_law() -> None:
     result = evaluate_action(
         actor="test",
         action="create_item",
@@ -44,4 +44,4 @@ def test_d13_rejects_pl_prefix_on_create() -> None:
         },
         environment="foundation_development",
     )
-    assert result.decision == PolicyDecision.DENY
+    assert result.decision == PolicyDecision.ALLOW

@@ -24,7 +24,7 @@ class JobsiteBridgeStatus(BaseModel):
         default_factory=lambda: {
             "factory-director": "forge_supervisor",
             "data-discovery": "discovery",
-            "fabric-engineer": "fabric_engineer",
+            "builder": "builder",
             "dbt": "dbt_engineer",
             "data-quality": "data_quality",
             "data-reconciliation": "data_quality",
@@ -37,7 +37,7 @@ class JobsiteBridgeStatus(BaseModel):
             "Forge Line owns job lifecycle, state machine, and Cursor /factory loop.",
             "Foundation SDK owns policies, discovery parsers, control-plane models, and CLI.",
             "Jobsite brand is deprecated; do not add features to legacy jobsite/.",
-            "FD Fabric apply still requires machine policy APPROVE + D12 rules.",
+            "Production apply still requires a recorded human approval.",
         ]
     )
 

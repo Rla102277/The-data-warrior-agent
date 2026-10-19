@@ -3,6 +3,10 @@
 > Illustrative example; no implementation or tests have been run.
 
 **Objective:** Reliable incremental orders ingestion
+**Terrain:** Source semantics unknown; no production workspace is in scope
+**Dependencies:** Source contract, key, and delete semantics
+**Risks:** Building incrementality before replay and deletes are known
+**Decisions:** None yet — see the Scroll
 **Role:** Rōnin (example, not actual authorization)
 **Position:** Discovery — source semantics unknown
 **Scroll:** [../scroll/SCROLL.md](../scroll/SCROLL.md)
@@ -22,5 +26,5 @@
 ## Next action
 Inspect the actual source contract; challenge missing assumptions.
 
-## Evidence
-No real evidence yet. Do not mark any milestone complete.
+## Proof
+No command has been run. No artifact path. Do not mark any milestone complete.

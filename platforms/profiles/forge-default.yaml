@@ -1,33 +1,20 @@
-# Default platform-neutral Forge profile (no estate workspace names)
+# Tool-neutral Forge profile. Platforms are chosen after know-the-ground.
 id: forge-default
 name: Forge Default
 status: default
-supported_sources:
-  - azure_sql
-  - adls_gen2
-  - onprem_sql_readonly
-  - files_csv_json_parquet
-supported_targets:
-  - fabric_lakehouse
-  - fabric_warehouse
-  - fabric_notebook
-  - fabric_pipeline
-preferred_storage: onelake
-preferred_transformation: dbt-fabric
-orchestration: fabric_data_pipeline_metadata_driven
-deployment_adapter: fabric-cicd
+supported_sources: []
+supported_targets: []
+preferred_storage: unset
+preferred_transformation: unset
+orchestration: unset
+deployment_adapter: unset
 testing_strategy:
   - unit_sdk
-  - duckdb_local_quality
-  - contract_odcs
+  - recorded_command
 security_requirements:
-  - workspace_identity
-  - key_vault
   - policy_evaluate_action
-cost_considerations:
-  - fabric_capacity_estimate
+  - recorded_test_evidence
 observability:
-  - application_insights_optional
   - structured_job_telemetry
 required_agents:
   - factory-director
@@ -38,23 +25,13 @@ required_agents:
   - reviewer-data-quality
   - approver
 required_validation_gates:
-  - naming
-  - policy
-  - data_quality
-  - reconciliation
+  - ground
   - test_evidence
-  - independent_reviews
-workspaces:
-  - Forge Development
-  - Forge Production
-  - Forge Governance
+  - reviews
 layers:
   - raw
   - stage
   - control
   - transform
   - analytics
-minimum_permissions:
-  - Contributor on Forge Development
-  - Reader elsewhere by default
-notes: Platform-neutral factory defaults. Estate-specific profiles may override workspaces and gates.
+notes: No vendor is preselected. Know the ground, then bring the tools that terrain needs.

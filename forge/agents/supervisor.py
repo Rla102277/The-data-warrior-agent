@@ -52,7 +52,7 @@ STAGE_ROLE: dict[WorkflowStage, AgentRole] = {
     WorkflowStage.DISCOVER: AgentRole.DISCOVERY,
     WorkflowStage.SPEC: AgentRole.REQUIREMENTS,
     WorkflowStage.PLAN: AgentRole.ARCHITECTURE,
-    WorkflowStage.BUILD: AgentRole.FABRIC_ENGINEER,
+    WorkflowStage.BUILD: AgentRole.BUILDER,
     WorkflowStage.VALIDATE: AgentRole.DATA_QUALITY,
     WorkflowStage.REVIEW: AgentRole.SECURITY,
     WorkflowStage.SHIP: AgentRole.RELEASE,

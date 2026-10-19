@@ -1,7 +1,7 @@
 # Local orders demo (Foundation layers)
 
 Synthetic local demonstration of Forge Line. Uses DuckDB/Python.
-Does **not** deploy to live Fabric. Layer folders are `raw` / `stage` / `transform` / `analytics`
+Does not deploy. Layer folders are `raw` / `stage` / `transform` / `analytics`
 (not bronze/silver/gold). Not a Retail360 product brand.
 
 ```bash

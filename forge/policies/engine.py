@@ -11,13 +11,11 @@ from typing import Any
 from pydantic import BaseModel, Field
 
 from forge.core.models import (
-    ALLOWED_ITEM_PREFIXES,
     APPROVED_WORKSPACES,
     LEGACY_WORKSPACES,
     Environment,
 )
 from forge.policies.naming import (
-    has_banned_fabric_prefix,
     is_dbo_business_object,
     lint_naming_text,
 )
@@ -89,13 +87,6 @@ class PolicyEngine:
                 decision=PolicyDecision.DENY,
                 reasons=["Reject new dbo business object (D0/D13)."],
                 rule_ids=["D0", "D13", "P-DBO"],
-            )
-
-        if object_name and has_banned_fabric_prefix(object_name):
-            return PolicyResult(
-                decision=PolicyDecision.DENY,
-                reasons=[f"Reject banned Fabric/legacy prefix on `{object_name}` (D13)."],
-                rule_ids=["D13", "P-PREFIX"],
             )
 
         naming_hits = lint_naming_text(object_name)
@@ -213,14 +204,6 @@ class PolicyEngine:
             "create_table",
             "create_model",
         }:
-            if object_name and not any(object_name.startswith(p) for p in ALLOWED_ITEM_PREFIXES):
-                # Tables and dbt models are not Fabric item prefixes.
-                if action not in {"create_table", "create_model"}:
-                    return PolicyResult(
-                        decision=PolicyDecision.DENY,
-                        reasons=[f"`{object_name}` must use an approved Fabric item prefix (D13)."],
-                        rule_ids=["D13", "P-PREFIX-REQUIRED"],
-                    )
             return PolicyResult(
                 decision=PolicyDecision.ALLOW,
                 reasons=["Foundation Development engineering action permitted under D12."],

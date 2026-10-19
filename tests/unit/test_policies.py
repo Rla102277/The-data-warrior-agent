@@ -21,15 +21,14 @@ def test_reject_new_dbo_business_object() -> None:
     assert any("dbo" in reason.lower() for reason in result.reasons)
 
 
-def test_reject_banned_fabric_prefixes() -> None:
-    for name in ("pl_stage_load", "lh_sales", "wh_stage", "sm_finance", "nb_x", "ai_bot", "da_agent"):
-        result = evaluate_action(
-            actor="engineer",
-            action="create_item",
-            target={"workspace": "Foundation Development", "name": name},
-            environment="foundation_development",
-        )
-        assert result.decision == PolicyDecision.DENY, name
+def test_create_item_does_not_require_a_vendor_prefix() -> None:
+    result = evaluate_action(
+        actor="engineer",
+        action="create_item",
+        target={"workspace": "Foundation Development", "name": "orders_daily"},
+        environment="foundation_development",
+    )
+    assert result.decision == PolicyDecision.ALLOW
 
 
 def test_reject_separate_finance_warehouse() -> None:
@@ -107,7 +106,7 @@ def test_reject_unauthorized_capacity_creation() -> None:
     result = evaluate_action(
         actor="engineer",
         action="create_capacity",
-        target={"name": "gbpwus3fabric02"},
+        target={"name": "unapproved-capacity-02"},
         environment="foundation_development",
     )
     assert result.decision == PolicyDecision.DENY

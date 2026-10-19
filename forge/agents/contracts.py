@@ -19,7 +19,7 @@ class AgentRole(str, Enum):
     REQUIREMENTS = "requirements"
     ARCHITECTURE = "architecture"
     DISCOVERY = "discovery"
-    FABRIC_ENGINEER = "fabric_engineer"
+    BUILDER = "builder"
     METADATA_ENGINEER = "metadata_engineer"
     DBT_ENGINEER = "dbt_engineer"
     MODERNIZATION = "modernization"
@@ -38,7 +38,7 @@ ROLE_PERMISSIONS: dict[AgentRole, set[str]] = {
     AgentRole.REQUIREMENTS: {"spec", "read"},
     AgentRole.ARCHITECTURE: {"architect", "read"},
     AgentRole.DISCOVERY: {"discover", "read", "inventory"},
-    AgentRole.FABRIC_ENGINEER: {"build", "read", "validate"},
+    AgentRole.BUILDER: {"build", "read", "validate"},
     AgentRole.METADATA_ENGINEER: {"build", "read", "validate"},
     AgentRole.DBT_ENGINEER: {"build", "read", "validate", "compile"},
     AgentRole.MODERNIZATION: {"assess", "read", "inventory"},

@@ -12,4 +12,4 @@ Use this discipline when the task matches the description above. Prefer `/ask-th
 - Where do decisions live? In `SCROLL.md` via The Scroll.
 
 ## It's working if
-The next forge stage is clear, evidence paths are named, and you can resume from files alone.
+The Scroll still houses the challenge: decisions, contradictions, and links to the Battle Map, Forge job, and Chronicle when those exist. A later session resumes from the next open question.

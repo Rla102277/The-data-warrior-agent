@@ -12,7 +12,7 @@ description: Use when defining or changing producer-consumer schemas, data quali
 - Express operational guarantees: update cadence, event ordering, late arrival, deduplication, delete semantics, historical corrections and retention.
 - Specify validation location (source, landing, transform, serving), severity, quarantine strategy and remediation ownership.
 - Provide valid, invalid and backward-compatibility fixtures. Execute checks when tooling is available.
-- In Fabric projects, choose contract representation and enforcement consistent with actual Lakehouse/Warehouse/OneLake architecture; don't invent universal Fabric-native contract enforcement.
+- Choose a contract representation the tools already on the terrain can enforce. Do not invent a vendor-native contract system.
 ## Failure modes
 A contract that checks only field names misses semantics. Nullable does not mean unknown is acceptable. Row counts cannot establish referential integrity. An upstream delete policy must not be guessed.
 ## Deliverable

@@ -4,7 +4,7 @@ Approval reads recorded executions and structured reviews. A Markdown line that 
 
 ## Trust boundary
 
-`forge job approve --authorized` is an operator attestation on this host. It is not cryptographic proof of identity. Production execution still depends on the OS user, repository permissions, and platform policy. The default profile is `forge-default`. Fabric-specific behavior stays behind optional adapters and the optional `fabric-first-foundation` profile.
+`forge job approve --authorized` is an operator attestation on this host. It is not cryptographic proof of identity. Production execution still depends on the OS user, repository permissions, and platform policy. The default profile is `forge-default`. No vendor platform is bundled. Tools are chosen after the ground is known.
 
 ## What a real test is
 
@@ -57,4 +57,4 @@ Same-day suite on this machine: `python3 scripts/verify.py` passed (30 skills), 
 
 ## Not proven here
 
-This acceptance did not deploy to Fabric, did not exercise a second human reviewer, and did not prove host identity beyond the local OS user who ran the process.
+This acceptance did not deploy anywhere, did not exercise a second human reviewer, and did not prove host identity beyond the local OS user who ran the process.

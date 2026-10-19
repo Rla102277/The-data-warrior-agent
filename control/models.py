@@ -71,7 +71,7 @@ class ControlPlaneDecision(BaseModel):
     store: str = "warehouse_stage.control"
     parallel_database_allowed: bool = False
     rationale: str = (
-        "Reuse established Fabric warehouse_stage control tables; "
+        "Keep control metadata in one store named on the ground; "
         "avoid a second parallel control database without demonstrated need."
     )
     evidence: list[str] = Field(

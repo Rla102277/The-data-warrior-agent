@@ -4,7 +4,7 @@
 
 A  skill system for data engineers, analysts, and neighboring roles who must change a decision — not ship another artifact. Words and philosophy follow [The Data Warrior's Manuscript](https://github.com/Rla102277/the-data-warriors-manuscript). Process shape follows [mattpocock/skills](https://github.com/mattpocock/skills) (MIT process, not prose).
 
-The human is the Data Warrior. AI augments judgment. **The Forge** is the Tools companion in this repo: a ground-gated software factory (`forge` CLI / job line) that builds one proven step, collects independent reviews, and stops for a person. The sword is not the warrior. This repo does **not** include Foundation estate knowledge or workplace inventories. The book remains readable without this software.
+The human is the Data Warrior. AI augments judgment. **The Forge** is the Tools companion in this repo: a ground-gated software factory (`forge` CLI / job line) that builds one proven step, collects security, naming, and data-quality reviews, and stops for a person. The sword is not the warrior. This repo does **not** include Foundation estate knowledge or workplace inventories. The book remains readable without this software. The manuscript's parity contract is mirrored, with an honest limit, in `docs/PARITY.md`.
 
 ## Mission
 
@@ -80,7 +80,7 @@ The human is the Data Warrior; the AI host supplies execution assistance. The Wa
 | CLI and discovery | Offer job operations, policy evaluation, ADF/dbt discovery, lineage, and local demos. |
 | Host portability | Install native skills and instructions for Cursor, Claude Code, and Codex. |
 
-**Boundaries:** The Forge is not proof of production readiness merely because its CI passes. The current evidence gate checks for proof artifacts and three PASS review files, but some textual test claims and synthetic demo evidence are still accepted in demo paths. Independent agent behavior across hosts and real deployment authorization require separate validation. Fabric is an optional integration; Foundation estate knowledge is not part of this distribution.
+**Boundaries:** The book is wider than this agent. A real job reaches approval only with a recorded test execution (command, exit code, stdout, stderr, hashes) and three structured reviews bound to that build. Prose that says the tests passed does not count. `forge job demo` and the explicit demo path write **synthetic** evidence; that evidence cannot qualify a real job. Three reviews from one reviewer are perspectives, not independent reviewers. `--authorized` is an operator attestation, not identity. Council roles are not six agents. Passing CI does not prove live host behavior. No vendor platform is bundled. Know the ground, then bring the tools that terrain needs. Foundation estate knowledge is not in this distribution.
 
 ## How to Use It
 
