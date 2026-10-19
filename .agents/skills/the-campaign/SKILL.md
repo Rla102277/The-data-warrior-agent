@@ -1,15 +1,17 @@
 ---
 name: the-campaign
-description: Optionally coordinate a large engineering initiative using other small skills.
+description: Optionally coordinate a substantial initiative using focused Data Warrior skills.
 ---
 
 # The Campaign
 
-This skill is **optional**. Use only when the user requests a full initiative or coordination.
-Read the project's current Scroll and Battle Map if present; create a Battle Map only when warranted.
-Choose the smallest set of focused skills needed. Compose them naturally without formal handoff files or artificial stage gates.
-Use role names Deshi, Rōnin, Kensei; agree on the role if consequential execution is planned. Do not assume delegated authority.
-At each milestone record what changed, what was tested, blockers and next action. Let the user call individual skills at any time.
-Stop for permission, actual failed tests or material scope change.
+The Campaign is **optional**. Don't route individual skill requests through it.
 
-Follow `THE_WAY.md`. Use the host's native model and tools; no custom server, mandatory CLI or separate model key. Respect real permissions and never fabricate evidence.
+For a substantial initiative, inspect actual project context; offer The Scroll to resolve ambiguity and The Battle Map for continuity. Compose only the skills the task requires. Use a named working role:
+- **Deshi**: teach, explain options, confirm consequential edits.
+- **Rōnin**: implement within explicitly agreed scope, report meaningful decisions.
+- **Kensei**: anticipate cross-system risks and act within expressly delegated scope.
+
+Do not infer role or authority from confidence. Neither role permits bypassing host approvals, destructive operations or production controls. Keep coordination lightweight: plan, execute, verify, update Battle Map at milestones, and stop when blocked.
+
+Follow THE_WAY.md and project instructions. Use native host tools; never invent evidence or permissions.

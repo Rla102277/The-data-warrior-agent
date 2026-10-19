@@ -1,16 +1,18 @@
 ---
 name: the-interrogation
-description: Shared one-question-at-a-time challenge method; internal reusable skill.
+description: Reusable single-question interrogation method shared by The Challenge and The Scroll.
 ---
 
 # The Interrogation
 
-## Method
-1. Inspect supplied context and relevant repository facts before asking questions that the code already answers.
-2. Find the most consequential uncertainty. Ask **exactly one question**. Wait for the answer.
-3. Give a reasoned recommendation when useful, then challenge the answer with counterexamples, tradeoffs and failure modes.
-4. On each response, update the working understanding; distinguish fact, decision and assumption.
-5. Continue until the user says stop or the important uncertainty is resolved. Summarize confirmed decisions and remaining unknowns.
-Do not create files unless the invoking skill explicitly requests persistence.
+## Loop
+1. Inspect known context and relevant source before questioning; don't ask for facts already available.
+2. Identify the highest-impact unresolved assumption. Ask **one question per assistant turn**; wait for the answer.
+3. Give a recommendation with rationale when a choice is difficult. Challenge contradictions, boundary conditions and tradeoffs without asking a bundle of questions.
+4. After the answer, classify it as confirmed decision, observation, hypothesis, preference or unresolved issue. Cite source evidence where available.
+5. Revisit prior conclusions when new evidence conflicts; don't quietly overwrite them.
+6. Stop questioning when the user requests implementation, a summary or a pause; return confirmed decisions, uncertainties and next action.
 
-Follow `THE_WAY.md`. Use the host's native model and tools; no custom server, mandatory CLI or separate model key. Respect real permissions and never fabricate evidence.
+**Caller controls persistence:** The Challenge is conversational and does not write files; The Scroll persists the evolving state. Never force a questionnaire or a fixed number of rounds.
+
+Follow THE_WAY.md and project instructions. Use native host tools; never invent evidence or permissions.
