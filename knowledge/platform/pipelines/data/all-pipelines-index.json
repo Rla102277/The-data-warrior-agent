@@ -1,0 +1,1088 @@
+[
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_audit_cleanup.DataPipeline",
+    "id": "d92cd77c-e0a2-46bb-a31c-9722bb78ef2b",
+    "display": "pp_audit_cleanup"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_compare_azure_vs_mirrored_db.DataPipeline",
+    "id": "ed80e4a2-9a23-4a84-9b6e-0e2dcd5f7c8e",
+    "display": "pp_compare_azure_vs_mirrored_db"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_delete_blocked_logs.DataPipeline",
+    "id": "6773c25d-a4f8-49a5-b73e-e1fa66c689a7",
+    "display": "pp_delete_blocked_logs"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_fabric_salesforce_ingestion_bkp1.DataPipeline",
+    "id": "b5e1e74b-26fb-422e-9af0-f79bb21b5dd9",
+    "display": "pp_fabric_salesforce_ingestion_bkp1"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_fabric_salesforce_ingestion_prod.DataPipeline",
+    "id": "bfa989c9-ea9a-4c8d-952c-7e9e24c7a9e9",
+    "display": "pp_fabric_salesforce_ingestion_prod"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_fabric_salesforce_ingestion_UAT.DataPipeline",
+    "id": "98a331d1-3413-4a8e-a032-0bb185cc8a08",
+    "display": "pp_fabric_salesforce_ingestion_UAT"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_fact_hist_scheduled.DataPipeline",
+    "id": "941bc800-d596-4496-97b3-d178494caefc",
+    "display": "pp_fact_hist_scheduled"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_fact_lot_financials_to_fact_lot_financials_hist.DataPipeline",
+    "id": "9cb644da-58eb-41e4-babd-2f76cb6099d9",
+    "display": "pp_load_fact_lot_financials_to_fact_lot_financials_hist"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_fact_lot_sgm_to_fact_lot_sgm_hist.DataPipeline",
+    "id": "f1eedae3-4388-4a2a-831e-bb12a03f4ae0",
+    "display": "pp_load_fact_lot_sgm_to_fact_lot_sgm_hist"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_fact_sgm_assumptions_to_fact_sgm_assumptions_hist.DataPipeline",
+    "id": "27cfc022-db69-4575-9b65-215480ae5187",
+    "display": "pp_load_fact_sgm_assumptions_to_fact_sgm_assumptions_hist"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_company.DataPipeline",
+    "id": "cca45c40-247f-495b-bbd7-775f997d9183",
+    "display": "pp_load_stg_to_dim_company"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_company_audit.DataPipeline",
+    "id": "33fc953e-f637-4852-a800-3f2dc98e6c79",
+    "display": "pp_load_stg_to_dim_company_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_company_full.DataPipeline",
+    "id": "8b67e854-aba0-42c0-84a2-cb4454267b75",
+    "display": "pp_load_stg_to_dim_company_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_company_no_audit.DataPipeline",
+    "id": "2ab98352-29e0-45ba-b38c-8209c4e845fa",
+    "display": "pp_load_stg_to_dim_company_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_division.DataPipeline",
+    "id": "42a73267-54ce-4de3-ab32-f8fb83933216",
+    "display": "pp_load_stg_to_dim_division"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_division_audit.DataPipeline",
+    "id": "8ae0ad30-1770-4d75-b641-d4fc99140734",
+    "display": "pp_load_stg_to_dim_division_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_division_full.DataPipeline",
+    "id": "e08ab6ce-08f0-45bd-877d-d0c29e6796a6",
+    "display": "pp_load_stg_to_dim_division_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_division_no_audit.DataPipeline",
+    "id": "c9b76df4-b9e6-46a1-9854-ca71ace3f56b",
+    "display": "pp_load_stg_to_dim_division_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_job.DataPipeline",
+    "id": "26e3a81b-7f64-4945-b909-9a1d29adf85d",
+    "display": "pp_load_stg_to_dim_job"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_job_audit.DataPipeline",
+    "id": "498d5b5d-dcc2-4ab4-b086-c935bc4f6734",
+    "display": "pp_load_stg_to_dim_job_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_job_full.DataPipeline",
+    "id": "821c277b-195c-474f-bb86-d5e8dc3f32ee",
+    "display": "pp_load_stg_to_dim_job_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_job_no_audit.DataPipeline",
+    "id": "de280797-764f-4543-b630-a936a6ac6882",
+    "display": "pp_load_stg_to_dim_job_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_job_task.DataPipeline",
+    "id": "d90e0b17-7092-4cfd-98a2-f1b6406187aa",
+    "display": "pp_load_stg_to_dim_job_task"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_job_task_audit.DataPipeline",
+    "id": "8ff57f55-1451-44a0-9aaa-7ef578dcb3b5",
+    "display": "pp_load_stg_to_dim_job_task_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_job_task_full.DataPipeline",
+    "id": "bec65a19-6d7c-459c-92b9-5f0491f7e763",
+    "display": "pp_load_stg_to_dim_job_task_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_job_task_no_audit.DataPipeline",
+    "id": "253519b2-3cb2-4772-b7b8-5642d494936d",
+    "display": "pp_load_stg_to_dim_job_task_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_lot.DataPipeline",
+    "id": "5d4f61c4-98df-4f56-bc02-2faf9fb50ce8",
+    "display": "pp_load_stg_to_dim_lot"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_lot_audit.DataPipeline",
+    "id": "cfb5393f-6b7d-4c29-837c-acb9e5e4dd48",
+    "display": "pp_load_stg_to_dim_lot_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_lot_full.DataPipeline",
+    "id": "99f8471b-0624-4247-ad09-0a745a16a2f5",
+    "display": "pp_load_stg_to_dim_lot_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_lot_no_audit.DataPipeline",
+    "id": "8091d006-4354-4989-9430-f4b6084d2511",
+    "display": "pp_load_stg_to_dim_lot_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_major_minor.DataPipeline",
+    "id": "0b9fb1b9-5e4f-4ecd-8f64-5a7aefa8d01e",
+    "display": "pp_load_stg_to_dim_major_minor"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_major_minor_audit.DataPipeline",
+    "id": "99731498-e452-421e-b668-3e127b5ea6d9",
+    "display": "pp_load_stg_to_dim_major_minor_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_major_minor_full.DataPipeline",
+    "id": "c2a0f2df-224a-4428-b667-4566e2735844",
+    "display": "pp_load_stg_to_dim_major_minor_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_major_minor_no_audit.DataPipeline",
+    "id": "2ae7b430-f06c-47ef-975e-97127716d10f",
+    "display": "pp_load_stg_to_dim_major_minor_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_operating_unit.DataPipeline",
+    "id": "cb4748e3-5c47-4181-90b1-d15014d1f4d6",
+    "display": "pp_load_stg_to_dim_operating_unit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_operating_unit_audit.DataPipeline",
+    "id": "be8717d3-dfcd-495d-844b-91e75da38a4d",
+    "display": "pp_load_stg_to_dim_operating_unit_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_operating_unit_full.DataPipeline",
+    "id": "2191f9ad-ee17-466a-a5a6-26d2af3c3bfd",
+    "display": "pp_load_stg_to_dim_operating_unit_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_operating_unit_no_audit.DataPipeline",
+    "id": "5532fe9a-bd00-4c7a-95a1-8b886289c63a",
+    "display": "pp_load_stg_to_dim_operating_unit_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_period.DataPipeline",
+    "id": "4f9b29b5-0a7a-4dcc-8598-148bcd4e41aa",
+    "display": "pp_load_stg_to_dim_period"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_period_audit.DataPipeline",
+    "id": "cf3318ec-784b-41b9-a238-fac12abd358a",
+    "display": "pp_load_stg_to_dim_period_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_period_no_audit.DataPipeline",
+    "id": "d1fd2fcf-6a5c-451c-87e0-ea2c91afaca9",
+    "display": "pp_load_stg_to_dim_period_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_project.DataPipeline",
+    "id": "8b78a940-1237-4963-b9e6-ab43ab54f29f",
+    "display": "pp_load_stg_to_dim_project"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_project_audit.DataPipeline",
+    "id": "4d671eae-2814-4754-a572-097d3138700b",
+    "display": "pp_load_stg_to_dim_project_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_project_full.DataPipeline",
+    "id": "a8e49677-aaca-4a74-9241-402b183714de",
+    "display": "pp_load_stg_to_dim_project_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_project_no_audit.DataPipeline",
+    "id": "a8cc6520-1172-4752-9ad9-ba80174e3887",
+    "display": "pp_load_stg_to_dim_project_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_sale.DataPipeline",
+    "id": "36c650c2-349e-4bd0-8867-6abea4207849",
+    "display": "pp_load_stg_to_dim_sale"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_sale_audit.DataPipeline",
+    "id": "0797c6a6-25da-4121-805d-9878069ddb93",
+    "display": "pp_load_stg_to_dim_sale_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_sale_full.DataPipeline",
+    "id": "fa6d42f6-391c-4f10-af18-c43865ca8bfa",
+    "display": "pp_load_stg_to_dim_sale_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_sale_no_audit.DataPipeline",
+    "id": "62cd42cc-8b2d-413a-a5dc-30f8a853366f",
+    "display": "pp_load_stg_to_dim_sale_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_sale_transfer.DataPipeline",
+    "id": "366e4ff6-a25e-46f8-a272-c04ffc7ceb36",
+    "display": "pp_load_stg_to_dim_sale_transfer"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_sale_transfer_audit.DataPipeline",
+    "id": "4bf5bcdf-9972-49d3-bb7c-db0355434d59",
+    "display": "pp_load_stg_to_dim_sale_transfer_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_sale_transfer_no_audit.DataPipeline",
+    "id": "1f3caa03-4329-4c01-bafd-454172f6fc84",
+    "display": "pp_load_stg_to_dim_sale_transfer_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_sgm_map.DataPipeline",
+    "id": "5cc7fa75-ebd2-447d-9f9b-aa2189b053b7",
+    "display": "pp_load_stg_to_dim_sgm_map"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_sgm_map_audit.DataPipeline",
+    "id": "09eaa9ba-44ef-4c8b-a512-c2630105f4a6",
+    "display": "pp_load_stg_to_dim_sgm_map_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_sgm_map_full.DataPipeline",
+    "id": "cc29750e-563f-4920-9c85-dcc5575db353",
+    "display": "pp_load_stg_to_dim_sgm_map_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_dim_sgm_map_no_audit.DataPipeline",
+    "id": "87613a00-7901-4151-86a1-eca0338f3e55",
+    "display": "pp_load_stg_to_dim_sgm_map_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_general_ledger.DataPipeline",
+    "id": "1ed0ad03-5d00-4e24-abc1-8781129eec06",
+    "display": "pp_load_stg_to_fact_general_ledger"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_general_ledger_audit.DataPipeline",
+    "id": "33eb87cd-8d66-4967-9fbd-39ceafa3bc33",
+    "display": "pp_load_stg_to_fact_general_ledger_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_general_ledger_full.DataPipeline",
+    "id": "d751649f-f5ba-43b8-9394-cc0ecb33b1e4",
+    "display": "pp_load_stg_to_fact_general_ledger_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_general_ledger_no_audit.DataPipeline",
+    "id": "6feb849e-73af-4f2d-862f-8ef2a8776bfa",
+    "display": "pp_load_stg_to_fact_general_ledger_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_lot_financials.DataPipeline",
+    "id": "6716aac9-2d30-4040-81de-da3d6f13db67",
+    "display": "pp_load_stg_to_fact_lot_financials"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_lot_financials_audit.DataPipeline",
+    "id": "92a4668e-fc1d-4bfb-9c07-f7ad37481e87",
+    "display": "pp_load_stg_to_fact_lot_financials_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_lot_financials_full.DataPipeline",
+    "id": "6d6f0ee5-e0f9-4e1f-bac0-29122dcd136f",
+    "display": "pp_load_stg_to_fact_lot_financials_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_lot_financials_hist.DataPipeline",
+    "id": "8ab3a0c1-b77d-4419-b231-da00a56b221b",
+    "display": "pp_load_stg_to_fact_lot_financials_hist"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_lot_financials_no_audit.DataPipeline",
+    "id": "06f02d23-2d33-461c-9432-96c99a2d9641",
+    "display": "pp_load_stg_to_fact_lot_financials_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_lot_sgm.DataPipeline",
+    "id": "71733c9c-03c0-4927-88b7-3c31a83f8c95",
+    "display": "pp_load_stg_to_fact_lot_sgm"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_lot_sgm_audit.DataPipeline",
+    "id": "ca315407-bc03-49fa-9a45-727e800c3e34",
+    "display": "pp_load_stg_to_fact_lot_sgm_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_lot_sgm_full.DataPipeline",
+    "id": "3e8ae088-ad64-4672-ac7c-0f9b8d7a9e4c",
+    "display": "pp_load_stg_to_fact_lot_sgm_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_lot_sgm_hist.DataPipeline",
+    "id": "380467b4-eaf6-4bfc-8073-d25c79c683d0",
+    "display": "pp_load_stg_to_fact_lot_sgm_hist"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_lot_sgm_no_audit.DataPipeline",
+    "id": "e8781a8b-5100-4eeb-8674-eba9b33774c6",
+    "display": "pp_load_stg_to_fact_lot_sgm_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_sgm_assumptions.DataPipeline",
+    "id": "eaf02720-aa53-4105-801f-25df09f6d1ab",
+    "display": "pp_load_stg_to_fact_sgm_assumptions"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_sgm_assumptions_audit.DataPipeline",
+    "id": "a8fb74ef-bba7-4505-91bb-51e4ebb93bfe",
+    "display": "pp_load_stg_to_fact_sgm_assumptions_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_sgm_assumptions_full.DataPipeline",
+    "id": "b6cb06aa-5220-44e7-b366-5ed5ca15d4af",
+    "display": "pp_load_stg_to_fact_sgm_assumptions_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_sgm_assumptions_hist.DataPipeline",
+    "id": "b41eac17-3f59-46b2-a742-d94b1f945350",
+    "display": "pp_load_stg_to_fact_sgm_assumptions_hist"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_stg_to_fact_sgm_assumptions_no_audit.DataPipeline",
+    "id": "c243b6d1-40ee-48b8-8fb8-e64c455522a2",
+    "display": "pp_load_stg_to_fact_sgm_assumptions_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_view_to_csv.DataPipeline",
+    "id": "50e21c54-e441-42a8-95d5-984bff4c5aef",
+    "display": "pp_load_view_to_csv"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_load_zonda_to_fabric.DataPipeline",
+    "id": "c010d38a-f929-4ec9-82ee-4d42354c33f2",
+    "display": "pp_load_zonda_to_fabric"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_orchestration.DataPipeline",
+    "id": "4a424852-9b4f-413b-967d-cfb9643cb910",
+    "display": "pp_orchestration"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_orchestration_full.DataPipeline",
+    "id": "9049a743-e91a-4174-97df-31dab06c2644",
+    "display": "pp_orchestration_full"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_orchestration_with_pp_audit.DataPipeline",
+    "id": "48c5c631-0e3b-4cc6-97b6-c273d1fca1c1",
+    "display": "pp_orchestration_with_pp_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_orchestration_without_pp_audit.DataPipeline",
+    "id": "f070e0e8-0372-4adf-9bdc-ed4ede575d77",
+    "display": "pp_orchestration_without_pp_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_orchestration_without_pp_audit_old.DataPipeline",
+    "id": "c2573e9f-7daa-41e9-8ad2-1591d5eebd6d",
+    "display": "pp_orchestration_without_pp_audit_old"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_orchestrator_test.DataPipeline",
+    "id": "14805c36-7d0b-4fd6-b4ea-73b5768c196f",
+    "display": "pp_orchestrator_test"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_salesforce_fabric_ingestion.DataPipeline",
+    "id": "22cc8c68-85a1-4cdf-94a1-b8d71e479edc",
+    "display": "pp_salesforce_fabric_ingestion"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_salesforce_fabric_ingestion_bkp1.DataPipeline",
+    "id": "24e9cef0-f112-40ee-8002-be3a251b5922",
+    "display": "pp_salesforce_fabric_ingestion_bkp1"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_salesforce_fabric_ingestion_prod.DataPipeline",
+    "id": "9e610944-8757-4dd1-9284-e5ee3da9a6ce",
+    "display": "pp_salesforce_fabric_ingestion_prod"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_salesforce_fabric_ingestion_test.DataPipeline",
+    "id": "26ab6c8b-c65a-471c-8f21-e03672a1c255",
+    "display": "pp_salesforce_fabric_ingestion_test"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_salesforce_fabric_ingestion_UAT.DataPipeline",
+    "id": "28821ea9-0300-4aa8-84de-c5193a7427f6",
+    "display": "pp_salesforce_fabric_ingestion_UAT"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_salesforce_orchestrator_prod.DataPipeline",
+    "id": "4bbd61dc-5260-403f-82c7-f814f35d9f55",
+    "display": "pp_salesforce_orchestrator_prod"
+  },
+  {
+    "workspace": "GBP-Enterprise-Dev.Workspace",
+    "name": "pp_temp_schema_discovery.DataPipeline",
+    "id": "1941a314-b363-4006-9b38-0026ac0fc24b",
+    "display": "pp_temp_schema_discovery"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_audit_cleanup.DataPipeline",
+    "id": "b1f9cebd-7397-4634-b974-7a291f70f5a9",
+    "display": "pp_audit_cleanup"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_compare_azure_vs_mirrored_db.DataPipeline",
+    "id": "e034c1e2-bd47-4562-9e74-db39743fec96",
+    "display": "pp_compare_azure_vs_mirrored_db"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_delete_blocked_logs.DataPipeline",
+    "id": "29b8a417-0bb2-4f19-8972-00e0a24487cb",
+    "display": "pp_delete_blocked_logs"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_fabric_salesforce_ingestion_bkp1.DataPipeline",
+    "id": "87fb3c8a-d143-4e89-aadb-365bdc177664",
+    "display": "pp_fabric_salesforce_ingestion_bkp1"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_fabric_salesforce_ingestion_prod.DataPipeline",
+    "id": "e12fc780-d609-4361-8f07-24c3c3e71e48",
+    "display": "pp_fabric_salesforce_ingestion_prod"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_fabric_salesforce_ingestion_UAT.DataPipeline",
+    "id": "53eafa23-06a1-4ad3-9f2a-5ab4e1b6eeec",
+    "display": "pp_fabric_salesforce_ingestion_UAT"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_fact_hist_scheduled.DataPipeline",
+    "id": "21040099-0634-44a1-a532-c21927b49c3c",
+    "display": "pp_fact_hist_scheduled"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_fact_lot_financials_to_fact_lot_financials_hist.DataPipeline",
+    "id": "5535a19d-0e92-4bea-85f8-30f512a197ff",
+    "display": "pp_load_fact_lot_financials_to_fact_lot_financials_hist"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_fact_lot_sgm_to_fact_lot_sgm_hist.DataPipeline",
+    "id": "2b065f38-d2d5-40d7-9c18-6ef8c62c7458",
+    "display": "pp_load_fact_lot_sgm_to_fact_lot_sgm_hist"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_fact_sgm_assumptions_to_fact_sgm_assumptions_hist.DataPipeline",
+    "id": "e5ea70f0-9daa-4d22-b466-d1927b85ce76",
+    "display": "pp_load_fact_sgm_assumptions_to_fact_sgm_assumptions_hist"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_company.DataPipeline",
+    "id": "5c818282-6189-4630-9435-962f7764e27a",
+    "display": "pp_load_stg_to_dim_company"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_company_audit.DataPipeline",
+    "id": "dce36176-b4c7-464f-9eb2-f7d39ebb73c6",
+    "display": "pp_load_stg_to_dim_company_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_company_full.DataPipeline",
+    "id": "55acbbd2-a332-45f6-9237-e33caac4244d",
+    "display": "pp_load_stg_to_dim_company_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_company_no_audit.DataPipeline",
+    "id": "5235ef05-d996-46ef-bd7b-54156e6d433d",
+    "display": "pp_load_stg_to_dim_company_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_division.DataPipeline",
+    "id": "c0b03c9f-01f4-4872-889f-41f0fa6bfaa7",
+    "display": "pp_load_stg_to_dim_division"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_division_audit.DataPipeline",
+    "id": "4058be90-a6c5-4ac1-9cd9-5e6cc77aaaf4",
+    "display": "pp_load_stg_to_dim_division_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_division_full.DataPipeline",
+    "id": "4b64090a-03e1-4011-b0be-ab3035011706",
+    "display": "pp_load_stg_to_dim_division_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_division_no_audit.DataPipeline",
+    "id": "fe2673ee-33b4-4ddd-b25f-1bb92c8be82d",
+    "display": "pp_load_stg_to_dim_division_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_job.DataPipeline",
+    "id": "3d60910f-4159-4cb4-81b0-96af73d87a11",
+    "display": "pp_load_stg_to_dim_job"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_job_audit.DataPipeline",
+    "id": "1596291f-7bee-492d-af09-ebeb52a9712a",
+    "display": "pp_load_stg_to_dim_job_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_job_full.DataPipeline",
+    "id": "764ce173-dabd-414c-ad78-038260631ef4",
+    "display": "pp_load_stg_to_dim_job_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_job_no_audit.DataPipeline",
+    "id": "0ef1aa73-e832-4625-b2b0-27a9cfe197dc",
+    "display": "pp_load_stg_to_dim_job_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_job_task.DataPipeline",
+    "id": "ef4ecda2-e214-47f5-8a49-6f105781aa91",
+    "display": "pp_load_stg_to_dim_job_task"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_job_task_audit.DataPipeline",
+    "id": "7aad0c95-6a59-4d24-838e-71eeb7aaa318",
+    "display": "pp_load_stg_to_dim_job_task_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_job_task_full.DataPipeline",
+    "id": "90634c30-6634-4eec-afeb-a62a814999df",
+    "display": "pp_load_stg_to_dim_job_task_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_job_task_no_audit.DataPipeline",
+    "id": "78f9d9fa-3230-4dc6-b2de-db0691bff109",
+    "display": "pp_load_stg_to_dim_job_task_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_lot.DataPipeline",
+    "id": "2d689279-eb37-4ff8-ba26-ac44878a8b20",
+    "display": "pp_load_stg_to_dim_lot"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_lot_audit.DataPipeline",
+    "id": "0d3a09de-87e8-4145-905c-35f9515c4480",
+    "display": "pp_load_stg_to_dim_lot_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_lot_full.DataPipeline",
+    "id": "57ea45c2-cd26-4a4d-87ef-1a9489a8feb1",
+    "display": "pp_load_stg_to_dim_lot_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_lot_no_audit.DataPipeline",
+    "id": "41bf8e05-c07f-4df5-b519-4e878326f37c",
+    "display": "pp_load_stg_to_dim_lot_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_major_minor.DataPipeline",
+    "id": "0a1b3ca5-495c-4016-ae7e-f80fb0590ff4",
+    "display": "pp_load_stg_to_dim_major_minor"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_major_minor_audit.DataPipeline",
+    "id": "09d93440-86da-4ee5-baea-dcedff9c2901",
+    "display": "pp_load_stg_to_dim_major_minor_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_major_minor_full.DataPipeline",
+    "id": "37fe7e20-c54a-40f7-a147-776e1db3a309",
+    "display": "pp_load_stg_to_dim_major_minor_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_major_minor_no_audit.DataPipeline",
+    "id": "d55b46d5-307f-4cbb-baf8-192d569075ae",
+    "display": "pp_load_stg_to_dim_major_minor_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_operating_unit.DataPipeline",
+    "id": "b54303c8-50e1-43d3-9dae-d1afc46f3414",
+    "display": "pp_load_stg_to_dim_operating_unit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_operating_unit_audit.DataPipeline",
+    "id": "4b0d19e4-3cb1-4df9-abee-f77dec47fecd",
+    "display": "pp_load_stg_to_dim_operating_unit_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_operating_unit_full.DataPipeline",
+    "id": "4eeedd29-dbfd-4adf-bd84-a06645a02d1a",
+    "display": "pp_load_stg_to_dim_operating_unit_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_operating_unit_no_audit.DataPipeline",
+    "id": "7dbd5f46-f018-4712-9d9d-6c4f39641f44",
+    "display": "pp_load_stg_to_dim_operating_unit_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_period.DataPipeline",
+    "id": "18eb302b-dc12-4acd-84c4-2b1bf154f8e7",
+    "display": "pp_load_stg_to_dim_period"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_period_audit.DataPipeline",
+    "id": "a20a3d12-9faf-4d0d-a09f-54d5c1babfaf",
+    "display": "pp_load_stg_to_dim_period_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_period_no_audit.DataPipeline",
+    "id": "5db813ca-ba19-41b8-8a9c-af3a7eab9890",
+    "display": "pp_load_stg_to_dim_period_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_project.DataPipeline",
+    "id": "578fa5ee-e93f-4d42-8998-fa1990fa9e27",
+    "display": "pp_load_stg_to_dim_project"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_project_audit.DataPipeline",
+    "id": "f30842fa-819b-4780-9f20-f72ad4e65e2b",
+    "display": "pp_load_stg_to_dim_project_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_project_full.DataPipeline",
+    "id": "dcae30fd-f7de-4adb-9d5c-5e3579fe3566",
+    "display": "pp_load_stg_to_dim_project_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_project_no_audit.DataPipeline",
+    "id": "2ee1f343-0540-4da4-a98f-6f5a7d1251ec",
+    "display": "pp_load_stg_to_dim_project_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_sale.DataPipeline",
+    "id": "c68322b2-b04c-4bf0-9861-0d8acc0a22a9",
+    "display": "pp_load_stg_to_dim_sale"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_sale_audit.DataPipeline",
+    "id": "6a7e5e37-408f-447d-872b-a0dcca063b06",
+    "display": "pp_load_stg_to_dim_sale_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_sale_full.DataPipeline",
+    "id": "2e270b8d-bfb5-4ecd-849f-090a591e8dbb",
+    "display": "pp_load_stg_to_dim_sale_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_sale_no_audit.DataPipeline",
+    "id": "1248eeb9-afaa-461f-8028-c9e4c1efd877",
+    "display": "pp_load_stg_to_dim_sale_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_sale_transfer.DataPipeline",
+    "id": "21cae554-fafa-4c62-a57a-dd3377aeb8c8",
+    "display": "pp_load_stg_to_dim_sale_transfer"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_sale_transfer_audit.DataPipeline",
+    "id": "67d82fee-096c-4ace-b42a-3153698075ef",
+    "display": "pp_load_stg_to_dim_sale_transfer_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_sale_transfer_no_audit.DataPipeline",
+    "id": "56c4cb71-3146-48ce-a256-bae55b682387",
+    "display": "pp_load_stg_to_dim_sale_transfer_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_sgm_map.DataPipeline",
+    "id": "44154a39-99be-4892-b77a-808498540c27",
+    "display": "pp_load_stg_to_dim_sgm_map"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_sgm_map_audit.DataPipeline",
+    "id": "f10c53ae-4679-4e60-b19b-ad37d4c73a68",
+    "display": "pp_load_stg_to_dim_sgm_map_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_sgm_map_full.DataPipeline",
+    "id": "d431bf4a-9b35-4a8b-a7e0-cb0e5eb06682",
+    "display": "pp_load_stg_to_dim_sgm_map_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_dim_sgm_map_no_audit.DataPipeline",
+    "id": "98e2a15b-3dfc-47f1-ae10-52a82d0e7869",
+    "display": "pp_load_stg_to_dim_sgm_map_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_general_ledger.DataPipeline",
+    "id": "f71eae63-590f-4b5a-bddb-64e23902b0fa",
+    "display": "pp_load_stg_to_fact_general_ledger"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_general_ledger_audit.DataPipeline",
+    "id": "eac57a6a-5704-4440-ac64-9c9b32c4a2f9",
+    "display": "pp_load_stg_to_fact_general_ledger_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_general_ledger_full.DataPipeline",
+    "id": "6d2c85d6-938a-4e47-b421-c34a510eb681",
+    "display": "pp_load_stg_to_fact_general_ledger_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_general_ledger_no_audit.DataPipeline",
+    "id": "c683c03e-a80b-40d5-b854-4fa40f21d58d",
+    "display": "pp_load_stg_to_fact_general_ledger_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_lot_financials.DataPipeline",
+    "id": "8c8f4b2c-086f-4e0a-bb29-27c19e36ff76",
+    "display": "pp_load_stg_to_fact_lot_financials"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_lot_financials_audit.DataPipeline",
+    "id": "479c8589-141b-4a38-9ba3-9867fe55a171",
+    "display": "pp_load_stg_to_fact_lot_financials_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_lot_financials_full.DataPipeline",
+    "id": "f6168e29-ddcf-4dd4-a842-37fbce892e39",
+    "display": "pp_load_stg_to_fact_lot_financials_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_lot_financials_hist.DataPipeline",
+    "id": "29bb0a45-7929-43a5-b79c-da010a9408b2",
+    "display": "pp_load_stg_to_fact_lot_financials_hist"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_lot_financials_no_audit.DataPipeline",
+    "id": "0f4f7a0d-8b6f-473c-b655-87d047843863",
+    "display": "pp_load_stg_to_fact_lot_financials_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_lot_sgm.DataPipeline",
+    "id": "531332e6-3594-4bc3-8a98-1a3bc98c92de",
+    "display": "pp_load_stg_to_fact_lot_sgm"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_lot_sgm_audit.DataPipeline",
+    "id": "8ddfe426-c1c4-45fa-bcb0-451a6fc083f8",
+    "display": "pp_load_stg_to_fact_lot_sgm_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_lot_sgm_full.DataPipeline",
+    "id": "9a7a1893-cccc-4a54-80ad-cc3f66a14fdb",
+    "display": "pp_load_stg_to_fact_lot_sgm_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_lot_sgm_hist.DataPipeline",
+    "id": "1c2f2d22-5f05-4563-9ca1-252d1076330a",
+    "display": "pp_load_stg_to_fact_lot_sgm_hist"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_lot_sgm_no_audit.DataPipeline",
+    "id": "df3b618d-389d-41f5-b224-d2450245ff38",
+    "display": "pp_load_stg_to_fact_lot_sgm_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_sgm_assumptions.DataPipeline",
+    "id": "933848ea-1069-47c3-ade8-487f850c7ee3",
+    "display": "pp_load_stg_to_fact_sgm_assumptions"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_sgm_assumptions_audit.DataPipeline",
+    "id": "b8c76fe7-1d94-41d4-a7ab-7b2d0d8f9b3d",
+    "display": "pp_load_stg_to_fact_sgm_assumptions_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_sgm_assumptions_full.DataPipeline",
+    "id": "844d2d57-46a8-4b42-ae60-9c20502f2988",
+    "display": "pp_load_stg_to_fact_sgm_assumptions_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_sgm_assumptions_hist.DataPipeline",
+    "id": "b8d0917d-915d-4376-8403-c26ef47f4981",
+    "display": "pp_load_stg_to_fact_sgm_assumptions_hist"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_stg_to_fact_sgm_assumptions_no_audit.DataPipeline",
+    "id": "8c4fcfd7-a729-48ee-8bec-a61cfe501b1e",
+    "display": "pp_load_stg_to_fact_sgm_assumptions_no_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_view_to_csv.DataPipeline",
+    "id": "707d2933-5bad-46f6-8d27-a9fea2aa2ca7",
+    "display": "pp_load_view_to_csv"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_load_zonda_to_fabric.DataPipeline",
+    "id": "ec029d90-9d22-4b2d-8ea3-0a33e129b7a4",
+    "display": "pp_load_zonda_to_fabric"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_orchestration.DataPipeline",
+    "id": "17465852-a4ab-492e-b950-1050ed800d74",
+    "display": "pp_orchestration"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_orchestration_full.DataPipeline",
+    "id": "22b96108-4107-427c-a468-80e8acbb1286",
+    "display": "pp_orchestration_full"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_orchestration_with_pp_audit.DataPipeline",
+    "id": "e9201dd4-fccb-4e42-8884-64970fb5fa6e",
+    "display": "pp_orchestration_with_pp_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_orchestration_without_pp_audit.DataPipeline",
+    "id": "9e2c73c1-f252-46f2-bafe-18958855d572",
+    "display": "pp_orchestration_without_pp_audit"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_orchestration_without_pp_audit_old.DataPipeline",
+    "id": "f9c79bd2-9d0b-48ee-8400-f79803191626",
+    "display": "pp_orchestration_without_pp_audit_old"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_orchestrator_test.DataPipeline",
+    "id": "678c340c-0df7-4118-90ee-4e21bda10657",
+    "display": "pp_orchestrator_test"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_salesforce_fabric_ingestion.DataPipeline",
+    "id": "944a7184-4d26-4e45-b815-11ac2ee393e3",
+    "display": "pp_salesforce_fabric_ingestion"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_salesforce_fabric_ingestion_bkp1.DataPipeline",
+    "id": "4b00092e-c22d-4de9-871f-3e2e191f9d10",
+    "display": "pp_salesforce_fabric_ingestion_bkp1"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_salesforce_fabric_ingestion_prod.DataPipeline",
+    "id": "22a02d16-b512-4f89-91f1-89b046c86028",
+    "display": "pp_salesforce_fabric_ingestion_prod"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_salesforce_fabric_ingestion_test.DataPipeline",
+    "id": "362d2c01-61e0-418f-bac0-07386fab47a1",
+    "display": "pp_salesforce_fabric_ingestion_test"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_salesforce_fabric_ingestion_UAT.DataPipeline",
+    "id": "a34cf9d7-effb-44e4-a479-1b0d8b509377",
+    "display": "pp_salesforce_fabric_ingestion_UAT"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_salesforce_orchestrator_prod.DataPipeline",
+    "id": "2ff24d32-6afa-43c0-842c-55eef794cd77",
+    "display": "pp_salesforce_orchestrator_prod"
+  },
+  {
+    "workspace": "GBP-Enterprise.Workspace",
+    "name": "pp_temp_schema_discovery.DataPipeline",
+    "id": "d30a42ee-ce1a-4176-a46c-db433ea555b8",
+    "display": "pp_temp_schema_discovery"
+  },
+  {
+    "workspace": "GitTest.Workspace",
+    "name": "Pipeline_1.DataPipeline",
+    "id": "12a87303-aebe-4629-9c2c-51420b63e502",
+    "display": "Pipeline_1"
+  }
+]

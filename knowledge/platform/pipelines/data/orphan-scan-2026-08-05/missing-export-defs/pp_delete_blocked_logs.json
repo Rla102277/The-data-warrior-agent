@@ -1,0 +1,42 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "delete_blocked_log",
+        "type": "Script",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "linkedService": {
+          "name": "EDW_Silver",
+          "properties": {
+            "annotations": [],
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+              "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+              "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+            }
+          }
+        },
+        "typeProperties": {
+          "scripts": [
+            {
+              "type": "Query",
+              "text": {
+                "value": "                                                                                                                                                                                                                                                    \n  -- Delete any RUNNING records older than 2 hours (assumed stuck/orphaned)\n  DELETE FROM control.audit_orchestrator_control                                                                                                                                                                                                    \n  WHERE run_status = 'RUNNING'\n  AND start_time < DATEADD(HOUR, -2, SYSDATETIME());  ",
+                "type": "Expression"
+              }
+            }
+          ],
+          "scriptBlockExecutionTimeout": "02:00:00"
+        }
+      }
+    ]
+  }
+}

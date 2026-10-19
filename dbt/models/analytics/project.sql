@@ -1,0 +1,55 @@
+{{ config(materialized='view', schema='analytics', alias='project') }}
+
+-- Current-row project. active_lots folded from the former project_active twin.
+
+SELECT p1.[project_guid],
+		p1.[operating_unit_code],
+		p1.[reporting_operating_unit_code],
+		p1.[project_code],
+		p1.[project_id],
+		p1.[project_name],
+		p1.[project_label],
+		p1.[project_type],
+		p1.[company_code],
+		p1.[division_code],
+		p1.[street],
+		p1.[street2],
+		p1.[suite],
+		p1.[zip],
+		p1.[city],
+		p1.[state],
+		p1.[county],
+		p1.[area_constr_mgr],
+		p1.[total_lots],
+		p1.[system_lots],
+		p1.[exclude],
+		p1.[warranty_months],
+		p1.[constr_type],
+		p1.[legal_comp_name],
+		p1.[buildpro_integrated],
+		p1.[buildpro_modified],
+		p1.[buildpro_org_num],
+		p1.[epo_email],
+		p1.[hidden],
+		p1.[archived],
+		p1.[land_project],
+		p1.[subdivision_id],
+		COALESCE(l1.[active_lots],0) [active_lots],
+		p1.[lastmoddatetime],
+		p1.[effective_start_date],
+		p1.[effective_end_date],
+		p1.[record_hash_key],
+		p1.[is_active],
+		p1.[is_deleted],
+		p1.[created_date],
+		p1.[created_by],
+		p1.[created_job_run_id]
+FROM {{ source('transform', 'project') }} p1
+	LEFT JOIN (SELECT project_id,
+				COUNT(lot_id) active_lots
+				FROM {{ source('transform', 'lot') }}
+				WHERE lot_status <> 'Closed' AND exclude_from_reporting = 0 AND lot_transfer_date IS NULL AND is_active = 'Y'
+				GROUP BY project_id
+	) l1 ON
+		l1.project_id = p1.project_id
+WHERE p1.is_active = 'Y'

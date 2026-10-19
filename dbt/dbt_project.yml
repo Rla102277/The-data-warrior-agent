@@ -1,0 +1,21 @@
+name: forge
+version: 1.0.0
+config-version: 2
+profile: forge
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+seed-paths: ["seeds"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  forge:
+    analytics:
+      +materialized: view
+      +schema: analytics
+
+flags:
+  cache_selected_only: true

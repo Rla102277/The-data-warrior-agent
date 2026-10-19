@@ -2,4 +2,4 @@
 
 Role: Rōnin
 
-Read THE_WAY.md. Invoke focused skills directly. Skill sources are canonical under `skills/`. Generated host copies are not hand-edited. Change role by editing `Role: ...` to Deshi, Rōnin or Kensei at the user's direction. Roles never bypass permissions.
+Read THE_WAY.md and CLAUDE.md. Canonical skills live under `skills/<bucket>/<name>/SKILL.md`. Use `/ask-the-warrior` to choose a command. The Forge does not build until the ground gate is on the Scroll. Roles never bypass permissions.

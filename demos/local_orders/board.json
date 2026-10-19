@@ -1,0 +1,114 @@
+{
+  "jobs": [
+    {
+      "id": "19f806a9-4414-4adf-a1ab-317d453882b8",
+      "title": "local orders foundation demo",
+      "stage": "APPROVAL_PENDING",
+      "autonomy_level": 2,
+      "platform_profile": "fabric-first-foundation",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-16T17:43:45.917300+00:00"
+    },
+    {
+      "id": "57d08aba-8004-4c1e-ad02-49f88721bb62",
+      "title": "local orders foundation demo",
+      "stage": "APPROVAL_PENDING",
+      "autonomy_level": 2,
+      "platform_profile": "fabric-first-foundation",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-19T18:16:46.387257+00:00"
+    },
+    {
+      "id": "60f31484-c464-48cc-9f85-06d85d2bfdca",
+      "title": "local orders foundation demo",
+      "stage": "APPROVAL_PENDING",
+      "autonomy_level": 2,
+      "platform_profile": "fabric-first-foundation",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-16T17:55:43.051914+00:00"
+    },
+    {
+      "id": "7340e854-e22d-4ac3-8347-0f74641c8413",
+      "title": "local orders foundation demo",
+      "stage": "APPROVAL_PENDING",
+      "autonomy_level": 2,
+      "platform_profile": "fabric-first-foundation",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-19T18:16:33.791100+00:00"
+    },
+    {
+      "id": "77760534-6d60-4866-90fd-631fb10acf99",
+      "title": "local orders foundation demo",
+      "stage": "APPROVAL_PENDING",
+      "autonomy_level": 2,
+      "platform_profile": "fabric-first-foundation",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-16T17:55:25.934068+00:00"
+    },
+    {
+      "id": "784b933b-5e90-4b5a-b05b-22c3d5f079f5",
+      "title": "local orders foundation demo",
+      "stage": "APPROVAL_PENDING",
+      "autonomy_level": 2,
+      "platform_profile": "fabric-first-foundation",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-16T17:55:50.214661+00:00"
+    },
+    {
+      "id": "88799781-0543-469f-a0ec-55a9a48a9d25",
+      "title": "local orders foundation demo",
+      "stage": "APPROVAL_PENDING",
+      "autonomy_level": 2,
+      "platform_profile": "fabric-first-foundation",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-16T17:55:49.767040+00:00"
+    },
+    {
+      "id": "c37d7135-beb8-41b0-887f-fdfa6ae0622a",
+      "title": "local orders foundation demo",
+      "stage": "APPROVAL_PENDING",
+      "autonomy_level": 2,
+      "platform_profile": "fabric-first-foundation",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-16T17:57:29.339976+00:00"
+    },
+    {
+      "id": "c3e05657-6916-4149-a5f6-89a8e542777c",
+      "title": "local orders foundation demo",
+      "stage": "APPROVAL_PENDING",
+      "autonomy_level": 2,
+      "platform_profile": "fabric-first-foundation",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-19T18:16:28.459675+00:00"
+    },
+    {
+      "id": "c7aa1b7a-52e9-462b-9848-4b13c17bbdab",
+      "title": "local orders foundation demo",
+      "stage": "APPROVAL_PENDING",
+      "autonomy_level": 2,
+      "platform_profile": "fabric-first-foundation",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-16T17:57:28.709784+00:00"
+    },
+    {
+      "id": "dca78779-9076-4157-a50a-356db18f5c62",
+      "title": "local orders foundation demo",
+      "stage": "APPROVAL_PENDING",
+      "autonomy_level": 2,
+      "platform_profile": "fabric-first-foundation",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-16T17:43:46.692765+00:00"
+    }
+  ]
+}

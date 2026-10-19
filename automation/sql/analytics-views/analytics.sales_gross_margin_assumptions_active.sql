@@ -1,0 +1,28 @@
+CREATE VIEW analytics.sales_gross_margin_assumptions_active 
+AS SELECT 
+sgm_assumptions_guid, 
+sgm_assumptions_id, 
+lot_id, 
+assumption_id, 
+sgm_type, 
+major_code, 
+minor_code, 
+anchor_estimate, 
+latest_est_amount, 
+gl_amount, 
+assumption_value_id, 
+effective_date, 
+trigger1_name, 
+trigger1_met, 
+trigger2_name, 
+trigger2_met, 
+calculation_basis, 
+calculation_amount, 
+use_assumption, 
+category, 
+lastmoddatetime, 
+created_date, 
+record_hash_key, 
+created_by, 
+created_job_run_id
+FROM [transform].[sales_gross_margin_assumptions_det];

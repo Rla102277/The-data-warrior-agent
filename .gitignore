@@ -6,3 +6,12 @@ __pycache__/
 .venv/
 evals/runs/
 .DS_Store
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+forge-line/jobs/*/
+!forge-line/jobs/.gitkeep
+forge-line/board.json
+dist/
+build/

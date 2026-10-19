@@ -1,0 +1,85 @@
+version: 2
+
+sources:
+  - name: transform
+    description: Conformed layer tables loaded by pipeline_stage_orchestrator / transform.sp_load_*
+    schema: transform
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    loaded_at_field: created_date
+    tables:
+      - name: calendar
+        freshness: null   # static calendar, no incremental load clock
+      - name: company
+      - name: division
+      - name: fiscal_period
+      - name: general_ledger_det
+      - name: job
+      - name: job_task
+      - name: lot
+      - name: lot_financials_det
+      - name: lot_sales_gross_margin_det
+      - name: major_minor
+      - name: operating_unit
+      - name: project
+      - name: sale
+      - name: sale_transfer
+      - name: sales_gross_margin_assumptions_det
+      - name: sales_gross_margin_map
+      - name: unit_budget_hist
+        freshness: null   # on-demand harvest + sp_load_unit_budget_hist; not 15-min
+        loaded_at_field: null
+
+  - name: raw
+    description: Landed typed rows in warehouse_stage (web scrape, vendor files)
+    schema: raw
+    freshness: null
+    tables:
+      - name: web_listing_det
+      - name: web_page_det
+      - name: web_aggregator_det
+
+  - name: control
+    description: Audit and parity control plane in warehouse_stage
+    schema: control
+    freshness: null
+    tables:
+      - name: audit_orchestrator_control
+      - name: audit_pipeline_control
+      - name: parity_check
+      - name: web_gbp_builder
+      - name: web_community_project_map
+      - name: web_competitor_peer
+      - name: web_peer_project
+      - name: web_community_geo
+      - name: web_scrape_source
+      - name: web_scrape_run_det
+      - name: web_scrape_defer_det
+      - name: web_scrape_heartbeat_det
+      - name: web_scrape_queue
+      - name: customer_survey_statistical_config
+      - name: customer_survey_question_scale_map
+      - name: customer_survey_theme_map
+      - name: customer_survey_voc_config
+      - name: customer_survey_voc_review
+
+  - name: analytics
+    description: Analytics-layer tables written by notebooks (VOC stage)
+    schema: analytics
+    freshness: null
+    tables:
+      - name: customer_survey_voc_comment_stage
+
+  - name: dataverse
+    description: Dataverse shortcuts in Foundation Development dataverse_gbpdev (points at GBP-Enterprise dataverse_gbpprod for survey tables)
+    database: dataverse_gbpdev
+    schema: dbo
+    tables:
+      - name: gbp_reponse
+      - name: gbp_surveyresponse
+      - name: gbp_question
+      - name: gbp_customer
+      - name: gbp_builder
+      - name: gbp_communities
+      - name: gbp_brands
