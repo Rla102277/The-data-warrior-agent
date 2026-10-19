@@ -1,3 +1,5 @@
 # THE DATA WARRIOR
 
-Read THE_WAY.md. Skills are small and independent. Invoke the requested skill directly; do not force The Campaign or mission intake. For lengthy work, offer a lightweight Battle Map. Roles are Deshi, Rōnin and Kensei, never lettered tiers. Host permissions always govern actions. Skills are canonical under `skills/`; `.agents/skills/`, `.claude/skills/` and `.cursor/commands/` are generated compatibility mirrors.
+Role: Rōnin
+
+Read THE_WAY.md. Invoke focused skills directly. Skill sources are canonical under `skills/`. Generated host copies are not hand-edited. Change role by editing `Role: ...` to Deshi, Rōnin or Kensei at the user's direction. Roles never bypass permissions.

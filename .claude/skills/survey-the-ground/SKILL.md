@@ -1,12 +1,10 @@
 ---
 name: survey-the-ground
-description: Investigate a real codebase or data system before recommending changes.
+description: Use when entering an unfamiliar repository, diagnosing a data platform, or assessing schemas, pipelines and existing architecture before editing.
 ---
 
 # Survey The Ground
 
-Inspect relevant source, tests, schemas, configuration and project instructions with host tools.
-Describe observed architecture and constraints with file paths. Identify unknowns without filling them in.
-Give the smallest useful map of what exists and what needs investigation next.
+Inspect real source, configuration, schemas, tests, data lineage and deployment manifests. Identify systems of record, ingestion boundaries, transformation layers, orchestration, secrets boundaries and operational ownership. Report observed facts with paths and separate unknowns. For data platforms inspect key definitions, late-arrival handling, retries, data quality, observability, lineage and environments. Do not invent resources or architecture diagrams unsupported by evidence.
 
-Follow `THE_WAY.md`. Use the host's native model and tools; no custom server, mandatory CLI or separate model key. Respect real permissions and never fabricate evidence.
+Follow project instructions and the installed THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

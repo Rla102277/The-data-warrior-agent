@@ -1,3 +1,3 @@
 # /lessons-of-battle
 
-Follow `skills/lessons-of-battle/SKILL.md` in this repository. If this is an installed copy in another project, follow `.agents/skills/lessons-of-battle/SKILL.md`. Invoke the skill directly, without requiring The Campaign or The Gate.
+Follow the instructions in `.agents/skills/lessons-of-battle/SKILL.md` (or `.claude/skills/lessons-of-battle/SKILL.md` on Claude Code). Use the installed THE_WAY.md and project role configuration.

@@ -1,12 +1,10 @@
 ---
 name: lessons-of-battle
-description: Capture practical engineering lessons without bureaucratic overhead.
+description: Use after a completed change, outage, incident or engineering experiment to capture reusable lessons and prevent recurrence.
 ---
 
 # Lessons Of Battle
 
-Summarize outcome versus objective, observed failures, decisions and effective patterns.
-Capture concise lessons in the conversation; write `LESSONS.md` only if reusable or requested.
-Suggest one targeted skill improvement and a regression trial where useful.
+Compare objective to observed result. Identify root cause versus contributing conditions, evidence gaps, recovery cost and what to automate or test next. Write a short reusable lesson only when valuable. Don't turn retrospectives into mandatory paperwork or blame individuals.
 
-Follow `THE_WAY.md`. Use the host's native model and tools; no custom server, mandatory CLI or separate model key. Respect real permissions and never fabricate evidence.
+Follow project instructions and the installed THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

@@ -1,3 +1,3 @@
 # /study-the-wind
 
-Follow `skills/study-the-wind/SKILL.md` in this repository. If this is an installed copy in another project, follow `.agents/skills/study-the-wind/SKILL.md`. Invoke the skill directly, without requiring The Campaign or The Gate.
+Follow the instructions in `.agents/skills/study-the-wind/SKILL.md` (or `.claude/skills/study-the-wind/SKILL.md` on Claude Code). Use the installed THE_WAY.md and project role configuration.

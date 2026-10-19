@@ -1,3 +1,3 @@
 # /forge-the-pipeline
 
-Follow `skills/forge-the-pipeline/SKILL.md` in this repository. If this is an installed copy in another project, follow `.agents/skills/forge-the-pipeline/SKILL.md`. Invoke the skill directly, without requiring The Campaign or The Gate.
+Follow the instructions in `.agents/skills/forge-the-pipeline/SKILL.md` (or `.claude/skills/forge-the-pipeline/SKILL.md` on Claude Code). Use the installed THE_WAY.md and project role configuration.

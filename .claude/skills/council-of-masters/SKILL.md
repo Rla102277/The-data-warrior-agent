@@ -1,13 +1,10 @@
 ---
 name: council-of-masters
-description: Review a proposal through distinct specialist lenses and surface disagreements.
+description: Use when reviewing a consequential design or implementation for architecture, security, data correctness, operations and cost risks.
 ---
 
 # Council Of Masters
 
-Choose only relevant perspectives, such as architect, data engineer, security, operations, cost and product.
-Review the same evidence from each lens, note conflicts and adjudicate with rationale.
-Do not pretend sequential role-play is independent multi-agent review.
-Output prioritized findings and decisions, not a theatrical transcript.
+Use relevant lenses only: data architect, pipeline engineer, security/governance, platform operations, FinOps, consumer/domain owner. For each lens give evidence-backed findings and severity. Challenge replay, deletes, schema drift, access control, cost scaling, data contracts and rollback where applicable. Resolve disagreements and name remaining unknowns. Do not claim independent multi-agent review unless distinct agents were actually used.
 
-Follow `THE_WAY.md`. Use the host's native model and tools; no custom server, mandatory CLI or separate model key. Respect real permissions and never fabricate evidence.
+Follow project instructions and the installed THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

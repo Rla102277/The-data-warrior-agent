@@ -1,19 +1,10 @@
 ---
 name: the-battle-map
-description: Keep a concise, evidence-backed progress map for multi-stage engineering work.
+description: Use when work spans multiple stages, contributors or sessions and needs an evidence-backed progress map and restart point.
 ---
 
 # The Battle Map
 
-Use for multi-stage, interrupted or long-running work, not ordinary one-off questions. One file: `BATTLE_MAP.md`.
+Maintain one short `BATTLE_MAP.md`, only for work that benefits from continuity. Record goal, named role, current position, verified milestones with file/test links, blockers, decisions linked to the Scroll, next action and upcoming route. Distinguish verified, in progress, blocked, unknown and not started. At resumption, inspect actual code, Git and tests before trusting previous claims. Update at milestones, not after every trivial tool call. Never duplicate the Scroll or imply a checklist is proof. A failed or unrun test is not verified.
 
-1. Read the existing Map and `SCROLL.md` if present. Check actual files, Git state and test results before claiming progress.
-2. Record **objective**, named working role (Deshi, Rōnin or Kensei), **current position**, **verified milestones** with evidence links, **blockers**, **next action**, and **planned route**.
-3. Distinguish `verified`, `in progress`, `blocked`, `not started`, and `unknown`. A failed or unrun test cannot be verified.
-4. Update the Map at meaningful milestones and before handoff or interruption; do not update for every trivial action.
-5. On resumption, reconcile drift first and surface a short "where we are / what's next" response. Never rerun irreversible steps merely because a checklist says incomplete.
-6. Keep decisions in the Scroll; link them rather than duplicating them. Use `examples/battle-map/BATTLE_MAP.md` as a minimal pattern.
-
-Never invent timestamps, test results, approvals or status. Role names are not permission levels.
-
-Follow THE_WAY.md and project instructions. Use native host tools; never invent evidence or permissions.
+Follow project instructions and the installed THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

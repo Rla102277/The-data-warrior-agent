@@ -1,12 +1,10 @@
 ---
 name: test-the-steel
-description: Test an implementation and report observed results.
+description: Use when validating a code or data pipeline change, investigating failed tests, or proving correctness under replay, deletes and schema drift.
 ---
 
 # Test The Steel
 
-Identify expected behavior and edge cases. Add or run appropriate tests.
-Record actual commands, exit codes and failures. Test idempotency, duplicates, boundaries and schema drift where relevant.
-Do not claim success for unrun or skipped checks.
+Build tests from invariants rather than string presence. For ingestion cover initial load, duplicate events, same-timestamp changes, late arrivals, deletes, null keys, schema drift, checkpoint failure, replay and reconciliation. For SCD2 assert nonoverlapping intervals and exactly one current row per key. For contracts include valid/invalid records and compatibility cases. Run real commands when permitted; capture command, exit code, output and limitations. A skipped test is unknown, not passed.
 
-Follow `THE_WAY.md`. Use the host's native model and tools; no custom server, mandatory CLI or separate model key. Respect real permissions and never fabricate evidence.
+Follow project instructions and the installed THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

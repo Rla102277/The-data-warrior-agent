@@ -1,3 +1,3 @@
 # /chart-the-path
 
-Follow `skills/chart-the-path/SKILL.md` in this repository. If this is an installed copy in another project, follow `.agents/skills/chart-the-path/SKILL.md`. Invoke the skill directly, without requiring The Campaign or The Gate.
+Follow the instructions in `.agents/skills/chart-the-path/SKILL.md` (or `.claude/skills/chart-the-path/SKILL.md` on Claude Code). Use the installed THE_WAY.md and project role configuration.

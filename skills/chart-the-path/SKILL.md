@@ -1,13 +1,10 @@
 ---
 name: chart-the-path
-description: Turn an engineering objective into a concise executable plan.
+description: Use when converting a defined engineering objective into an implementation plan with dependencies, tests, rollback and milestones.
 ---
 
 # Chart The Path
 
-Inspect existing work and acceptance criteria.
-Define deliverables, dependencies, tests, risk, rollback and milestone order.
-Prefer a short plan in the conversation; persist only for multi-session work or user request.
-For long plans, update the Battle Map.
+Inspect code and decisions first. Define smallest shippable slice, dependencies, owners, contracts, migration strategy, failure recovery, tests and observable acceptance criteria. For data migrations include dual-run or reconciliation where warranted. Prefer a concise conversational plan; persist only when work spans sessions, optionally via Battle Map.
 
-Follow `THE_WAY.md`. Use the host's native model and tools; no custom server, mandatory CLI or separate model key. Respect real permissions and never fabricate evidence.
+Follow project instructions and the installed THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

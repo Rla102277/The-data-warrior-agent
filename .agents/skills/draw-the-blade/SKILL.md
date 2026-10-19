@@ -1,12 +1,10 @@
 ---
 name: draw-the-blade
-description: Implement a focused engineering change and verify it.
+description: Use when implementing a scoped code, SQL, notebook, infrastructure or pipeline change and verifying it.
 ---
 
 # Draw The Blade
 
-Read actual code and constraints. Make the smallest authorized edit with host-native tools.
-Run relevant real tests and inspect the diff. Report what changed, what passed, what failed and what remains unknown.
-Ask before destructive, production or out-of-scope actions. No mandatory mission scaffolding.
+Read project instructions, code and tests. State the narrow intended change, implement through host-native tools, inspect diff, run relevant tests and report exact evidence. For data work verify idempotency, replay, nulls, key uniqueness and failure recovery when applicable. Do not fabricate commands, outputs, deployments or approvals. Ask before destructive or production changes.
 
-Follow `THE_WAY.md`. Use the host's native model and tools; no custom server, mandatory CLI or separate model key. Respect real permissions and never fabricate evidence.
+Follow project instructions and the installed THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

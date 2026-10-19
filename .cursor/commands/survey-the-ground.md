@@ -1,3 +1,3 @@
 # /survey-the-ground
 
-Follow `skills/survey-the-ground/SKILL.md` in this repository. If this is an installed copy in another project, follow `.agents/skills/survey-the-ground/SKILL.md`. Invoke the skill directly, without requiring The Campaign or The Gate.
+Follow the instructions in `.agents/skills/survey-the-ground/SKILL.md` (or `.claude/skills/survey-the-ground/SKILL.md` on Claude Code). Use the installed THE_WAY.md and project role configuration.

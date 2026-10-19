@@ -1,12 +1,10 @@
 ---
 name: study-the-wind
-description: Compare viable alternatives and expose hidden tradeoffs.
+description: Use when choosing between engineering architectures, ingestion strategies, storage formats, orchestration approaches or tradeoffs.
 ---
 
 # Study The Wind
 
-Present at least two credible approaches and the status quo when relevant.
-Compare correctness, complexity, cost, reversibility, operations and team fit.
-Steelman the strongest rejected option. Recommend a test or choice with explicit assumptions.
+Compare at least two viable approaches and the status quo when relevant. Evaluate correctness under failure, operational burden, latency, replay, governance, cost, reversibility and team capability. Explicitly compare CDC against timestamp watermarks where ingestion is involved, and Lakehouse versus Warehouse where Fabric is relevant. Steelman the strongest alternative. Recommend a choice and a falsifiable validation test.
 
-Follow `THE_WAY.md`. Use the host's native model and tools; no custom server, mandatory CLI or separate model key. Respect real permissions and never fabricate evidence.
+Follow project instructions and the installed THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

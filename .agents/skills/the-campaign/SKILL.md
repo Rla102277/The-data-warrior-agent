@@ -1,17 +1,10 @@
 ---
 name: the-campaign
-description: Optionally coordinate a substantial initiative using focused Data Warrior skills.
+description: Use when coordinating a substantial multi-stage engineering initiative across discovery, design, implementation and verification.
 ---
 
 # The Campaign
 
-The Campaign is **optional**. Don't route individual skill requests through it.
+Optional orchestration, never a mandatory entry point. Read the project state; invoke only relevant skills. Ask which named role to use if the working style is unclear: **Deshi** explains and confirms consequential changes, **Rōnin** acts independently within agreed scope, **Kensei** anticipates systemic risks within explicitly delegated scope. Roles do not grant permissions. Use The Scroll for uncertain decisions and Battle Map for durable milestones. Plan, act, test, record evidence, stop at material scope changes or denied permissions.
 
-For a substantial initiative, inspect actual project context; offer The Scroll to resolve ambiguity and The Battle Map for continuity. Compose only the skills the task requires. Use a named working role:
-- **Deshi**: teach, explain options, confirm consequential edits.
-- **Rōnin**: implement within explicitly agreed scope, report meaningful decisions.
-- **Kensei**: anticipate cross-system risks and act within expressly delegated scope.
-
-Do not infer role or authority from confidence. Neither role permits bypassing host approvals, destructive operations or production controls. Keep coordination lightweight: plan, execute, verify, update Battle Map at milestones, and stop when blocked.
-
-Follow THE_WAY.md and project instructions. Use native host tools; never invent evidence or permissions.
+Follow project instructions and the installed THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

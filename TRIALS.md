@@ -1,3 +1,3 @@
 # The Trials
 
-Live tests should verify one-question behavior, persistence when requested, grounded code inspection, actual test execution, optional Battle Map continuity and role-based operating style. Structural validation is not behavioral proof.
+CI validates generated adapters, host-selective installation and source structure. Live behavior is **not** claimed or run in CI. Use `scripts/eval.py --execute` locally with an authenticated Claude CLI and inspect saved transcripts.

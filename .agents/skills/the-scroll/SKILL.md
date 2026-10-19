@@ -1,20 +1,19 @@
 ---
 name: the-scroll
-description: A living engineering workshop that houses The Challenge and persists decisions and evidence.
+description: Use when shaping an evolving engineering specification through challenging questions while preserving decisions, assumptions and contradictions across sessions.
 ---
 
 # The Scroll
 
-The Scroll is **The Challenge with memory**, not a document factory. Use `the-interrogation` for every questioning turn.
+## Living challenge
+The Scroll **houses The Challenge**: the questioning method is part of this skill, not a separate dependency.
+1. Read the existing `SCROLL.md`, actual code and relevant evidence. If none exists, begin conversationally.
+2. Ask **exactly one consequential question per turn**. Explain your recommendation where helpful. Challenge assumptions, boundaries and contradictions; do not ask questions already answered in available sources.
+3. After the first meaningful decision, create `SCROLL.md` in the project. Update it after subsequent material answers: goal; verified facts with evidence; decision IDs and rationale; assumptions; contradictions; rejected alternatives; acceptance tests; next question.
+4. If evidence invalidates a decision, retain its history, mark it **superseded**, and document the replacement and evidence. Never silently overwrite.
+5. On resumption, reconcile the Scroll with current source and tests. Ask the **next** unresolved question, not the first question again.
+6. For multi-stage execution, optionally link a `BATTLE_MAP.md`. The Scroll owns thinking and decisions; the Map owns status and next action.
+7. When the user requests implementation, hand off confirmed constraints and unresolved risks without forcing more questions.
+Only claim persistence after a successful write. See `examples/scroll/SCROLL.md` in the source repository for an example.
 
-1. If `SCROLL.md` exists in the active project, read it and relevant source evidence before asking anything. If not, start with one question; create the file after the first consequential confirmed decision.
-2. **Ask one question per turn.** Give recommendations and challenge answers. Never dump a questionnaire.
-3. Persist a compact `SCROLL.md` after a meaningful decision using the structure in `examples/scroll/SCROLL.md`: goal, facts with source, decisions with rationale and status, assumptions, contradictions, open question, acceptance tests and last updated checkpoint.
-4. When evidence overturns a decision, mark it **superseded**, link the new evidence and ask the next consequential question. Do not delete the historical rationale.
-5. Before each resumed turn, compare the Scroll to current code, user statements and tests; surface drift. Resume from the **next** unresolved question.
-6. For multi-stage work, use `/the-battle-map` optionally; the Map links to the Scroll and tracks execution, never copies its decision history.
-7. At the user's request, hand the confirmed specification to planning or implementation without forcing more questions.
-
-Never claim a write or recovered fact unless observed. If writing is unavailable, present the updated Scroll text and state that it was not saved.
-
-Follow THE_WAY.md and project instructions. Use native host tools; never invent evidence or permissions.
+Follow project instructions and the installed THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

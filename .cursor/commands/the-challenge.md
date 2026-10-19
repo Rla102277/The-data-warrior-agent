@@ -1,3 +1,3 @@
 # /the-challenge
 
-Follow `skills/the-challenge/SKILL.md` in this repository. If this is an installed copy in another project, follow `.agents/skills/the-challenge/SKILL.md`. Invoke the skill directly, without requiring The Campaign or The Gate.
+Follow the instructions in `.agents/skills/the-challenge/SKILL.md` (or `.claude/skills/the-challenge/SKILL.md` on Claude Code). Use the installed THE_WAY.md and project role configuration.

@@ -1,3 +1,3 @@
 # /forge-a-contract
 
-Follow `skills/forge-a-contract/SKILL.md` in this repository. If this is an installed copy in another project, follow `.agents/skills/forge-a-contract/SKILL.md`. Invoke the skill directly, without requiring The Campaign or The Gate.
+Follow the instructions in `.agents/skills/forge-a-contract/SKILL.md` (or `.claude/skills/forge-a-contract/SKILL.md` on Claude Code). Use the installed THE_WAY.md and project role configuration.

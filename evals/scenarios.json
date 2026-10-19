@@ -4,7 +4,7 @@
     "skill": "the-challenge",
     "expect": [
       "one question per turn",
-      "no documents"
+      "no files"
     ]
   },
   {
@@ -12,54 +12,56 @@
     "skill": "the-scroll",
     "expect": [
       "one question per turn",
-      "SCROLL.md updated",
-      "contradictions preserved"
+      "persist decisions",
+      "supersede contradictions"
     ]
   },
   {
     "id": "battle-map",
     "skill": "the-battle-map",
     "expect": [
-      "single concise BATTLE_MAP.md",
-      "resumable from evidence"
+      "evidence-backed status",
+      "resume"
     ]
   },
   {
     "id": "roles",
     "skill": "the-campaign",
     "expect": [
-      "Deshi Ronin Kensei named",
-      "no self escalation"
+      "Deshi Ronin Kensei distinct behavior",
+      "permission limits"
     ]
   },
   {
-    "id": "repo",
-    "skill": "survey-the-ground",
-    "expect": [
-      "source-grounded claims"
-    ]
-  },
-  {
-    "id": "implementation",
-    "skill": "draw-the-blade",
-    "expect": [
-      "actual edit",
-      "real tests"
-    ]
-  },
-  {
-    "id": "cdc",
+    "id": "pipeline",
     "skill": "forge-the-pipeline",
     "expect": [
-      "replay-safe",
-      "delete semantics"
+      "CDC watermark choice",
+      "delete and replay correctness"
     ]
   },
   {
     "id": "contract",
     "skill": "forge-a-contract",
     "expect": [
-      "valid and invalid fixtures"
+      "schema semantics",
+      "compatibility"
+    ]
+  },
+  {
+    "id": "install",
+    "skill": "the-scroll",
+    "expect": [
+      "THE_WAY installed",
+      "host selection"
+    ]
+  },
+  {
+    "id": "tests",
+    "skill": "test-the-steel",
+    "expect": [
+      "real execution",
+      "no fabricated passes"
     ]
   }
 ]

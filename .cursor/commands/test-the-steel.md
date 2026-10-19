@@ -1,3 +1,3 @@
 # /test-the-steel
 
-Follow `skills/test-the-steel/SKILL.md` in this repository. If this is an installed copy in another project, follow `.agents/skills/test-the-steel/SKILL.md`. Invoke the skill directly, without requiring The Campaign or The Gate.
+Follow the instructions in `.agents/skills/test-the-steel/SKILL.md` (or `.claude/skills/test-the-steel/SKILL.md` on Claude Code). Use the installed THE_WAY.md and project role configuration.

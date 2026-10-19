@@ -1,43 +1,40 @@
 # THE DATA WARRIOR
 
-**Small skills. Deep judgment. No ceremony.**
+**Small skills. Deep engineering judgment. No ceremony.**
 
-Native agent skills for Cursor, Codex and Claude Code, inspired by eight Musashi-derived engineering disciplines. No custom model service, web app or required runtime.
+Fourteen focused native agent skills for Cursor, Claude Code and Codex, grounded in evidence and Musashi-inspired practice. No custom model gateway or mandatory runtime.
 
-## Invoke a skill
-- `/the-challenge` — one-question-at-a-time adversarial thinking, no files.
-- `/the-scroll` — **The Challenge with persistent context**: one question at a time, evolving `SCROLL.md`, evidence, decisions and contradictions.
-- `/the-battle-map` — optional, concise `BATTLE_MAP.md` for milestones and recovery.
-- `/survey-the-ground` — inspect a codebase.
-- `/study-the-wind` — compare alternatives.
-- `/council-of-masters` — specialist review.
-- `/chart-the-path` — plan.
-- `/draw-the-blade` — implement.
-- `/forge-the-pipeline` — data pipelines.
-- `/forge-a-contract` — data contracts.
-- `/test-the-steel` — verify with real tests.
-- `/sharpen-the-blade` — measured improvements.
-- `/lessons-of-battle` — lessons learned.
-- `/the-campaign` — **optional** initiative coordination.
-
-The internal `the-interrogation` method is shared by The Challenge and The Scroll.
-
-## Roles
-**Deshi** — guided apprentice. **Rōnin** — independent practitioner. **Kensei** — trusted master with delegated scope. These are collaboration styles, not permission levels. See [The Way](THE_WAY.md) and [role behavior](docs/ROLE-BEHAVIOR.md).
-
-## Install selected skills
+## Install
 ```bash
-python3 scripts/install.py /path/to/project the-scroll the-battle-map
+python3 scripts/install.py /path/to/project the-scroll forge-the-pipeline --host cursor
+# alternatives: --host claude, --host codex, --host all
 ```
-The Scroll installer includes its shared interrogation dependency. You can also copy skills manually; Python is optional tooling, not an agent runtime.
+The installer includes `THE_WAY.md` and initializes `Role: Rōnin` in a missing project `AGENTS.md` without overwriting existing instructions. Switch role by setting `Role: Deshi`, `Role: Rōnin` or `Role: Kensei`. These roles affect collaboration, **not permissions**.
 
-## Verify
+## Choose a skill
+- `/the-challenge`: interrogate assumptions, one question at a time, no files.
+- `/the-scroll`: **The Challenge with memory**, evolving `SCROLL.md` and preserved decision history.
+- `/the-battle-map`: optional `BATTLE_MAP.md` for evidence-backed progress and resumption.
+- `/survey-the-ground`: inspect actual systems.
+- `/study-the-wind`: compare approaches.
+- `/council-of-masters`: specialist design review.
+- `/chart-the-path`: implementation plan.
+- `/draw-the-blade`: implement and verify.
+- `/forge-the-pipeline`: CDC, watermarks, replay, MERGE, SCD2, deletes, Data Vault.
+- `/forge-a-contract`: schema and producer-consumer guarantees.
+- `/test-the-steel`: test correctness.
+- `/sharpen-the-blade`: measured optimization.
+- `/lessons-of-battle`: learn from evidence.
+- `/the-campaign`: optional multi-stage coordination.
+
+## Maintain and test
 ```bash
+python3 scripts/sync.py
 python3 scripts/verify.py
 python3 -m unittest discover -s tests -v
+python3 scripts/eval.py # shows NOT_RUN by default
+python3 scripts/eval.py --execute --scenario challenge-one-question
 ```
-GitHub Actions runs structural checks; **live agent behavior is not proven by CI**. See [live tests](docs/LIVE-TESTING.md).
+The optional behavioral harness requires a locally installed, authenticated Claude CLI. It captures a transcript and grades a conservative one-question heuristic; **manual review is required**. It does not run automatically in CI or bypass tool permissions. See `docs/LIVE-TESTING.md`.
 
-Canonical skills are under `skills/`; mirrored `.agents/skills/`, `.claude/skills/` and `.cursor/commands/` support host discovery. Read [composition](docs/SKILL-COMPOSITION.md). See [Scroll example](examples/scroll/SCROLL.md) and [Battle Map example](examples/battle-map/BATTLE_MAP.md).
-
-Azure and Fabric are optional targets. THE DATA WARRIOR is independent of Foundation.
+Canonical skills live in `skills/`; host adapters are generated. Fabric is an optional target; this project is independent of Foundation.

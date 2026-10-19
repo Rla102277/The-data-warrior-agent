@@ -1,3 +1,3 @@
 # /the-scroll
 
-Follow `skills/the-scroll/SKILL.md` (or `.agents/skills/the-scroll/SKILL.md` when installed). This skill **houses The Challenge** via the shared interrogation method, maintains a living `SCROLL.md`, and optionally uses the Battle Map. Ask exactly one question per turn.
+Follow the instructions in `.agents/skills/the-scroll/SKILL.md` (or `.claude/skills/the-scroll/SKILL.md` on Claude Code). Use the installed THE_WAY.md and project role configuration.

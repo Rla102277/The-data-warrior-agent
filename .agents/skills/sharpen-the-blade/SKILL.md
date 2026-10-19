@@ -1,12 +1,10 @@
 ---
 name: sharpen-the-blade
-description: Improve an implementation through a measured, reversible refinement.
+description: Use when refactoring or tuning a slow, expensive, fragile or hard-to-maintain data pipeline with measured before/after results.
 ---
 
 # Sharpen The Blade
 
-Find the actual bottleneck or recurring failure and establish a baseline.
-Make a focused change; rerun tests and compare measured results.
-Preserve behavior and record what was learned. Avoid speculative rewrites.
+Establish baseline of latency, capacity consumption, scan/shuffle volume, failures and data correctness. Locate bottleneck via query plan, partitions, skew, file sizes, joins or orchestration overhead. Change one meaningful variable and retest invariants. For Delta consider small-file pressure, pruning, compaction and concurrent writes only where supported. For Fabric verify actual capacity and workload metrics. Report tradeoffs and rollback; don't claim speedup without measurements.
 
-Follow `THE_WAY.md`. Use the host's native model and tools; no custom server, mandatory CLI or separate model key. Respect real permissions and never fabricate evidence.
+Follow project instructions and the installed THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.
