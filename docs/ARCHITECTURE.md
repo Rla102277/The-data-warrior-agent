@@ -1,3 +1,3 @@
 # Architecture
 
-The Way governs, The Campaign coordinates, The Dojo supplies native skills, The Council reviews, The Forge is the host's existing toolset, The Chronicle stores Markdown/JSON, and The Trials evaluate observed behavior. No background service or dedicated LLM client is required. Skills have declared input, output, approval and evidence contracts. Agent prompts alone cannot enforce security.
+The Data Warrior follows the small, composable skills pattern. Canonical `skills/<name>/SKILL.md` definitions are brief and independent. The reusable `the-interrogation` method powers The Challenge and The Scroll. The Scroll owns a living specification; The Battle Map adds optional lightweight continuity. The Campaign is optional orchestration. The Way contains shared values and named roles. No mandatory workflow engine, web app or mission scaffolding.

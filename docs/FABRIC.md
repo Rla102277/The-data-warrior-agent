@@ -1,3 +1,3 @@
-# Azure / Microsoft Fabric adapter
+# Fabric adapter guidance
 
-Fabric is an optional target platform, not The Data Warrior's identity. First inspect existing Fabric workspaces, Git integration, RBAC, data contracts, deployment pipelines and the project's architecture. Do not invent workspaces or replace Foundation's established architecture. Prefer parameterized, tested and reversible changes. Production deployment requires explicit authority and enforceable platform permissions.
+The Data Warrior is platform-independent. In Foundation or another Fabric project, read that project's actual architecture, workspaces, RBAC and deployment rules first. Do not invent resources. Use `/survey-the-ground`, `/forge-a-contract`, `/forge-the-pipeline`, and `/test-the-steel` directly as needed. Fabric access and production deployment require real authorization.

@@ -1,3 +1,3 @@
-# THE TRIALS
+# The Trials
 
-Structural verification checks skill files and host mirrors. Behavioral evaluation tests actual host execution. Trial domains: ambiguity, CDC, late arrivals, schema drift, replay safety, missing keys, authorization boundaries and recovery. Each live run records observed artifacts, commands, outputs, failures and remediation. Never mark an unexecuted trial as passed.
+Live tests should verify one-question behavior, persistence when requested, grounded code inspection, actual test execution, optional Battle Map continuity and role-based operating style. Structural validation is not behavioral proof.

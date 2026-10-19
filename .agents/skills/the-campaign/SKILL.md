@@ -1,33 +1,15 @@
 ---
 name: the-campaign
-description: Orchestrate an engineering mission from intake to evidence-backed delivery.
+description: Optionally coordinate a large engineering initiative using other small skills.
 ---
 
 # The Campaign
 
-**Disciplines:** Earth, Practice
+This skill is **optional**. Use only when the user requests a full initiative or coordination.
+Read the project's current Scroll and Battle Map if present; create a Battle Map only when warranted.
+Choose the smallest set of focused skills needed. Compose them naturally without formal handoff files or artificial stage gates.
+Use role names Deshi, Rōnin, Kensei; agree on the role if consequential execution is planned. Do not assume delegated authority.
+At each milestone record what changed, what was tested, blockers and next action. Let the user call individual skills at any time.
+Stop for permission, actual failed tests or material scope change.
 
-## Purpose
-Orchestrate an engineering mission from intake to evidence-backed delivery. Operate using the host agent's native model, repository context and available tools. No mandatory Python runtime, custom web UI or separate model key.
-
-## Inputs
-- Current user request, repository instructions and existing mission artifacts.
-- Actual host tool capabilities and explicit mission authority.
-
-## Procedure
-1. Read THE_WAY.md, active mission BATTLE_MAP.json, and the repo's actual constraints before acting.
-2. If no active mission exists, invoke The Gate and create one; do not assume authority.
-3. Build a dependency-aware plan with checkpoints and skill handoffs. Select the smallest necessary specialist skills.
-4. For each phase: inspect evidence, execute authorized tools, record artifacts, run Sentinel, and update the Battle Map.
-5. Stop on denied authority, failing gates, missing evidence, or material scope change. Resume via Return to the Path.
-
-## Output contract
-- State what was observed, changed, tested, blocked and left unresolved.
-- Update applicable mission Markdown/JSON only through successful host tool operations.
-- Provide concrete file paths and test evidence, not unsupported claims.
-
-## Handoff and safety
-- Check THE_WAY.md and the active mission's approved A/B/C authority before any modification or external action.
-- Request authorization for actions outside the recorded scope. Never self-escalate or bypass host permission controls.
-- Handoff requires named next skill, verified inputs, expected outputs, blocking risks and acceptance criteria.
-- If a prerequisite is missing, stop and surface the missing evidence instead of fabricating it.
+Follow `THE_WAY.md`. Use the host's native model and tools; no custom server, mandatory CLI or separate model key. Respect real permissions and never fabricate evidence.

@@ -1,32 +1,12 @@
 ---
 name: forge-the-pipeline
-description: Build robust batch or streaming data pipelines.
+description: Build a data pipeline with explicit ingestion and replay semantics.
 ---
 
 # Forge The Pipeline
 
-**Disciplines:** Fire, Tools
+Identify source, sink, ownership, keys, contract and update semantics from actual context.
+Implement incremental/replay-safe processing, duplicate handling, late data and schema drift as relevant in the **project's actual stack**.
+Write and run tests for meaningful failure cases. Do not invent an ingestion platform or default to CSV/SQLite.
 
-## Purpose
-Build robust batch or streaming data pipelines. Operate using the host agent's native model, repository context and available tools. No mandatory Python runtime, custom web UI or separate model key.
-
-## Inputs
-- Current user request, repository instructions and existing mission artifacts.
-- Actual host tool capabilities and explicit mission authority.
-
-## Procedure
-1. Confirm source/sink contracts, keys, watermark semantics and replay requirements.
-2. Design incremental, retry, deduplication, late-data and schema-evolution behavior.
-3. Implement in the actual project stack, not an invented generic CSV platform.
-4. Run representative integration tests and capture proof.
-
-## Output contract
-- State what was observed, changed, tested, blocked and left unresolved.
-- Update applicable mission Markdown/JSON only through successful host tool operations.
-- Provide concrete file paths and test evidence, not unsupported claims.
-
-## Handoff and safety
-- Check THE_WAY.md and the active mission's approved A/B/C authority before any modification or external action.
-- Request authorization for actions outside the recorded scope. Never self-escalate or bypass host permission controls.
-- Handoff requires named next skill, verified inputs, expected outputs, blocking risks and acceptance criteria.
-- If a prerequisite is missing, stop and surface the missing evidence instead of fabricating it.
+Follow `THE_WAY.md`. Use the host's native model and tools; no custom server, mandatory CLI or separate model key. Respect real permissions and never fabricate evidence.

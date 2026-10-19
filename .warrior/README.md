@@ -1,3 +1,3 @@
-# Chronicle missions
+# Optional Battle Map
 
-Create one folder per mission: .warrior/missions/<slug>/ with MISSION.md, BATTLE_MAP.json, SPEC.md, GLOSSARY.md, DECISIONS.md, QUESTIONS.md, EVIDENCE.md, HANDOFFS.md, GATES.md and JOURNAL.md. Avoid committing sensitive mission content to public repositories.
+For substantial work, `/the-battle-map` creates a concise `BATTLE_MAP.md` in the working project. `/the-scroll` maintains `SCROLL.md` for living requirements and interrogation. Neither is mandatory for a quick skill invocation. Do not commit private project data to this public repository.

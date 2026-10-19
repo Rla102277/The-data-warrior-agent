@@ -1,3 +1,3 @@
-# THE DATA WARRIOR — Agent instructions
+# THE DATA WARRIOR
 
-Read THE_WAY.md before acting. This repository is a host-native skills framework, not an app. Use .agents/skills for procedures, .warrior/missions for durable state, and actual host tools for engineering. Honor project instructions and explicit approvals. Do not require a Python server or model key. Run actual tests and report evidence. Never self-escalate autonomy.
+Read THE_WAY.md. Skills are small and independent. Invoke the requested skill directly; do not force The Campaign or mission intake. For lengthy work, offer a lightweight Battle Map. Roles are Deshi, Rōnin and Kensei, never lettered tiers. Host permissions always govern actions. Skills are canonical under `skills/`; `.agents/skills/`, `.claude/skills/` and `.cursor/commands/` are generated compatibility mirrors.

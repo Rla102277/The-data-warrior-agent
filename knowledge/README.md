@@ -1,3 +1,3 @@
-# Chronicle
+# Reusable knowledge
 
-Project knowledge stays in project repositories. Organization or global promotion requires explicit review and redaction; never silently copy secrets or customer information.
+Prefer concise lessons and project-local Scrolls. Promote reusable patterns here only after review and removal of confidential information.

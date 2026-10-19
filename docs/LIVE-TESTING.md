@@ -1,11 +1,11 @@
-# Live testing
+# Live tests
 
-1. Open this repository in Cursor Agent; verify `/the-campaign` appears.
-2. `/the-challenge`: present an ambiguous ingestion problem. Expect exactly one substantive question per turn, not a giant questionnaire.
-3. `/the-scroll`: answer questions and verify Markdown files actually change.
-4. `/the-campaign`: request incremental orders ingestion in Deshi mode. Expect inspection, plan, explicit approval, implementation and actual test evidence.
-5. Interrupt; start a fresh conversation; invoke `/return-to-the-path`. Compare recovered facts with mission files.
-6. Run `/council-of-masters`, `/the-sentinel`, `/prove-the-way`; inspect disagreements and unknown results.
-7. Record failures in evals/LIVE_SCORECARD.md and refine the corresponding skill.
+1. In Cursor, run `/the-challenge` with an ambiguous requirement. It must ask **one** question at a time and create no files.
+2. Run `/the-scroll` on a real design. It must ask **one** question at a time, challenge your answers and maintain `SCROLL.md` after substantive decisions.
+3. Ask `/the-battle-map` to capture a multi-stage project. It should create one concise `BATTLE_MAP.md`, not a directory of forms.
+4. Run `/survey-the-ground` against a real repository and verify its claims against source files.
+5. Run `/draw-the-blade` then `/test-the-steel` and inspect actual test results.
+6. Start a fresh conversation and use `/the-battle-map` to recover status without invented progress.
+7. Confirm roles are named Deshi, Rōnin, Kensei and no role silently escalates authority.
 
-A successful structural test does not prove correct agent behavior. Do not test destructive cloud changes without permissions.
+Structural checks cannot prove live model behavior.

@@ -1,43 +1,45 @@
 # THE DATA WARRIOR
 
-**Native engineering skills for Cursor, Codex and Claude Code.** One product identity, no product version names.
+**Small skills. Deep judgment. No ceremony.**
 
-## Start here
-Open this repository in Cursor Agent. Invoke `/the-campaign` for end-to-end work, `/the-challenge` for one-question-at-a-time interrogation, or `/the-scroll` for a living specification. The host model and its native tools perform all work; no server, Python runtime, or separate LLM credentials are needed to use skills.
+A native-first collection of focused engineering skills inspired by the creator's eight Musashi-derived disciplines. Works through Cursor, Codex and Claude Code's existing agent model and tools. No Python web app, mandatory runtime or separate model API key.
 
-## Architecture
-**The Way** constitution · **The Dojo** composable skills · **The Council** expert review · **The Forge** host-native tool execution · **The Chronicle** durable project knowledge · **The Trials** scenario-based evaluation.
+## Start in Cursor
+Open this repository in Cursor Agent and invoke any skill directly:
+- `/the-challenge` — rigorous one-question-at-a-time interrogation, no documents.
+- `/the-scroll` — **The Challenge with living context**: one question at a time, an evolving `SCROLL.md`, decisions, contradictions and requirements.
+- `/the-battle-map` — lightweight progress and recovery map for substantial work.
+- `/survey-the-ground` — inspect what actually exists.
+- `/study-the-wind` — compare approaches.
+- `/council-of-masters` — critical specialist review.
+- `/chart-the-path` — practical plan.
+- `/draw-the-blade` — build and verify.
+- `/forge-the-pipeline` — data pipelines.
+- `/forge-a-contract` — data contracts.
+- `/test-the-steel` — execute tests.
+- `/sharpen-the-blade` — measured improvement.
+- `/lessons-of-battle` — capture learning.
+- `/the-campaign` — **optional** coordination of a large initiative.
 
-The Campaign coordinates skill handoffs and quality gates, but it is not an independently running scheduler. A/B/C autonomy is an instruction-level operating agreement; enforce real permissions with host approvals, GitHub branch rules, Azure RBAC and CI.
+The reusable `the-interrogation` method powers both The Challenge and The Scroll.
 
-## Layout
-- `.agents/skills/<name>/SKILL.md` canonical agent skill definitions.
-- `.cursor/commands/<name>.md` native Cursor commands.
-- `.claude/skills/<name>/SKILL.md` Claude-compatible definitions.
-- `.cursor/rules/the-way.mdc` persistent Cursor rule.
-- `.warrior/missions/` durable mission state, created during work.
-- `templates/` starter artifacts.
-- `evals/` behavioral trial scenarios.
-- `scripts/` optional standard-library checks and installation.
+## Roles
+**Deshi** — guided apprentice. **Rōnin** — independent practitioner within agreed scope. **Kensei** — trusted master with explicitly delegated scope. These are named roles, not numbered tiers. None bypasses Cursor, GitHub or cloud permissions. Read [The Way](THE_WAY.md).
 
-## A first real mission
-```
-/the-campaign
-Build an incremental ingestion pipeline with duplicate handling,
-late-arriving records, replay safety, schema evolution and runnable tests.
-Begin in Deshi mode. Inspect the repository first, record a Battle Map,
-ask for authorization before modifying files, and show actual test results.
-```
+## The Scroll and The Battle Map
+The Scroll is a living, challenging conversation, not a document factory. It creates `SCROLL.md` when decisions become worth retaining. The Battle Map is a compact `BATTLE_MAP.md` for multi-stage work and recovery, not a mandatory form.
 
-## Install into another project
-Copy `.agents/skills`, `.cursor/commands`, `.cursor/rules/the-way.mdc`, and optionally `.claude/skills` into the target repository. Merge rather than overwrite its existing `AGENTS.md` and project instructions. Or run `python3 scripts/install.py /path/to/project` if Python is available; it is an optional installer, not the skills runtime.
+## Design
+Canonical skills live in `skills/`. The host-native mirrors in `.agents/skills/`, `.claude/skills/` and `.cursor/commands/` are maintained for compatibility. The command files are tiny pointers. No mandatory mission scaffolding, formal handoffs or universal gate checks.
+
+## Install
+Use the optional installer: `python3 scripts/install.py /path/to/your/project`. Or copy the specific skill folders you want into the target host's skills directory. Do not overwrite existing project instructions. The installer is optional; Python is not used to run the skills.
 
 ## Verify
 ```bash
 python3 scripts/verify.py
 python3 -m unittest discover -s tests -v
 ```
-These validate file structure and contract expectations, **not** live model behavior. Follow `docs/LIVE-TESTING.md` to test in Cursor.
+These are structural tests, not live model evaluations. Use [Live Testing](docs/LIVE-TESTING.md) to assess behavior.
 
-## GitHub
-This public repository is the canonical source for The Data Warrior. The old separate repository is not used. Use feature branches and pull requests; never store credentials, mission secrets or customer data in the public repository.
+THE DATA WARRIOR is independent of Foundation; Azure and Microsoft Fabric are optional target environments.

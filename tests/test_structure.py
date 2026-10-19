@@ -1,13 +1,14 @@
 import unittest
 from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1]
 class Structure(unittest.TestCase):
  def test_skill_count(self):
-  root=Path(__file__).resolve().parents[1]
-  self.assertEqual(len(list((root/'.agents/skills').glob('*/SKILL.md'))),39)
- def test_constitution(self):
-  root=Path(__file__).resolve().parents[1]
-  self.assertIn('Never self-escalate',(root/'THE_WAY.md').read_text())
- def test_cursor_rules(self):
-  root=Path(__file__).resolve().parents[1]
-  self.assertTrue((root/'.cursor/rules/the-way.mdc').is_file())
-if __name__=='__main__':unittest.main()
+  self.assertEqual(len(list((ROOT/'skills').glob('*/SKILL.md'))),15)
+ def test_roles(self):
+  way=(ROOT/'THE_WAY.md').read_text()
+  for role in ('Deshi','Rōnin','Kensei'): self.assertIn(role,way)
+ def test_scroll_uses_challenge_method(self):
+  self.assertIn('the-interrogation',(ROOT/'skills/the-scroll/SKILL.md').read_text())
+ def test_battle_map(self):
+  self.assertIn('BATTLE_MAP.md',(ROOT/'skills/the-battle-map/SKILL.md').read_text())
+if __name__=='__main__': unittest.main()
