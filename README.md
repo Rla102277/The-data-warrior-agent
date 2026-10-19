@@ -2,26 +2,24 @@
 
 **Small skills. Deep judgment. No ceremony.**
 
-A Matt-style skill system for data engineers and analysts: grill the real decision, write a forge job, build one step with red-before-green proof, collect independent reviews, and stop for a human. Words and philosophy are the Data Warrior's. Process shape follows [mattpocock/skills](https://github.com/mattpocock/skills) (MIT process, not prose).
+A Matt-style skill system for data engineers and analysts: grill the real decision, write a forge job as files, build one step with red-before-green proof, collect independent reviews, and stop for a human. Words and philosophy are the Data Warrior's. Process shape follows [mattpocock/skills](https://github.com/mattpocock/skills) (MIT process, not prose).
+
+This repository is **skills and process only**. It does not ship a data platform package, Fabric estate, or Foundation codebase.
 
 ## Flow
 
 1. `/know-the-ground` until one action is on the Scroll.
-2. `/to-spec` then `/to-steps`.
+2. `/to-spec` then `/to-steps` (job files under `forge-line/jobs/<id>/` by default).
 3. `/the-forge` builds the current step only, proves it, writes three reviews, stops for a person.
-4. `forge job approve` (when the platform package is installed) is the only path to deployment-ready.
+4. A human writes approval in `decision.md`. Nothing auto-deploys production.
 
 ## Installation
 
 ```bash
-# Editable Forge platform
-pip install -e ".[dev,local]"
-
-# Link skills into local harnesses
 ./scripts/link-skills.sh
 ```
 
-Or copy selected `skills/<bucket>/<name>/` folders into your agent skills directory. Run `/setup-the-forge` once per repo.
+Or copy selected `skills/<bucket>/<name>/` folders into your agent skills directory. Run `/setup-the-forge` once per target repo.
 
 ## Commands (user-invoked)
 
@@ -33,7 +31,7 @@ Or copy selected `skills/<bucket>/<name>/` folders into your agent skills direct
 - **[see-the-void](./skills/void/see-the-void/SKILL.md)**: Use when incentives, power, culture, or a permanently broken source may decide whether the data work can succeed.
 - **[adapt](./skills/water/adapt/SKILL.md)**: Use when requirements, terrain, or proof changed mid-task and remaining forge steps must be rewritten or the eighty-percent answer shipped.
 - **[ask-the-warrior](./skills/way/ask-the-warrior/SKILL.md)**: Use when the user is unsure which Data Warrior command or forge stage fits the work in front of them.
-- **[setup-the-forge](./skills/way/setup-the-forge/SKILL.md)**: Use once per repository to configure Scroll path, forge job folder, proof location, and autonomy defaults before other forge commands.
+- **[setup-the-forge](./skills/way/setup-the-forge/SKILL.md)**: Use when setting up a repository once to configure Scroll path, forge job folder, proof location, and autonomy defaults.
 - **[name-the-wind](./skills/wind/name-the-wind/SKILL.md)**: Use when a data project is drifting into known failure patterns such as tool obsession, complexity as credibility, or the permanent draft.
 
 ## Disciplines (model-invoked)
@@ -63,11 +61,9 @@ Or copy selected `skills/<bucket>/<name>/` folders into your agent skills direct
 
 ```bash
 python3 scripts/verify.py
-python3 -m unittest discover -s tests -v
-# Platform suite (after install):
-pytest -q
+python3 -m unittest discover -s tests/warrior -v
 ```
 
 ## License
 
-MIT (see `LICENSE`). Skills and the Forge platform in this repository are yours: the Data Warrior / Forge work under that license.
+MIT (see `LICENSE`).

@@ -36,7 +36,8 @@ Reshape this repository so its public layout matches [mattpocock/skills](https:/
 | D-006 | Foundation stays in Foundation-2.0 under its own name. The thoughts of its factory merge into this skills framework. Inside this framework that loop is the Forge. | User, 2026-10-19. | **Superseded** by D-007. The user corrected this: they want the code copied in, not only the ideas. | User correction the same day. |
 | D-007 | Copy Foundation into this repo. Bring Matt Pocock's skill processes into this repo as well. Foundation keeps the name Foundation. | User, 2026-10-19. | **Superseded** by D-008. | User corrected: in this repo the platform is named Forge. |
 | D-008 | Implement The Forge: Matt-style command/discipline skills with a ground gate, copy Foundation-2.0 into this repo renamed Forge (`forge` CLI, `forge-line/jobs`), leave original Foundation-2.0 on disk. | Plan approved 2026-10-19. | Accepted | Implementation evidence: 30 bucketed skills, `forge doctor` ok, warrior unittest OK, pytest 69 passed. |
-| D-009 | The Forge in this repo is the author's work under MIT. The "Proprietary" label was a mistaken carry-over from Foundation-2.0's pyproject, not a claim that Forge belongs to someone else. | User, 2026-10-19: "THE FORGE ARE MINE... NOT SURE HOW IT GOT PROPRIETARY". | Accepted | Removed `PROPRIETARY.md`. `pyproject.toml` license set to MIT. |
+| D-009 | The Forge in this repo is the author's work under MIT. The "Proprietary" label was a mistaken carry-over from Foundation-2.0's pyproject, not a claim that Forge belongs to someone else. | User, 2026-10-19. | **Superseded** by D-010 for the platform copy. | License note stands for skills. |
+| D-010 | Remove all Foundation/platform code from this repository. Keep only the software-factory *concept* as Forge skills and file-based jobs. Foundation stays in its own project. | User, 2026-10-19: remove ALL Foundation stuff ASAP; only the factory concept belonged here. | Accepted | Deleted `forge/`, `discovery/`, `engineering/`, `control/`, `dbt/`, `demos/`, `mcp/`, `platforms/`, `infrastructure/`, `automation/`, `rebuild/`, `knowledge/platform/`, `docs/platform/`, `.azuredevops/`, platform tests, `pyproject.toml`. |
 
 ## Assumptions
 - "A system like Matthew's" means his product mechanics: user-invoked versus model-invoked, a router, README catalog, plugin manifest, docs pages, and symlink install. **Accepted in D-008.**
@@ -45,21 +46,21 @@ Reshape this repository so its public layout matches [mattpocock/skills](https:/
 - D-002 took eight books from a proposed manuscript outline. The shipped skill buckets follow the five rings plus forge/practice/way (D-003/D-008).
 - Collaboration roles remain Deshi, Rōnin, and Kensei. The manuscript's Council roles are not yet skills.
 - `PROJECT_STATE.md` in the manuscript still says private; the API showed public on 2026-10-19.
-- Some copied `knowledge/platform/` docs still name Green Brick operational context. That is estate documentation, not a claim that Forge is owned by a third party.
 
 ## Rejected alternatives
 - Use Pocock's `engineering/` and `productivity/` folders as the skill taxonomy. Rejected by D-002.
-- Keep the factory as a portable step list with Foundation optional. Rejected by D-005, then superseded by D-008 (code copied and renamed Forge).
-- Keep the name Foundation inside this repo. Rejected by D-008.
+- Keep the factory as a portable step list with Foundation optional. Rejected by D-005, then wrongly implemented as a full Foundation copy (D-008). Corrected by D-010.
+- Keep the name Foundation inside this repo. Rejected.
+- Ship Foundation/platform SDK code inside the skills repo. Rejected by D-010.
 
 ## Acceptance tests
 - [x] README lists commands and disciplines with links to each `SKILL.md`.
 - [x] Plugin manifest lists promoted skills; docs pages exist under `docs/<bucket>/`.
 - [x] Generated duplicate skill trees removed; `scripts/link-skills.sh` is the host install path.
 - [x] Ground gate required before forge spec; `the-forge` skill encodes the line.
-- [x] Warrior unittest and Forge pytest pass locally.
-- [x] Forge licensed as MIT under author ownership (D-009).
+- [x] Warrior unittest passes locally (skills only).
+- [x] Foundation/platform trees removed from this repository (D-010).
 - [ ] Live host transcript for `/know-the-ground` then `/the-forge`.
 
 ## Next challenge
-None open for the reshape. Next work is live host trials of `/know-the-ground` then `/the-forge`.
+None for the removal. Next work is live host trials of `/know-the-ground` then `/the-forge` against a real target project.
