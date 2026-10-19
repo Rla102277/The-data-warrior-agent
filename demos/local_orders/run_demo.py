@@ -94,7 +94,7 @@ def run() -> dict[str, Any]:
     engine = WorkflowEngine(JobStore(ROOT / "factory_jobs"))
     job = engine.create_job(
         "local orders foundation demo",
-        platform_profile="fabric-first-foundation",
+        platform_profile="forge-default",
         metadata={"demo": "local_orders"},
     )
     # Advance through build/code validation; data validation waits on independent fixtures.
@@ -151,6 +151,8 @@ def run() -> dict[str, Any]:
         job = engine.transition(job, WorkflowStage.DATA_VALIDATION, reason="demo quality passed")
         job = engine.transition(job, WorkflowStage.SECURITY_REVIEW, reason="demo security gate")
         job = engine.transition(job, WorkflowStage.INDEPENDENT_REVIEW, reason="independent fixtures")
+        job.validation_evidence.append(f"test: local_orders reconciliation {recon.outcome.value}")
+        job = engine.attach_demo_evidence(job)
         job = engine.transition(job, WorkflowStage.APPROVAL_PENDING, reason="await human")
         status = "passed"
     else:

@@ -79,7 +79,7 @@ def main(argv: list[str] | None = None) -> int:
     pol = sub.add_parser("policy", help="Evaluate a Forge policy action")
     pol.add_argument("--actor", required=True)
     pol.add_argument("--action", required=True)
-    pol.add_argument("--workspace", default="Foundation Development")
+    pol.add_argument("--workspace", default="Forge Development")
     pol.add_argument("--name", default="")
     pol.add_argument("--schema", default="")
     pol.add_argument("--item-type", default="")
@@ -168,7 +168,7 @@ def cmd_doctor(_: argparse.Namespace) -> int:
         "jobsite_absorption": bridge.absorption_status,
         "cli": "forge",
         "default_autonomy_level": 2,
-        "default_platform_profile": "fabric-first-foundation",
+        "default_platform_profile": "forge-default",
         "llm_required": False,
     }
     print(json.dumps({"status": "ok", "checks": checks}, indent=2))

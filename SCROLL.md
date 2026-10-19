@@ -1,7 +1,7 @@
 # Scroll — Data Warrior skills repo shape
 
 ## Goal
-Reshape this repository so its public layout matches [mattpocock/skills](https://github.com/mattpocock/skills/tree/main). Treat [the-data-warriors-manuscript](https://github.com/Rla102277/the-data-warriors-manuscript) as the factual source for names, doctrine, and skill substance.
+Ship a companion skill system and Forge factory that rehearse [The Data Warrior's Manuscript](https://github.com/Rla102277/the-data-warriors-manuscript) against real work — without becoming the measure of success. Layout matches [mattpocock/skills](https://github.com/mattpocock/skills/tree/main). The manuscript is the factual source for names, doctrine, and mission.
 
 ## Verified facts
 - This repo (`the-data-warrior-agent`, `main`) is a flat fourteen-skill pack: canonical files in `skills/*/SKILL.md`, generated mirrors in `.agents/skills` and `.claude/skills`, thin `.cursor/commands`, Python `scripts/install.py`, `sync.py`, `verify.py`, `eval.py`, plus `THE_WAY.md`, role lines, and MVP gates in `docs/MVP-ACCEPTANCE.md`.
@@ -39,14 +39,17 @@ Reshape this repository so its public layout matches [mattpocock/skills](https:/
 | D-009 | The Forge in this repo is the author's work under MIT. The "Proprietary" label was a mistaken carry-over from Foundation-2.0's pyproject, not a claim that Forge belongs to someone else. | User, 2026-10-19. | **Superseded** by D-010 for the platform copy. | License note stands for skills. |
 | D-010 | Remove all Foundation/platform code from this repository. Keep only the software-factory *concept* as Forge skills and file-based jobs. Foundation stays in its own project. | User, 2026-10-19. | **Superseded** by D-011. Over-deleted the Forge runtime. | User clarification immediately after. |
 | D-011 | Keep The Forge software factory in this repo (skills + `forge`/`forge-line` runtime). Do **not** bring Foundation estate knowledge (`knowledge/platform`, ops inventories, ADO Fabric estate docs, rebuild ledgers, analytics SQL estates). | User, 2026-10-19: wanted the Forge; none of the existing Foundation knowledge should have been brought in. | Accepted | Restored Forge SDK from `1eb8679` without knowledge/platform, docs/platform, rebuild, automation, dbt, .azuredevops. |
+| D-012 | Align this repo's identity and ground gate to the manuscript mission/vision: technical completion ≠ strategic success; human is the Warrior; two demands (simplicity + discipline); Forge is Tools/instrument; book readable without software; measure decisions changed. | User, 2026-10-19: "reread the manuscript… Align to my mission and vision." | Accepted | Re-read preface, Ch1 working draft, editorial master plan, AGENTS invariants, MASTER_BRIEF philosophy. Updated THE_WAY, README, SCOPE, CLAUDE, AGENTS, know-the-ground, the-forge, ask-the-warrior. |
 
 ## Assumptions
 - "A system like Matthew's" means his product mechanics: user-invoked versus model-invoked, a router, README catalog, plugin manifest, docs pages, and symlink install. **Accepted in D-008.**
+- Manuscript mission for this companion: close the strategic-discipline gap for analysts/executives/managers who need one action, not more ceremony. **Accepted in D-012.**
 
 ## Contradictions
-- D-002 took eight books from a proposed manuscript outline. The shipped skill buckets follow the five rings plus forge/practice/way (D-003/D-008).
-- Collaboration roles remain Deshi, Rōnin, and Kensei. The manuscript's Council roles are not yet skills.
+- D-002 took eight books from a proposed manuscript outline. The shipped skill buckets follow the five rings plus forge/practice/way (D-003/D-008), which matches Musashi five + Tools/Practice extensions named in the manuscript architecture proposal.
+- Collaboration roles remain Deshi, Rōnin, and Kensei. The manuscript's Council roles are named in THE_WAY as perspectives, not yet skills.
 - `PROJECT_STATE.md` in the manuscript still says private; the API showed public on 2026-10-19.
+- Recovered Dec 2025 book is five rings; eight-book architecture remains proposed in the manuscript `DECISIONS.md`.
 
 ## Rejected alternatives
 - Use Pocock's `engineering/` and `productivity/` folders as the skill taxonomy. Rejected by D-002.
@@ -62,7 +65,10 @@ Reshape this repository so its public layout matches [mattpocock/skills](https:/
 - [x] Ground gate required before forge spec; `the-forge` skill encodes the line.
 - [x] Warrior unittest passes locally (skills only).
 - [x] Forge runtime restored without Foundation estate knowledge (D-011).
-- [ ] Live host transcript for `/know-the-ground` then `/the-forge`.
+- [x] Identity docs lead with manuscript mission; Forge positioned as Tools companion (D-012).
+- [x] Ground gate matches Way questions + single-action demand (D-012).
+- [ ] Live host transcript for `/know-the-ground` then `/the-forge` that stops if the decision is missing.
+- [ ] Optional: Council-perspective disciplines when manuscript People book is approved.
 
 ## Next challenge
-None for ownership of Forge vs knowledge. Next work is live host trials of `/know-the-ground` then `/the-forge` against a real target project.
+Prove the mission in a live host trial: `/know-the-ground` refuses a tool-first ask, then `/the-forge` only after one action is on the Scroll.

@@ -1,0 +1,60 @@
+# Default platform-neutral Forge profile (no estate workspace names)
+id: forge-default
+name: Forge Default
+status: default
+supported_sources:
+  - azure_sql
+  - adls_gen2
+  - onprem_sql_readonly
+  - files_csv_json_parquet
+supported_targets:
+  - fabric_lakehouse
+  - fabric_warehouse
+  - fabric_notebook
+  - fabric_pipeline
+preferred_storage: onelake
+preferred_transformation: dbt-fabric
+orchestration: fabric_data_pipeline_metadata_driven
+deployment_adapter: fabric-cicd
+testing_strategy:
+  - unit_sdk
+  - duckdb_local_quality
+  - contract_odcs
+security_requirements:
+  - workspace_identity
+  - key_vault
+  - policy_evaluate_action
+cost_considerations:
+  - fabric_capacity_estimate
+observability:
+  - application_insights_optional
+  - structured_job_telemetry
+required_agents:
+  - factory-director
+  - spec-writer
+  - builder
+  - reviewer-security
+  - reviewer-naming
+  - reviewer-data-quality
+  - approver
+required_validation_gates:
+  - naming
+  - policy
+  - data_quality
+  - reconciliation
+  - test_evidence
+  - independent_reviews
+workspaces:
+  - Forge Development
+  - Forge Production
+  - Forge Governance
+layers:
+  - raw
+  - stage
+  - control
+  - transform
+  - analytics
+minimum_permissions:
+  - Contributor on Forge Development
+  - Reader elsewhere by default
+notes: Platform-neutral factory defaults. Estate-specific profiles may override workspaces and gates.

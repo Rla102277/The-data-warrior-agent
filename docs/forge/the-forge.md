@@ -1,15 +1,15 @@
 # the-forge
 
 ## What it does
-Use when a grounded action has a forge spec and steps, and the user wants the line to build, prove, review, and stop for human approval.
+Run the Tools companion: build one step, prove it, collect three independent reviews, stop for a human. The sword is not the warrior.
 
 ## When to reach for it
-Use this command when the task matches the description above. Prefer `/ask-the-warrior` if you are unsure.
+Only after `/know-the-ground` has closed the gate and `/to-spec` plus `/to-steps` exist. Prefer `/ask-the-warrior` if unsure.
 
 ## Common questions
 - Does this replace reading the code? No. Inspect evidence first.
-- Can the model invent an approval? No. Humans approve production.
+- Can the model invent an approval? No. Humans approve production. Missing proof or reviews blocks approval.
 - Where do decisions live? In `SCROLL.md` via The Scroll.
 
 ## It's working if
-The next forge stage is clear, evidence paths are named, and you can resume from files alone.
+The next forge stage is clear, evidence paths are named, reviews are real files with `VERDICT: PASS` or `CHANGES`, and you can resume from files alone — aimed at the decision on the Scroll, not at shipping ceremony.

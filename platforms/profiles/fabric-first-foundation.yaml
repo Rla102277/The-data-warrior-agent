@@ -1,7 +1,7 @@
-# Default Foundation platform profile
+# Optional estate-specific profile (not the Forge runtime default)
 id: fabric-first-foundation
 name: Fabric-first Foundation
-status: default
+status: optional
 supported_sources:
   - azure_sql
   - adls_gen2

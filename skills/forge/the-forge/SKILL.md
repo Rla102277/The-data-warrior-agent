@@ -6,10 +6,10 @@ disable-model-invocation: true
 
 # The Forge
 
-You own the forge line. You do not self-approve production.
+The sword is not the warrior. You own the forge line as an instrument of the Way. You do not self-approve production. A green build that does not change the named decision is still a failure.
 
 ## Preconditions
-If the Scroll lacks the ground gate, stop and direct the user to `/know-the-ground`. If there is no `spec.md`, use `/to-spec`. If there are no steps, use `/to-steps`.
+If the Scroll lacks the ground gate from `/know-the-ground`, stop and direct the user there. If there is no `spec.md`, use `/to-spec`. If there are no steps, use `/to-steps`.
 
 ## Loop
 1. Select the current step from the Battle Map.

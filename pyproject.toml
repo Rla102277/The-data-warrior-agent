@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "forge-platform"
 version = "0.1.0"
-description = "Forge Data and AI engineering platform (Data Warrior companion)"
+description = "The Data Warrior — skills and Forge factory companion (manuscript doctrine, software factory tools)"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

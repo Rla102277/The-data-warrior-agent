@@ -1,17 +1,21 @@
-# THE DATA WARRIOR — THE FORGE
+# THE DATA WARRIOR
 
-**Small skills. Deep judgment. No ceremony.**
+**Technical completion is not strategic success.**
 
-A Matt-style skill system for data engineers and analysts: grill the real decision, write a forge job, build one step with red-before-green proof, collect independent reviews, and stop for a human. Words and philosophy are the Data Warrior's. Process shape follows [mattpocock/skills](https://github.com/mattpocock/skills) (MIT process, not prose).
+A Matt-style skill system for data engineers, analysts, and neighboring roles who must change a decision — not ship another artifact. Words and philosophy follow [The Data Warrior's Manuscript](https://github.com/Rla102277/the-data-warriors-manuscript). Process shape follows [mattpocock/skills](https://github.com/mattpocock/skills) (MIT process, not prose).
 
-**The Forge** in this repo is the software factory (skills + `forge` CLI / job line). It does **not** include Foundation estate knowledge, Green Brick ops docs, or copied workplace inventories.
+The human is the Data Warrior. AI augments judgment. **The Forge** is the Tools companion in this repo: a ground-gated software factory (`forge` CLI / job line) that builds one proven step, collects independent reviews, and stops for a person. The sword is not the warrior. This repo does **not** include Foundation estate knowledge or workplace inventories. The book remains readable without this software.
+
+## Mission
+
+Close the strategic-discipline gap: demand one clear action, embrace boring execution, and measure success by decisions made clearer — not by models or pipelines delivered.
 
 ## Flow
 
-1. `/know-the-ground` until one action is on the Scroll.
-2. `/to-spec` then `/to-steps`.
+1. `/know-the-ground` until the Scroll holds the Way's questions and one action in one sentence.
+2. `/to-spec` then `/to-steps` — only after that gate.
 3. `/the-forge` builds the current step only, proves it, writes three reviews, stops for a person.
-4. `forge job approve` is the only path to deployment-ready.
+4. `forge job approve` is the only path to deployment-ready. Missing proof or reviews is rejected.
 
 ## Installation
 

@@ -6,16 +6,16 @@ disable-model-invocation: true
 
 # Ask The Warrior
 
-You are the router over the **user-invoked** commands in this repo. Map the situation to one command. Do not invent a second command chain in the same turn.
+You are the router over the **user-invoked** commands in this repo. Prefer the Way over the tool: if the decision is unclear, do not route to the Forge. Map the situation to one command. Do not invent a second command chain in the same turn.
 
 ## Route
-1. New project or task with no clear decision yet → `/know-the-ground`.
+1. New project or task with no clear decision, outcome, or single action yet → `/know-the-ground`.
 2. One action is already on the Scroll, and they need a job file → `/to-spec`.
 3. Spec exists, and they need ordered steps → `/to-steps`.
-4. Spec and steps exist, and they want to build → `/the-forge`.
+4. Spec and steps exist, ground gate is met, and they want to build → `/the-forge`.
 5. Requirements or terrain changed mid-build → `/adapt`.
 6. The deliverable is a recommendation people must accept → `/win-the-room`.
-7. The work smells like a known failure pattern → `/name-the-wind`.
+7. The work smells like a known failure pattern (tool obsession, complexity as credibility) → `/name-the-wind`.
 8. Politics, incentives, or a broken org may kill the work → `/see-the-void`.
 9. First time in this repo with these skills → `/setup-the-forge`.
 

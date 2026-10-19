@@ -4,8 +4,27 @@ from __future__ import annotations
 
 import pytest
 
-from forge.line import InvalidTransitionError, JobStore, WorkflowEngine, WorkflowStage
+from forge.line import EvidenceRequiredError, InvalidTransitionError, JobStore, WorkflowEngine, WorkflowStage
 from forge.line.models import AgentMessage, AutonomyLevel
+from forge.line.workflow import DEFAULT_PLATFORM_PROFILE, REQUIRED_REVIEW_FILES
+
+
+def _advance_to_independent_review(engine: WorkflowEngine, title: str):
+    job = engine.create_job(title)
+    for stage in [
+        WorkflowStage.DISCOVERY,
+        WorkflowStage.REQUIREMENTS,
+        WorkflowStage.SPECIFICATION,
+        WorkflowStage.ARCHITECTURE,
+        WorkflowStage.PLANNING,
+        WorkflowStage.BUILDING,
+        WorkflowStage.CODE_VALIDATION,
+        WorkflowStage.DATA_VALIDATION,
+        WorkflowStage.SECURITY_REVIEW,
+        WorkflowStage.INDEPENDENT_REVIEW,
+    ]:
+        job = engine.transition(job, stage)
+    return job
 
 
 def test_job_persists_across_store_instances(tmp_path) -> None:
@@ -19,6 +38,14 @@ def test_job_persists_across_store_instances(tmp_path) -> None:
     assert resumed.stage == WorkflowStage.DISCOVERY
     assert resumed.title == "demo job"
     assert resumed.autonomy_level == AutonomyLevel.L2_BUILD_TEST_ISOLATED
+    assert resumed.platform_profile == DEFAULT_PLATFORM_PROFILE
+
+
+def test_default_platform_profile_is_forge_neutral(tmp_path) -> None:
+    engine = WorkflowEngine(JobStore(tmp_path / "jobs"))
+    job = engine.create_job("neutral")
+    assert job.platform_profile == "forge-default"
+    assert job.platform_profile != "fabric-first-foundation"
 
 
 def test_invalid_transition_rejected(tmp_path) -> None:
@@ -85,6 +112,55 @@ def test_approve_to_deployment_ready(tmp_path) -> None:
     job = engine.advance_happy_path(job)
     job = engine.approve(job, actor="human", authorized=True, deploy_production=False)
     assert job.stage == WorkflowStage.DEPLOYMENT_READY
+
+
+def test_transition_to_approval_pending_rejects_without_evidence(tmp_path) -> None:
+    engine = WorkflowEngine(JobStore(tmp_path / "jobs"))
+    job = _advance_to_independent_review(engine, "no evidence")
+    with pytest.raises(EvidenceRequiredError, match="missing test evidence"):
+        engine.transition(job, WorkflowStage.APPROVAL_PENDING)
+
+
+def test_approve_rejects_without_test_evidence(tmp_path) -> None:
+    engine = WorkflowEngine(JobStore(tmp_path / "jobs"))
+    job = _advance_to_independent_review(engine, "approve without tests")
+    # Bypass transition gate by forcing stage (simulates tampered / incomplete job state).
+    job.stage = WorkflowStage.APPROVAL_PENDING
+    engine.store.save(job)
+    with pytest.raises(EvidenceRequiredError, match="missing test evidence"):
+        engine.approve(job, actor="human", authorized=True, deploy_production=False)
+
+
+def test_approve_rejects_when_review_missing(tmp_path) -> None:
+    engine = WorkflowEngine(JobStore(tmp_path / "jobs"))
+    job = _advance_to_independent_review(engine, "missing review")
+    engine.store.write_artifact(job.job_id, "proof.md", "# proof\n")
+    job.output_artifacts.append("proof.md")
+    job.validation_evidence.append("test: unit suite passed")
+    # Only two of three required reviews.
+    for name in REQUIRED_REVIEW_FILES[:2]:
+        engine.store.write_artifact(job.job_id, name, "VERDICT: PASS\n")
+        job.output_artifacts.append(name)
+    job.stage = WorkflowStage.APPROVAL_PENDING
+    engine.store.save(job)
+    with pytest.raises(EvidenceRequiredError, match="review-data-quality.md"):
+        engine.approve(job, actor="human", authorized=True, deploy_production=False)
+
+
+def test_approve_rejects_when_review_not_pass(tmp_path) -> None:
+    engine = WorkflowEngine(JobStore(tmp_path / "jobs"))
+    job = _advance_to_independent_review(engine, "failing review")
+    engine.store.write_artifact(job.job_id, "proof.md", "# proof\n")
+    job.output_artifacts.append("proof.md")
+    job.validation_evidence.append("test: unit suite passed")
+    for name in REQUIRED_REVIEW_FILES:
+        verdict = "VERDICT: FAIL\nneeds work\n" if name == "review-security.md" else "VERDICT: PASS\n"
+        engine.store.write_artifact(job.job_id, name, verdict)
+        job.output_artifacts.append(name)
+    job.stage = WorkflowStage.APPROVAL_PENDING
+    engine.store.save(job)
+    with pytest.raises(EvidenceRequiredError, match="review-security.md"):
+        engine.approve(job, actor="human", authorized=True, deploy_production=False)
 
 
 def test_agent_message_recorded(tmp_path) -> None:
