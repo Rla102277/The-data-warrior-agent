@@ -2,10 +2,17 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 from typing import Any
+from uuid import uuid4
 
 from forge.configuration import load_settings
+from forge.line.evidence import (
+    REQUIRED_REVIEW_FILES as REVIEW_FILE_BY_TYPE,
+    TRUST_BOUNDARY,
+    VerificationReport,
+    verify_approval,
+    write_synthetic_demo_bundle,
+)
 from forge.line.models import (
     ALLOWED_TRANSITIONS,
     AgentMessage,
@@ -18,22 +25,7 @@ from forge.line.store import JobStore
 from forge.policies import PolicyDecision, evaluate_action
 
 DEFAULT_PLATFORM_PROFILE = "forge-default"
-
-REQUIRED_REVIEW_FILES = (
-    "review-security.md",
-    "review-naming.md",
-    "review-data-quality.md",
-)
-
-TEST_EVIDENCE_BASENAMES = frozenset(
-    {
-        "proof.md",
-        "test-results.json",
-        "test_results.xml",
-        "pytest-report.xml",
-        "pytest.xml",
-    }
-)
+REQUIRED_REVIEW_FILES = tuple(REVIEW_FILE_BY_TYPE.values())
 
 _EVIDENCE_GATED_STAGES = frozenset(
     {
@@ -48,7 +40,7 @@ class InvalidTransitionError(ValueError):
 
 
 class EvidenceRequiredError(ValueError):
-    """Raised when approval requires proof or independent reviews that are missing."""
+    """Raised when approval requires proof or reviews that are missing or invalid."""
 
 
 class WorkflowEngine:
@@ -64,12 +56,17 @@ class WorkflowEngine:
         project_id: str | None = None,
         metadata: dict[str, Any] | None = None,
     ) -> JobState:
+        meta = dict(metadata or {})
+        meta.pop("evidence_mode", None)
+        meta.pop("demo_mode", None)
         job = JobState(
             title=title,
             autonomy_level=autonomy_level,
             platform_profile=platform_profile,
+            build_id=uuid4().hex[:12],
+            demo_mode=False,
             started_at=utc_now(),
-            metadata=metadata or {},
+            metadata=meta,
         )
         if project_id:
             job.project_id = project_id
@@ -82,7 +79,9 @@ class WorkflowEngine:
         if new_stage not in allowed:
             raise InvalidTransitionError(f"Cannot transition {job.stage.value} -> {new_stage.value}")
         if new_stage in _EVIDENCE_GATED_STAGES:
-            self.require_approval_evidence(job)
+            self.require_approval_evidence(job, production=False)
+        if new_stage == WorkflowStage.DEPLOYMENT_READY and not self._has_current_human_approval(job):
+            raise InvalidTransitionError("DEPLOYMENT_READY requires a recorded human approval for this build")
         if new_stage == WorkflowStage.BUILDING and job.stage in {
             WorkflowStage.CODE_VALIDATION,
             WorkflowStage.DATA_VALIDATION,
@@ -137,6 +136,7 @@ class WorkflowEngine:
                 "status": "pending",
                 "actor": actor,
                 "summary": summary,
+                "build_id": job.build_id,
                 "at": utc_now().isoformat(),
             }
         )
@@ -144,7 +144,7 @@ class WorkflowEngine:
         return job
 
     def rework(self, job: JobState, *, note: str, actor: str = "human") -> JobState:
-        """Return job to BUILDING with feedback (bounded by max_repair_rounds)."""
+        """Return job to BUILDING and retire the current build's evidence."""
         if job.stage not in {
             WorkflowStage.APPROVAL_PENDING,
             WorkflowStage.CODE_VALIDATION,
@@ -158,10 +158,12 @@ class WorkflowEngine:
                 "status": "rework",
                 "actor": actor,
                 "note": note,
+                "build_id": job.build_id,
                 "at": utc_now().isoformat(),
             }
         )
         job.validation_evidence.append(f"rework: {note}")
+        job.build_id = uuid4().hex[:12]
         return self.transition(job, WorkflowStage.BUILDING, reason=note)
 
     def approve(
@@ -175,14 +177,12 @@ class WorkflowEngine:
     ) -> JobState:
         if job.stage != WorkflowStage.APPROVAL_PENDING:
             raise InvalidTransitionError("approve requires APPROVAL_PENDING")
-        self.require_approval_evidence(job)
         settings = load_settings()
         if deploy_production:
             policy = evaluate_action(
                 actor=actor,
                 action="deploy_production",
                 target={"workspace": settings.prod_workspace, "name": target_name or job.title},
-                # "production" normalizes to the production protection enum in the policy engine.
                 environment="production",
                 approval={
                     "authorized": authorized,
@@ -198,16 +198,19 @@ class WorkflowEngine:
                         "actor": actor,
                         "reasons": policy.reasons,
                         "at": utc_now().isoformat(),
+                        "trust_boundary": TRUST_BOUNDARY,
                     }
                 )
                 self.store.save(job)
                 raise PermissionError("; ".join(policy.reasons))
+        self.require_approval_evidence(job, production=deploy_production)
         if not authorized:
             job.approval_decisions.append(
                 {
                     "status": "rejected",
                     "actor": actor,
                     "at": utc_now().isoformat(),
+                    "trust_boundary": TRUST_BOUNDARY,
                 }
             )
             return self.transition(job, WorkflowStage.CANCELLED, reason="approval rejected")
@@ -215,99 +218,37 @@ class WorkflowEngine:
             {
                 "status": "approved",
                 "actor": actor,
+                "build_id": job.build_id,
                 "deploy_production": deploy_production,
                 "at": utc_now().isoformat(),
+                "trust_boundary": TRUST_BOUNDARY,
             }
         )
         return self.transition(job, WorkflowStage.DEPLOYMENT_READY, reason="human approved")
 
-    def require_approval_evidence(self, job: JobState) -> None:
-        missing = self.missing_approval_evidence(job)
-        if missing:
-            raise EvidenceRequiredError("; ".join(missing))
+    def verify(self, job: JobState, *, production: bool = False) -> VerificationReport:
+        return verify_approval(self.store, job, production=production)
 
-    def missing_approval_evidence(self, job: JobState) -> list[str]:
-        missing: list[str] = []
-        if not self._has_test_evidence(job):
-            missing.append(
-                "missing test evidence (proof.md, test-results artifact, or validation_evidence test:/proof:)"
-            )
-        for name in REQUIRED_REVIEW_FILES:
-            status = self._review_verdict(job, name)
-            if status == "missing":
-                missing.append(f"missing {name}")
-            elif status == "fail":
-                missing.append(f"{name} does not contain VERDICT: PASS")
-        return missing
+    def require_approval_evidence(self, job: JobState, *, production: bool = False) -> None:
+        report = self.verify(job, production=production)
+        if not report.ready:
+            raise EvidenceRequiredError("; ".join(report.problems))
 
-    def _job_paths(self, job: JobState) -> list[Path]:
-        root = self.store.job_dir(job.job_id)
-        return [root, root / "round-1"]
-
-    def _has_test_evidence(self, job: JobState) -> bool:
-        for entry in job.validation_evidence:
-            lowered = entry.lower().strip()
-            if lowered.startswith(("test:", "proof:", "pytest")):
-                return True
-        for artifact in job.output_artifacts:
-            base = Path(artifact).name.lower()
-            if base in TEST_EVIDENCE_BASENAMES:
-                return True
-        for directory in self._job_paths(job):
-            if not directory.is_dir():
-                continue
-            for name in TEST_EVIDENCE_BASENAMES:
-                if (directory / name).is_file():
-                    return True
-        return False
-
-    def _review_verdict(self, job: JobState, name: str) -> str:
-        """Return 'pass', 'fail', or 'missing' for a required independent review file."""
-        candidates: list[Path] = []
-        for directory in self._job_paths(job):
-            candidates.append(directory / name)
-        for artifact in job.output_artifacts:
-            if Path(artifact).name == name:
-                path = Path(artifact)
-                if not path.is_absolute():
-                    path = self.store.job_dir(job.job_id) / artifact
-                candidates.append(path)
-        seen: set[Path] = set()
-        for path in candidates:
-            if path in seen:
-                continue
-            seen.add(path)
-            if path.is_file():
-                text = path.read_text(encoding="utf-8")
-                for line in text.splitlines():
-                    stripped = line.strip()
-                    if not stripped:
-                        continue
-                    if stripped.upper().startswith("VERDICT:"):
-                        verdict = stripped.split(":", 1)[1].strip().upper()
-                        return "pass" if verdict == "PASS" else "fail"
-                return "fail"
-        return "missing"
+    def missing_approval_evidence(self, job: JobState, *, production: bool = False) -> list[str]:
+        return self.verify(job, production=production).problems
 
     def attach_demo_evidence(self, job: JobState) -> JobState:
-        """Write synthetic proof + three PASS reviews for local demos and happy-path tests."""
-        self.store.write_artifact(
-            job.job_id,
-            "proof.md",
-            "# Demo proof\n\nAll local checks passed.\n",
-        )
-        if "proof.md" not in job.output_artifacts:
-            job.output_artifacts.append("proof.md")
-        for name in REQUIRED_REVIEW_FILES:
-            self.store.write_artifact(
-                job.job_id,
-                name,
-                "VERDICT: PASS\n\nDemo review — synthetic evidence for local happy path.\n",
-            )
-            if name not in job.output_artifacts:
-                job.output_artifacts.append(name)
-        if not any(e.lower().startswith("test:") for e in job.validation_evidence):
-            job.validation_evidence.append("test: demo synthetic suite passed")
+        """Opt this job into demo mode and attach synthetic evidence.
+
+        Synthetic evidence never qualifies a real job. Calling this method is the
+        explicit demo switch; create_job cannot turn it on.
+        """
+        if not job.build_id:
+            job.build_id = uuid4().hex[:12]
+        job.demo_mode = True
+        write_synthetic_demo_bundle(self.store, job)
+        if not any(entry.lower().startswith("test:") for entry in job.validation_evidence):
+            job.validation_evidence.append("test: synthetic demo evidence (not a real execution)")
         self.store.save(job)
         return job
 
@@ -334,3 +275,13 @@ class WorkflowEngine:
                     job = self.attach_demo_evidence(job)
                 job = self.transition(job, stage, reason="demo advance")
         return job
+
+    @staticmethod
+    def _has_current_human_approval(job: JobState) -> bool:
+        for decision in reversed(job.approval_decisions):
+            status = decision.get("status")
+            if status == "approved" and decision.get("build_id") == job.build_id:
+                return True
+            if status in {"rework", "rejected", "denied"}:
+                return False
+        return False

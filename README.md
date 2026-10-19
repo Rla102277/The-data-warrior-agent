@@ -15,7 +15,7 @@ Close the strategic-discipline gap: demand one clear action, embrace boring exec
 1. `/know-the-ground` until the Scroll holds the Way's questions and one action in one sentence.
 2. `/to-spec` then `/to-steps` — only after that gate.
 3. `/the-forge` builds the current step only, proves it, writes three reviews, stops for a person.
-4. `forge job approve` is the only path to deployment-ready. Missing proof or reviews is rejected.
+4. `forge job test` records the real exit code. `forge job verify` must pass. `forge job approve --authorized` is the only path to deployment-ready, and that flag is an operator attestation, not cryptographic identity. Synthetic, stale, or tampered evidence is rejected.
 
 ## Installation
 

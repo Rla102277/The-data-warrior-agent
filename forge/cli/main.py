@@ -23,6 +23,13 @@ from forge.policies import PolicyDecision, evaluate_action
 
 
 def main(argv: list[str] | None = None) -> int:
+    raw = list(sys.argv[1:] if argv is None else argv)
+    test_argv: list[str] = []
+    if len(raw) >= 2 and raw[0] == "job" and raw[1] == "test" and "--" in raw:
+        split = raw.index("--")
+        test_argv = raw[split + 1 :]
+        raw = raw[:split]
+    argv = raw
     parser = argparse.ArgumentParser(
         prog="forge",
         description="Forge Data and AI engineering CLI",
@@ -108,6 +115,10 @@ def main(argv: list[str] | None = None) -> int:
             "demo",
             "board",
             "assess-adf",
+            "test",
+            "evidence",
+            "review",
+            "verify",
             "approve",
             "rework",
         ],
@@ -122,7 +133,10 @@ def main(argv: list[str] | None = None) -> int:
     fac.add_argument(
         "--authorized",
         action="store_true",
-        help="Explicit authorization flag required for approve",
+        help=(
+            "Operator attestation required for approve. Not cryptographic identity; "
+            "production still depends on host permissions and platform policy."
+        ),
     )
     fac.add_argument(
         "--deploy-production",
@@ -130,11 +144,23 @@ def main(argv: list[str] | None = None) -> int:
         help="Request production deploy (D12 policy gate; default false)",
     )
     fac.add_argument("--target-name", default="", help="Named item for production policy checks")
+    fac.add_argument("--cwd", default="", help="Working directory for job test; must stay under the current directory")
+    fac.add_argument("--review-type", choices=["security", "naming", "data-quality"], default="")
+    fac.add_argument("--reviewer", default="", help="Reviewer identity for job review")
+    fac.add_argument("--verdict", choices=["PASS", "CHANGES"], default="")
+    fac.add_argument("--finding", action="append", default=[], help="Review finding; repeat for more than one")
+    fac.add_argument(
+        "--provenance",
+        choices=["independent", "same-agent-perspective"],
+        default="same-agent-perspective",
+        help="Whether this review was executed independently of the other two",
+    )
 
     mod = sub.add_parser("modernize", help="ADF modernization assessment (Milestone 2)")
     mod.add_argument("--adf", default="tests/fixtures/adf/sample_pipeline.json")
 
     args = parser.parse_args(argv)
+    args.test_argv = test_argv if args.command == "job" else []
     handlers = {
         "doctor": cmd_doctor,
         "inventory": cmd_inventory,
@@ -368,8 +394,22 @@ def cmd_modernize(args: argparse.Namespace) -> int:
     return 0 if not assessment.cutover_allowed else 0
 
 
+def _current_evidence_ids(store: Any, job: Any) -> list[str]:
+    from forge.line.evidence import load_evidence
+
+    records = [
+        item
+        for item in load_evidence(store, job.job_id)
+        if item.job_id == job.job_id and item.build_id == job.build_id and not item.synthetic
+    ]
+    if not records:
+        return []
+    latest = max(records, key=lambda item: item.finished_at)
+    return [latest.evidence_id]
+
+
 def cmd_factory(args: argparse.Namespace) -> int:
-    from forge.line import JobStore, WorkflowEngine, WorkflowStage
+    from forge.line import EvidenceRequiredError, JobStore, WorkflowEngine, WorkflowStage
 
     store = JobStore(args.jobs_dir)
     engine = WorkflowEngine(store)
@@ -427,6 +467,67 @@ def cmd_factory(args: argparse.Namespace) -> int:
         job = engine.cancel(store.load(args.job_id))
         print(json.dumps(job.model_dump(mode="json"), indent=2, default=str))
         return 0
+    if args.job_command == "test":
+        from forge.line.evidence import run_authorized_test
+
+        argv = list(getattr(args, "test_argv", []))
+        if not argv:
+            print(json.dumps({"error": "job test requires an explicit command after --"}, indent=2))
+            return 2
+        job = store.load(args.job_id)
+        try:
+            record = run_authorized_test(
+                store,
+                job,
+                argv,
+                cwd=Path(args.cwd) if args.cwd else Path.cwd(),
+                allow_root=Path.cwd(),
+            )
+        except (ValueError, OSError) as exc:
+            print(json.dumps({"error": str(exc)}, indent=2))
+            return 2
+        print(json.dumps(record.model_dump(mode="json"), indent=2, default=str))
+        return 0 if record.exit_code == 0 else record.exit_code
+    if args.job_command == "evidence":
+        from forge.line.evidence import load_evidence
+
+        records = [item.model_dump(mode="json") for item in load_evidence(store, args.job_id)]
+        print(json.dumps({"job_id": args.job_id, "evidence": records}, indent=2, default=str))
+        return 0
+    if args.job_command == "review":
+        from forge.line.evidence import record_review
+
+        if not args.review_type or not args.reviewer or not args.verdict or not args.finding:
+            print(
+                json.dumps(
+                    {"error": "job review requires --review-type, --reviewer, --verdict, and --finding"},
+                    indent=2,
+                )
+            )
+            return 2
+        job = store.load(args.job_id)
+        try:
+            review = record_review(
+                store,
+                job,
+                review_type=args.review_type,
+                reviewer_id=args.reviewer,
+                verdict=args.verdict,
+                findings=list(args.finding),
+                evidence_ids=_current_evidence_ids(store, job),
+                provenance=args.provenance,
+                synthetic=False,
+            )
+        except ValueError as exc:
+            print(json.dumps({"error": str(exc)}, indent=2))
+            return 2
+        print(json.dumps(review.model_dump(mode="json"), indent=2, default=str))
+        return 0
+    if args.job_command == "verify":
+        job = store.load(args.job_id)
+        report = engine.verify(job, production=bool(args.deploy_production))
+        print(json.dumps(report.model_dump(mode="json"), indent=2))
+        return 0 if report.ready else 1
     if args.job_command == "approve":
         job = store.load(args.job_id)
         if job.stage != WorkflowStage.APPROVAL_PENDING:
@@ -451,7 +552,12 @@ def cmd_factory(args: argparse.Namespace) -> int:
         except PermissionError as exc:
             print(json.dumps({"error": str(exc), "status": "denied"}, indent=2))
             return 2
+        except EvidenceRequiredError as exc:
+            print(json.dumps({"error": str(exc), "status": "evidence_required"}, indent=2))
+            return 1
         print(json.dumps(job.model_dump(mode="json"), indent=2, default=str))
+        if job.stage == WorkflowStage.CANCELLED:
+            return 2
         return 0
     if args.job_command == "rework":
         from forge.line import InvalidTransitionError

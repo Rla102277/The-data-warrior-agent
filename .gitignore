@@ -13,5 +13,8 @@ evals/runs/
 forge-line/jobs/*/
 !forge-line/jobs/.gitkeep
 forge-line/board.json
+demos/local_orders/acceptance_jobs/
+demos/local_orders/acceptance-report.json
+demos/local_orders/factory_jobs/
 dist/
 build/

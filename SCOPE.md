@@ -7,7 +7,7 @@
 ## Product (in scope)
 - Agent skills organized by five rings plus Forge (Tools) and Practice.
 - Ground-gated forge flow: grill → spec → steps → red/green build → three reviews → human approve.
-- The Forge software factory runtime (`forge` CLI, `forge/line`, `forge-line/jobs/`) with platform-neutral defaults and evidence-gated approval.
+- The Forge software factory runtime (`forge` CLI, `forge/line`, `forge-line/jobs/`) with platform-neutral defaults. Real approval requires a recorded test execution and three build-bound reviews. Demo evidence is synthetic and cannot qualify a real job.
 - Small demos and SDK modules the factory needs (discovery, engineering checks, local demo).
 
 ## Out of scope
