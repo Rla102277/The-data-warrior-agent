@@ -62,6 +62,92 @@ Or copy selected `skills/<bucket>/<name>/` folders into your agent skills direct
 - **[study-the-wind](./skills/wind/study-the-wind/SKILL.md)**: Use when choosing between engineering architectures, ingestion strategies, storage formats, orchestration approaches or tradeoffs.
 - **[wind-patterns](./skills/wind/wind-patterns/SKILL.md)**: Use when diagnosing which failure pattern is active in a data initiative so the forge line can stop or redirect.
 
+
+## What The Data Warrior Does
+
+The human is the Data Warrior; the AI host supplies execution assistance. The Way provides decision discipline, while The Forge is an optional software-factory companion. This is not a standalone model gateway or a replacement for Cursor, Claude Code, or Codex.
+
+| Capability | Purpose |
+| --- | --- |
+| Grounding | Identify the real decision, grain, source of truth, assumptions, consequences, and one concrete action. |
+| Scroll and Battle Map | Preserve decisions, contradictions, verified progress, blockers, and the next action across sessions. |
+| Architecture and planning | Compare data-engineering approaches, surface tradeoffs, and convert a grounded action into a spec and small testable steps. |
+| Engineering | Guide implementation of SQL, Python, ingestion, CDC, incremental loads, contracts, and related changes. |
+| Validation | Exercise correctness, replay, duplicates, deletes, schema drift, and other failure modes. |
+| Reviews | Collect security, naming, and data-quality review perspectives before approval. |
+| Governance | Track autonomy levels, evaluate policy constraints, and require explicit human approval. |
+| Persistent jobs | Record stages, artifacts, messages, retries, rework, cancellations, and resume points on disk. |
+| CLI and discovery | Offer job operations, policy evaluation, ADF/dbt discovery, lineage, and local demos. |
+| Host portability | Install native skills and instructions for Cursor, Claude Code, and Codex. |
+
+**Boundaries:** The Forge is not proof of production readiness merely because its CI passes. The current evidence gate checks for proof artifacts and three PASS review files, but some textual test claims and synthetic demo evidence are still accepted in demo paths. Independent agent behavior across hosts and real deployment authorization require separate validation. Fabric is an optional integration; Foundation estate knowledge is not part of this distribution.
+
+## How to Use It
+
+### 1. Clone and install
+
+Requires Python 3.11+ and Git. In a terminal:
+
+```bash
+git clone https://github.com/Rla102277/The-data-warrior-agent.git
+cd The-data-warrior-agent
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e '.[dev,local]'
+python scripts/verify.py
+pytest -q
+```
+
+### 2. Add the skills to an existing project
+
+Create the destination first. This copies skill files and creates host-specific instructions; it does not install a running background agent.
+
+```bash
+mkdir -p ~/data-warrior-sandbox
+python scripts/install.py ~/data-warrior-sandbox --host cursor
+# Or use --host claude, --host codex, or --host all
+```
+
+Open the destination project in your chosen host. Read `THE_WAY.md` and `AGENTS.md`. In Cursor, commands are available under `.cursor/commands`. You can instead copy only selected skills by passing their names after the destination.
+
+### 3. Ground an engineering task
+
+Start with `/know-the-ground` (or ask the agent to follow that skill). Answer one substantive question at a time until the Scroll states the decision, grain, source of truth, risks, and one actionable outcome. Use the Battle Map to retain verified progress and blockers across sessions.
+
+### 4. Plan and implement
+
+Use `/to-spec` to define acceptance criteria and `/to-steps` to create small, testable implementation steps. Invoke `/the-forge` to work through the current step, write tests, implement, validate, and prepare security/naming/data-quality reviews. Do not mistake a generated review for an independently executed review.
+
+### 5. Inspect the Forge runtime
+
+From the repository root, with the virtual environment active:
+
+```bash
+forge doctor
+forge job create --title 'Local orders ingestion'
+forge job list
+forge job demo
+```
+
+The create command returns a job ID. Use it to inspect persisted state:
+
+```bash
+forge job inspect --job-id YOUR_JOB_ID
+forge job resume --job-id YOUR_JOB_ID
+```
+
+`forge job demo` is a local demonstration, not a production approval. To approve an eligible job, the current CLI accepts `forge job approve --job-id YOUR_JOB_ID --actor human --authorized`; approval is gated on workflow stage and evidence. The flag expresses authorization to the CLI but does not independently authenticate the actor. Never use the demo's synthetic PASS artifacts as production proof.
+
+### 6. Test before relying on it
+
+```bash
+python scripts/verify.py
+python -m unittest discover -s tests/warrior -v
+pytest -q
+```
+
+For a meaningful acceptance test, use a fresh project and require the agent to build an incremental orders pipeline, then challenge it with replay, duplicates, out-of-order versions, tombstones, checkpoint rollback, and invalid rows. Reopen the project in a new agent chat and check whether the Scroll and Battle Map accurately reconstruct decisions and outstanding risks. Record actual commands, exit codes, and artifact paths. A passing test suite validates the checked code paths; it does not establish that every host or production integration has been tested.
+
 ## Verify
 
 ```bash
