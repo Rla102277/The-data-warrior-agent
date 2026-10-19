@@ -41,6 +41,16 @@
       "updated_at": "2026-10-16T17:55:43.051914+00:00"
     },
     {
+      "id": "64134af5-793c-4271-9c68-45113868a456",
+      "title": "local orders foundation demo",
+      "stage": "APPROVAL_PENDING",
+      "autonomy_level": 2,
+      "platform_profile": "forge-default",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-19T19:19:14.829393+00:00"
+    },
+    {
       "id": "7340e854-e22d-4ac3-8347-0f74641c8413",
       "title": "local orders foundation demo",
       "stage": "APPROVAL_PENDING",
@@ -119,6 +129,16 @@
       "attempt_count": 1,
       "repair_rounds": 0,
       "updated_at": "2026-10-16T17:43:46.692765+00:00"
+    },
+    {
+      "id": "f42c3fd8-0427-419a-abaf-e45c6b320031",
+      "title": "local orders foundation demo",
+      "stage": "INDEPENDENT_REVIEW",
+      "autonomy_level": 2,
+      "platform_profile": "forge-default",
+      "attempt_count": 1,
+      "repair_rounds": 0,
+      "updated_at": "2026-10-19T19:19:08.089147+00:00"
     }
   ]
 }

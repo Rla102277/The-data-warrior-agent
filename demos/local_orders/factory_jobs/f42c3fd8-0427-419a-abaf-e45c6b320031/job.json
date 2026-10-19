@@ -1,0 +1,65 @@
+{
+  "job_id": "f42c3fd8-0427-419a-abaf-e45c6b320031",
+  "project_id": "1e2ee13e-3500-4bfc-b53e-72e3946c1e8c",
+  "title": "local orders foundation demo",
+  "stage": "INDEPENDENT_REVIEW",
+  "autonomy_level": 2,
+  "platform_profile": "forge-default",
+  "attempt_count": 1,
+  "max_attempts": 3,
+  "repair_rounds": 0,
+  "max_repair_rounds": 2,
+  "assigned_agents": [],
+  "input_artifacts": [],
+  "output_artifacts": [
+    "demo-report.json"
+  ],
+  "validation_evidence": [
+    "DISCOVERY: demo advance",
+    "REQUIREMENTS: demo advance",
+    "SPECIFICATION: demo advance",
+    "ARCHITECTURE: demo advance",
+    "PLANNING: demo advance",
+    "BUILDING: demo advance",
+    "CODE_VALIDATION: demo advance",
+    "DATA_VALIDATION: demo quality passed",
+    "SECURITY_REVIEW: demo security gate",
+    "INDEPENDENT_REVIEW: independent fixtures"
+  ],
+  "error_details": [],
+  "approval_decisions": [],
+  "messages": [
+    {
+      "message_id": "bf549b92-c2ac-49a0-9e98-1a718474c409",
+      "job_id": "f42c3fd8-0427-419a-abaf-e45c6b320031",
+      "project_id": "1e2ee13e-3500-4bfc-b53e-72e3946c1e8c",
+      "agent_id": "demo-runner",
+      "stage": "CODE_VALIDATION",
+      "timestamp": "2026-10-19T19:19:08.087315Z",
+      "correlation_id": "190c722f-7147-41ae-943f-714283c73de8",
+      "input_artifacts": [],
+      "output_artifacts": [
+        "demo-report.json"
+      ],
+      "status": "ok",
+      "findings": [
+        "Aggregates match independent fixtures"
+      ],
+      "decisions": [],
+      "evidence": [
+        "demos/local_orders/expected_aggregates.json"
+      ],
+      "confidence": null,
+      "requires_approval": false
+    }
+  ],
+  "created_at": "2026-10-19T19:19:07.994881Z",
+  "updated_at": "2026-10-19T19:19:08.089147Z",
+  "started_at": "2026-10-19T19:19:07.994872Z",
+  "ended_at": null,
+  "branch": "factory/f42c3fd8",
+  "worktree_path": null,
+  "metadata": {
+    "demo": "local_orders"
+  }
+}
