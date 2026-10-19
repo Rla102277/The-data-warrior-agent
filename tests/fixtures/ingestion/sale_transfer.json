@@ -1,0 +1,14 @@
+{
+  "spec_id": "ingest_sale_transfer",
+  "source_system": "HBLive",
+  "source_object": "sale_transfer",
+  "target_workspace": "Foundation Development",
+  "target_lakehouse_or_warehouse": "warehouse_stage",
+  "target_schema": "stage",
+  "target_table": "sale_transfer",
+  "load_type": "TRUNCATE_AND_LOAD",
+  "retry": { "retry_count": 1, "timeout_minutes": 10 },
+  "schedule_enabled": false,
+  "owner": "forge-platform",
+  "notes": "D8 preserve TRUNCATE and LOAD behavior"
+}

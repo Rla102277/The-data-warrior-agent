@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Forge Line</title>
+  <style>
+    :root { --bg: #0f1419; --card: #1a2332; --text: #e7ecf3; --muted: #8b9bb4; --accent: #3d8bfd; --ok: #3dd68c; --warn: #f5a524; --fail: #f31260; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "IBM Plex Sans", "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+    header { padding: 1.25rem 1.5rem; border-bottom: 1px solid #243044; }
+    header h1 { margin: 0; font-size: 1.25rem; letter-spacing: 0.02em; }
+    header p { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.9rem; }
+    main { padding: 1.25rem 1.5rem; display: grid; gap: 1rem; }
+    .stages { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .stage { background: var(--card); border-radius: 8px; padding: 0.75rem; min-width: 140px; flex: 1; }
+    .stage h3 { margin: 0 0 0.5rem; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; }
+    .card { background: #121a26; border: 1px solid #2a3a52; border-radius: 6px; padding: 0.6rem; margin-bottom: 0.4rem; cursor: pointer; }
+    .card:hover { border-color: var(--accent); }
+    .meta { font-size: 0.75rem; color: var(--muted); }
+    #detail { background: var(--card); border-radius: 8px; padding: 1rem; white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 0.8rem; max-height: 320px; overflow: auto; }
+    .empty { color: var(--muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Forge Line</h1>
+    <p>Jobsite successor · real job state from <code>factory/board.json</code> · polls every 2s · never fabricates live Azure data</p>
+  </header>
+  <main>
+    <section id="board" class="stages"></section>
+    <section id="detail" class="empty">Select a job card</section>
+  </main>
+  <script>
+    const STAGES = ["RECEIVED","DISCOVERY","REQUIREMENTS","SPECIFICATION","ARCHITECTURE","PLANNING","BUILDING","CODE_VALIDATION","DATA_VALIDATION","SECURITY_REVIEW","INDEPENDENT_REVIEW","APPROVAL_PENDING","DEPLOYMENT_READY","DEPLOYING","COMPLETED","FAILED","BLOCKED","CANCELLED"];
+    let jobs = [];
+    async function loadBoard() {
+      try {
+        const res = await fetch("board.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("board.json missing — run forge job create or demo");
+        const data = await res.json();
+        jobs = data.jobs || [];
+        render();
+      } catch (err) {
+        document.getElementById("board").innerHTML = `<div class="empty">${err.message}</div>`;
+      }
+    }
+    function render() {
+      const board = document.getElementById("board");
+      board.innerHTML = "";
+      for (const stage of STAGES) {
+        const col = document.createElement("div");
+        col.className = "stage";
+        col.innerHTML = `<h3>${stage}</h3>`;
+        const items = jobs.filter(j => j.stage === stage);
+        if (!items.length) col.innerHTML += `<div class="empty">—</div>`;
+        for (const job of items) {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `<strong>${job.title || job.id}</strong><div class="meta">${job.id.slice(0,8)} · L${job.autonomy_level} · ${job.platform_profile}</div>`;
+          card.onclick = () => {
+            document.getElementById("detail").textContent = JSON.stringify(job, null, 2);
+          };
+          col.appendChild(card);
+        }
+        board.appendChild(col);
+      }
+    }
+    loadBoard();
+    setInterval(loadBoard, 2000);
+  </script>
+</body>
+</html>

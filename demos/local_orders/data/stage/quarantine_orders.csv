@@ -1,0 +1,3 @@
+order_id,customer_id,amount,order_ts,reason
+O3,C2,200.00,2026-01-03T10:00:00Z,duplicate_order_id
+O99,,999.00,2026-01-13T10:00:00Z,missing_or_unknown_customer

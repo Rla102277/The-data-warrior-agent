@@ -37,7 +37,8 @@ Reshape this repository so its public layout matches [mattpocock/skills](https:/
 | D-007 | Copy Foundation into this repo. Bring Matt Pocock's skill processes into this repo as well. Foundation keeps the name Foundation. | User, 2026-10-19. | **Superseded** by D-008. | User corrected: in this repo the platform is named Forge. |
 | D-008 | Implement The Forge: Matt-style command/discipline skills with a ground gate, copy Foundation-2.0 into this repo renamed Forge (`forge` CLI, `forge-line/jobs`), leave original Foundation-2.0 on disk. | Plan approved 2026-10-19. | Accepted | Implementation evidence: 30 bucketed skills, `forge doctor` ok, warrior unittest OK, pytest 69 passed. |
 | D-009 | The Forge in this repo is the author's work under MIT. The "Proprietary" label was a mistaken carry-over from Foundation-2.0's pyproject, not a claim that Forge belongs to someone else. | User, 2026-10-19. | **Superseded** by D-010 for the platform copy. | License note stands for skills. |
-| D-010 | Remove all Foundation/platform code from this repository. Keep only the software-factory *concept* as Forge skills and file-based jobs. Foundation stays in its own project. | User, 2026-10-19: remove ALL Foundation stuff ASAP; only the factory concept belonged here. | Accepted | Deleted `forge/`, `discovery/`, `engineering/`, `control/`, `dbt/`, `demos/`, `mcp/`, `platforms/`, `infrastructure/`, `automation/`, `rebuild/`, `knowledge/platform/`, `docs/platform/`, `.azuredevops/`, platform tests, `pyproject.toml`. |
+| D-010 | Remove all Foundation/platform code from this repository. Keep only the software-factory *concept* as Forge skills and file-based jobs. Foundation stays in its own project. | User, 2026-10-19. | **Superseded** by D-011. Over-deleted the Forge runtime. | User clarification immediately after. |
+| D-011 | Keep The Forge software factory in this repo (skills + `forge`/`forge-line` runtime). Do **not** bring Foundation estate knowledge (`knowledge/platform`, ops inventories, ADO Fabric estate docs, rebuild ledgers, analytics SQL estates). | User, 2026-10-19: wanted the Forge; none of the existing Foundation knowledge should have been brought in. | Accepted | Restored Forge SDK from `1eb8679` without knowledge/platform, docs/platform, rebuild, automation, dbt, .azuredevops. |
 
 ## Assumptions
 - "A system like Matthew's" means his product mechanics: user-invoked versus model-invoked, a router, README catalog, plugin manifest, docs pages, and symlink install. **Accepted in D-008.**
@@ -49,9 +50,10 @@ Reshape this repository so its public layout matches [mattpocock/skills](https:/
 
 ## Rejected alternatives
 - Use Pocock's `engineering/` and `productivity/` folders as the skill taxonomy. Rejected by D-002.
-- Keep the factory as a portable step list with Foundation optional. Rejected by D-005, then wrongly implemented as a full Foundation copy (D-008). Corrected by D-010.
-- Keep the name Foundation inside this repo. Rejected.
-- Ship Foundation/platform SDK code inside the skills repo. Rejected by D-010.
+- Keep the factory as a portable step list with Foundation optional. Rejected by D-005.
+- Copy Foundation estate knowledge into this repo. Rejected by D-011.
+- Delete the Forge software factory runtime along with that knowledge. Rejected by D-011 (over-correction in D-010).
+- Keep the product name Foundation inside this repo. Rejected.
 
 ## Acceptance tests
 - [x] README lists commands and disciplines with links to each `SKILL.md`.
@@ -59,8 +61,8 @@ Reshape this repository so its public layout matches [mattpocock/skills](https:/
 - [x] Generated duplicate skill trees removed; `scripts/link-skills.sh` is the host install path.
 - [x] Ground gate required before forge spec; `the-forge` skill encodes the line.
 - [x] Warrior unittest passes locally (skills only).
-- [x] Foundation/platform trees removed from this repository (D-010).
+- [x] Forge runtime restored without Foundation estate knowledge (D-011).
 - [ ] Live host transcript for `/know-the-ground` then `/the-forge`.
 
 ## Next challenge
-None for the removal. Next work is live host trials of `/know-the-ground` then `/the-forge` against a real target project.
+None for ownership of Forge vs knowledge. Next work is live host trials of `/know-the-ground` then `/the-forge` against a real target project.
