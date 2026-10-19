@@ -1,0 +1,12 @@
+{
+  "mission_id": "",
+  "objective": "",
+  "mode": "A",
+  "authority_confirmed": false,
+  "phase": "intake",
+  "tasks": [],
+  "blockers": [],
+  "evidence": [],
+  "last_verified_checkpoint": null,
+  "next_action": null
+}

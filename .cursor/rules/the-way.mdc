@@ -1,0 +1,5 @@
+---
+description: The Data Warrior engineering constitution
+alwaysApply: true
+---
+Read THE_WAY.md and AGENTS.md. Use native host agent tools, never a mandatory Python/web application. Record evidence and authority. No invented execution or self-escalation.
