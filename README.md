@@ -2,39 +2,33 @@
 
 **Small skills. Deep engineering judgment. No ceremony.**
 
-Fourteen focused native agent skills for Cursor, Claude Code and Codex, grounded in evidence and Musashi-inspired practice. No custom model gateway or mandatory runtime.
+Fourteen native-first agent skills for Cursor, Claude Code and Codex. The Scroll contains the Challenge's one-question-at-a-time interrogation and preserves decisions. The Battle Map tracks optional evidence-backed progress. Deshi, Rōnin and Kensei are selectable collaboration roles, never permission levels.
 
-## Install
+## Quick start
+Clone this repository, then from its root:
+
 ```bash
-python3 scripts/install.py /path/to/project the-scroll forge-the-pipeline --host cursor
-# alternatives: --host claude, --host codex, --host all
+python3 scripts/install.py /path/to/your/project the-scroll forge-the-pipeline --host cursor
 ```
-The installer includes `THE_WAY.md` and initializes `Role: Rōnin` in a missing project `AGENTS.md` without overwriting existing instructions. Switch role by setting `Role: Deshi`, `Role: Rōnin` or `Role: Kensei`. These roles affect collaboration, **not permissions**.
 
-## Choose a skill
-- `/the-challenge`: interrogate assumptions, one question at a time, no files.
-- `/the-scroll`: **The Challenge with memory**, evolving `SCROLL.md` and preserved decision history.
-- `/the-battle-map`: optional `BATTLE_MAP.md` for evidence-backed progress and resumption.
-- `/survey-the-ground`: inspect actual systems.
-- `/study-the-wind`: compare approaches.
-- `/council-of-masters`: specialist design review.
-- `/chart-the-path`: implementation plan.
-- `/draw-the-blade`: implement and verify.
-- `/forge-the-pipeline`: CDC, watermarks, replay, MERGE, SCD2, deletes, Data Vault.
-- `/forge-a-contract`: schema and producer-consumer guarantees.
-- `/test-the-steel`: test correctness.
-- `/sharpen-the-blade`: measured optimization.
-- `/lessons-of-battle`: learn from evidence.
-- `/the-campaign`: optional multi-stage coordination.
+For Claude Code use `--host claude`; for Codex use `--host codex`. Use `--host all` for all supported hosts. Omit skill names to install all fourteen. The installer copies `THE_WAY.md` and creates a missing `AGENTS.md` with `Role: Rōnin`, preserving existing project instructions. Select Deshi or Kensei by editing that role line. For Claude, `CLAUDE.md` is created if missing.
 
-## Maintain and test
+Invoke `/the-scroll`, `/the-challenge`, `/the-battle-map`, `/forge-the-pipeline`, `/forge-a-contract`, `/survey-the-ground`, `/study-the-wind`, `/council-of-masters`, `/chart-the-path`, `/draw-the-blade`, `/test-the-steel`, `/sharpen-the-blade`, `/lessons-of-battle`, or optional `/the-campaign`.
+
+## Verify source and installation
 ```bash
-python3 scripts/sync.py
+python3 scripts/sync.py --check
 python3 scripts/verify.py
 python3 -m unittest discover -s tests -v
-python3 scripts/eval.py # shows NOT_RUN by default
+```
+
+To regenerate host adapters after changing canonical `skills/`, run `python3 scripts/sync.py` and commit all generated changes.
+
+## Behavioral trials
+```bash
+python3 scripts/eval.py
 python3 scripts/eval.py --execute --scenario challenge-one-question
 ```
-The optional behavioral harness requires a locally installed, authenticated Claude CLI. It captures a transcript and grades a conservative one-question heuristic; **manual review is required**. It does not run automatically in CI or bypass tool permissions. See `docs/LIVE-TESTING.md`.
+The first command reports `NOT_RUN`. The second requires an authenticated local Claude CLI, installs the tested skill into an isolated temporary fixture, captures transcripts and produces a heuristic result. It **does not** run in CI; manual review is required. See [MVP acceptance](docs/MVP-ACCEPTANCE.md) and [live testing](docs/LIVE-TESTING.md).
 
-Canonical skills live in `skills/`; host adapters are generated. Fabric is an optional target; this project is independent of Foundation.
+The framework is independent of Foundation. Fabric and Azure are optional target environments.
