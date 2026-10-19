@@ -1,0 +1,18 @@
+# First Foundation engineering workflow (spec-first).
+# Executable via future factory orchestrator; Jobsite remains the live runtime today.
+
+id: foundation_spec_first
+version: 1
+stages:
+  - discover
+  - spec
+  - plan
+  - build
+  - validate
+  - review
+  - ship
+gates:
+  - policy_engine
+  - independent_verification
+  - no_self_approval
+production_requires: explicit_item_level_authorization

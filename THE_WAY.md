@@ -19,6 +19,6 @@
 A role is a collaboration style, not an authorization token. Set it in the target project's `AGENTS.md` or `CLAUDE.md` as `Role: Rōnin` (or Deshi / Kensei). The user may switch by saying "Switch to Kensei"; update the project's role line if authorized. If no role is configured, use Rōnin conversationally, without inferring any extra permissions.
 
 ## Five rings (plus practice)
-**Ground** — see the real problem before tools. **Water** — adapt and ship the eighty percent. **Fire** — win the decision. **Wind** — name failure patterns. **Void** — see incentives and unfixable systems. **Forge** — the file-based software factory process after the ground is known. **Practice** — Scroll and Battle Map.
+**Ground** — see the real problem before tools. **Water** — adapt and ship the eighty percent. **Fire** — win the decision. **Wind** — name failure patterns. **Void** — see incentives and unfixable systems. **Forge** — the software factory after the ground is known. **Practice** — Scroll and Battle Map.
 
-This repository is a native agent skills collection. The Forge here is process and job files, not a shipped data platform.
+This repository holds Data Warrior skills and the Forge software factory. It does not hold Foundation estate knowledge.

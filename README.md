@@ -2,24 +2,25 @@
 
 **Small skills. Deep judgment. No ceremony.**
 
-A Matt-style skill system for data engineers and analysts: grill the real decision, write a forge job as files, build one step with red-before-green proof, collect independent reviews, and stop for a human. Words and philosophy are the Data Warrior's. Process shape follows [mattpocock/skills](https://github.com/mattpocock/skills) (MIT process, not prose).
+A Matt-style skill system for data engineers and analysts: grill the real decision, write a forge job, build one step with red-before-green proof, collect independent reviews, and stop for a human. Words and philosophy are the Data Warrior's. Process shape follows [mattpocock/skills](https://github.com/mattpocock/skills) (MIT process, not prose).
 
-This repository is **skills and process only**. It does not ship a data platform package, Fabric estate, or Foundation codebase.
+**The Forge** in this repo is the software factory (skills + `forge` CLI / job line). It does **not** include Foundation estate knowledge, Green Brick ops docs, or copied workplace inventories.
 
 ## Flow
 
 1. `/know-the-ground` until one action is on the Scroll.
-2. `/to-spec` then `/to-steps` (job files under `forge-line/jobs/<id>/` by default).
+2. `/to-spec` then `/to-steps`.
 3. `/the-forge` builds the current step only, proves it, writes three reviews, stops for a person.
-4. A human writes approval in `decision.md`. Nothing auto-deploys production.
+4. `forge job approve` is the only path to deployment-ready.
 
 ## Installation
 
 ```bash
+pip install -e ".[dev,local]"
 ./scripts/link-skills.sh
 ```
 
-Or copy selected `skills/<bucket>/<name>/` folders into your agent skills directory. Run `/setup-the-forge` once per target repo.
+Or copy selected `skills/<bucket>/<name>/` folders into your agent skills directory. Run `/setup-the-forge` once per repo.
 
 ## Commands (user-invoked)
 
@@ -62,6 +63,8 @@ Or copy selected `skills/<bucket>/<name>/` folders into your agent skills direct
 ```bash
 python3 scripts/verify.py
 python3 -m unittest discover -s tests/warrior -v
+pip install -e ".[dev,local]"
+pytest -q
 ```
 
 ## License

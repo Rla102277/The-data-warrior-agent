@@ -1,0 +1,72 @@
+{
+  "result": {
+    "analytics": {
+      "order_count": 12,
+      "unique_customers": 5,
+      "gross_revenue": 1250.5,
+      "return_count": 2,
+      "net_revenue": 1100.25
+    },
+    "quarantine_count": 2,
+    "stage_order_count": 12
+  },
+  "expected": {
+    "order_count": 12,
+    "unique_customers": 5,
+    "gross_revenue": 1250.5,
+    "return_count": 2,
+    "net_revenue": 1100.25
+  },
+  "reconciliation": {
+    "check_name": "aggregate_reconciliation",
+    "outcome": "PASS",
+    "message": "Aggregates match independent fixtures",
+    "metrics": {
+      "compared": [
+        "order_count",
+        "unique_customers",
+        "gross_revenue",
+        "return_count",
+        "net_revenue"
+      ]
+    }
+  },
+  "contract_valid": true,
+  "contract_errors": [],
+  "compliance": {
+    "compliant": true,
+    "failures": [],
+    "tests": [
+      {
+        "id": "schema.order_count",
+        "type": "column_exists",
+        "column": "order_count",
+        "nullable": false
+      },
+      {
+        "id": "schema.gross_revenue",
+        "type": "column_exists",
+        "column": "gross_revenue",
+        "nullable": false
+      },
+      {
+        "id": "schema.net_revenue",
+        "type": "column_exists",
+        "column": "net_revenue",
+        "nullable": false
+      },
+      {
+        "id": "unique.order_count",
+        "type": "uniqueness",
+        "column": "order_count"
+      },
+      {
+        "id": "rule.match_independent_expected_aggregates",
+        "type": "quality_rule",
+        "rule": "match_independent_expected_aggregates"
+      }
+    ],
+    "contract_id": "analytics.sales_sum_daily",
+    "version": "1.0.0"
+  }
+}
