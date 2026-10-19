@@ -1,0 +1,463 @@
+version: 2
+
+# Unique / not-null tests for analytics views.
+# Keys chosen from the 4a eval (edw-d13-eval.md) and the live catalog.
+# Freshness lives on sources.yml (transform layer), not here - views have no
+# loaded_at column of their own.
+# *_active models are unpublished warehouse wrappers over current-row entities.
+
+models:
+  - name: calendar
+    columns:
+      - name: date_id
+        tests: [unique, not_null]
+
+  - name: company
+    columns:
+      - name: company_guid
+        tests: [unique, not_null]
+
+  - name: company_active
+    columns:
+      - name: company_guid
+        tests: [unique, not_null]
+
+  - name: customer_survey_det
+    columns:
+      - name: sale_id
+        tests: [not_null]
+
+  - name: customer_survey_obt
+    columns:
+      - name: response_id
+        tests: [unique, not_null]
+
+  - name: customer_survey_response_statistical_det
+    columns:
+      - name: response_id
+        tests: [unique, not_null]
+
+  - name: customer_survey_statistical_sum
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              [entity_type, entity_id, question_id, survey_name, peer_group_type, period_start_date]
+
+  - name: customer_survey_statistical_det
+    columns:
+      - name: comparison_id
+        tests: [unique, not_null]
+
+  - name: customer_survey_comment_det
+    columns:
+      - name: source_comment_id
+        tests: [unique, not_null]
+
+  - name: customer_survey_theme_det
+    columns:
+      - name: theme_assignment_id
+        tests: [unique, not_null]
+
+  - name: customer_survey_voc_review_det
+    columns:
+      - name: source_comment_id
+        tests: [unique, not_null]
+
+  - name: customer_survey_test_det
+    columns:
+      - name: sale_id
+        tests: [not_null]
+
+  - name: division
+    columns:
+      - name: division_guid
+        tests: [unique, not_null]
+
+  - name: division_active
+    columns:
+      - name: division_guid
+        tests: [unique, not_null]
+
+  - name: fiscal_period
+    columns:
+      - name: period_guid
+        tests: [unique, not_null]
+
+  - name: fiscal_period_active
+    columns:
+      - name: period_guid
+        tests: [unique, not_null]
+
+  - name: general_ledger_det
+    columns:
+      - name: gl_detail_id
+        tests: [unique, not_null]
+
+  - name: job
+    columns:
+      - name: job_guid
+        tests: [unique, not_null]
+
+  - name: job_active
+    columns:
+      - name: job_guid
+        tests: [unique, not_null]
+
+  - name: job_task
+    columns:
+      - name: job_task_guid
+        tests: [unique, not_null]
+
+  - name: job_task_active
+    columns:
+      - name: job_task_guid
+        tests: [unique, not_null]
+
+  - name: lot
+    columns:
+      - name: lot_guid
+        tests: [unique, not_null]
+
+  - name: lot_active
+    columns:
+      - name: lot_guid
+        tests: [unique, not_null]
+
+  - name: lot_obt
+    description: One row per current lot with project, operating unit, current sale, current job
+    columns:
+      - name: lot_id
+        tests: [unique, not_null]
+
+  - name: lot_events_obt
+    description: One row per lot-event (snake_case). Key is lot_event_key.
+    columns:
+      - name: lot_event_key
+        tests: [unique, not_null]
+
+  - name: lot_events_det
+    columns:
+      - name: lot_event_key
+        tests: [unique, not_null]
+
+  - name: lot_financials_active
+    columns:
+      - name: lot_financials_guid
+        tests: [unique, not_null]
+
+  - name: lot_financials_det
+    columns:
+      - name: lot_financials_guid
+        tests: [unique, not_null]
+
+  - name: lot_financials_obt
+    description: One row per lot, SGM types pivoted wide
+    columns:
+      - name: lot_id
+        tests: [unique, not_null]
+
+  - name: lot_financials_sum
+    columns:
+      - name: lot_id
+        tests: [unique, not_null]
+
+  - name: lot_sales_gross_margin_det
+    columns:
+      - name: lot_sgm_guid
+        tests: [unique, not_null]
+
+  - name: major_minor
+    columns:
+      - name: major_minor_guid
+        tests: [unique, not_null]
+
+  - name: major_minor_active
+    columns:
+      - name: major_minor_guid
+        tests: [unique, not_null]
+
+  - name: operating_unit
+    columns:
+      - name: operating_unit_guid
+        tests: [unique, not_null]
+
+  - name: operating_unit_active
+    columns:
+      - name: operating_unit_guid
+        tests: [unique, not_null]
+
+  - name: plan
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [project_id, plan_code]
+    columns:
+      - name: project_id
+        tests: [not_null]
+      - name: plan_code
+        tests: [not_null]
+
+  - name: plan_active
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [project_id, plan_code]
+    columns:
+      - name: project_id
+        tests: [not_null]
+      - name: plan_code
+        tests: [not_null]
+
+  - name: project
+    columns:
+      - name: project_guid
+        tests: [unique, not_null]
+
+  - name: project_active
+    columns:
+      - name: project_guid
+        tests: [unique, not_null]
+
+  - name: sale
+    columns:
+      - name: sale_guid
+        tests: [unique, not_null]
+
+  - name: sale_active
+    columns:
+      - name: sale_guid
+        tests: [unique, not_null]
+
+  - name: sale_obt
+    description: One row per current sale with lot, project, operating unit
+    columns:
+      - name: sale_guid
+        tests: [unique, not_null]
+
+  - name: sale_transfer
+    columns:
+      - name: sale_transfer_guid
+        tests: [unique, not_null]
+
+  - name: sales_det
+    columns:
+      - name: sale_guid
+        tests: [unique, not_null]
+
+  - name: sales_sum_weekly
+    description: Pre-agg at operating unit + week_start + event_type
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [operating_unit_code, week_start_date, event_type]
+    columns:
+      - name: operating_unit_code
+        tests: [not_null]
+      - name: week_start_date
+        tests: [not_null]
+      - name: event_type
+        tests: [not_null]
+
+  - name: sales_sum_monthly
+    description: Pre-agg at operating unit + month_start + event_type
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [operating_unit_code, month_start, event_type]
+    columns:
+      - name: operating_unit_code
+        tests: [not_null]
+      - name: month_start
+        tests: [not_null]
+      - name: event_type
+        tests: [not_null]
+
+  - name: unit_sum_weekly
+    description: Pre-agg at operating unit + week_start
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [operating_unit_code, week_start_date]
+    columns:
+      - name: operating_unit_code
+        tests: [not_null]
+      - name: week_start_date
+        tests: [not_null]
+
+  - name: sales_gross_margin_assumptions_det
+    columns:
+      - name: sgm_assumptions_guid
+        tests: [unique, not_null]
+
+  - name: sales_gross_margin_assumptions_active
+    columns:
+      - name: sgm_assumptions_guid
+        tests: [unique, not_null]
+
+  - name: sales_gross_margin_map
+    columns:
+      - name: sgm_map_guid
+        tests: [unique, not_null]
+
+  - name: sales_gross_margin_map_active
+    columns:
+      - name: sgm_map_guid
+        tests: [unique, not_null]
+
+  - name: web_listing_obt
+    description: Current web listing snapshot; grain listing_key
+    columns:
+      - name: listing_key
+        tests: [unique, not_null]
+      - name: source_group
+        tests: [not_null]
+      - name: source_name
+        tests: [not_null]
+
+  - name: web_community
+    description: Website communities (Zonda community analog); grain community_key
+    columns:
+      - name: community_key
+        tests: [unique, not_null]
+
+  - name: web_plan
+    description: Website floor plans (Zonda plans analog); grain plan_key
+    columns:
+      - name: plan_key
+        tests: [unique, not_null]
+      - name: community_key
+        tests: [not_null]
+
+  - name: web_lot
+    description: Website inventory homes (Zonda lots analog); grain lot_key
+    columns:
+      - name: lot_key
+        tests: [unique, not_null]
+      - name: community_key
+        tests: [not_null]
+
+  - name: web_listing_current
+    description: Current listing state with first_seen / last_seen / last_change metadata.
+    columns:
+      - name: listing_key
+        tests: [unique, not_null]
+      - name: source_group
+        tests: [not_null]
+      - name: source_name
+        tests: [not_null]
+
+  - name: web_listing_change_det
+    description: Change events between listing snapshots.
+    columns:
+      - name: change_event_id
+        tests: [unique, not_null]
+      - name: listing_key
+        tests: [not_null]
+      - name: change_type
+        tests: [not_null]
+
+  - name: web_scrape_coverage_obt
+    description: >
+      Current coverage / freshness / completeness per active scrape source.
+      coverage_status: healthy | empty | incomplete | deferred | stale | changed.
+      Completeness mirrors notebook listing_complete (60% pass threshold).
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [source_group, source_name]
+    columns:
+      - name: coverage_status
+        tests: [not_null]
+      - name: is_strategic
+        tests: [not_null]
+      - name: current_listing_count
+        tests: [not_null]
+
+  - name: competitor_listing_obt
+    description: >
+      Competitor analysis listings (website + mapped GBP ERP).
+      Grain listing_key. side competitor_web | gbp_web | gbp_erp.
+    columns:
+      - name: listing_key
+        tests: [unique, not_null]
+      - name: community_key
+        tests: [not_null]
+      - name: side
+        tests: [not_null]
+
+  - name: competitor_community_obt
+    description: >
+      Competitor analysis community rollup. Grain community_key + side.
+    columns:
+      - name: community_key
+        tests: [not_null]
+      - name: side
+        tests: [not_null]
+
+  - name: market_dim_builder  # jobsite-allow-name
+    description: >
+      Shared builder filter dimension for Market Intelligence (synced slicers).
+      Collapse case variants so Power BI one-side keys stay unique.
+
+  - name: market_dim_community  # jobsite-allow-name
+    description: >
+      Shared community filter dimension for Market Intelligence (synced slicers).
+      Collapse case variants so Power BI one-side keys stay unique.
+
+  - name: competitor_position_obt
+    description: >
+      Competitor positioning grain.
+      One row per source_group + community + normalized builder + side.
+
+  - name: competitor_price_trend_obt
+    description: >
+      Daily competitive pricing trend from append-only raw.web_listing_det.
+      Grain: ingest_date + source_group + community + normalized builder.
+
+  - name: community_proximity_map
+    description: >
+      Proximity competitive set around Green Brick (GBP) communities.
+      Grain: gbp_source_group + gbp_community_name + peer_source_group + peer_community_name.
+
+  - name: competitor_peer_obt
+    description: >
+      Named peer-set rows for Market Intelligence head-to-head.
+      Expands control.web_competitor_peer to focal + peer builder rows.
+
+  - name: title_booking_obt
+    description: One row per NewStar selection
+    columns:
+      - name: selection_id
+        tests: [not_null]
+
+  - name: title_booking_det
+    columns:
+      - name: selection_id
+        tests: [not_null]
+
+  - name: title_communities_det
+    columns:
+      - name: community_guid
+        tests: [unique, not_null]
+
+  - name: unit_budget_hist
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [ounit, stat]
+    columns:
+      - name: ounit
+        tests: [not_null]
+      - name: stat
+        tests: [not_null]
+
+  - name: pipeline_health_obt
+    description: Utilities monitoring OBT over audit + parity control tables
+    columns:
+      - name: event_id
+        tests: [not_null]
+      - name: event_source
+        tests: [not_null]
+      - name: status
+        tests: [not_null]

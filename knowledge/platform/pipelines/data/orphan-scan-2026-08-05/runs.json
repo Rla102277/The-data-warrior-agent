@@ -1,0 +1,293 @@
+{
+ "pp_audit_cleanup": {
+  "count": 0
+ },
+ "pp_compare_azure_vs_mirrored_db": {
+  "count": 1,
+  "last_start": "2026-07-23T07:02:59.3618419",
+  "last_status": "Failed",
+  "invoke": "Manual"
+ },
+ "pp_delete_blocked_logs": {
+  "count": 100,
+  "last_start": "2026-08-05T14:44:00.45",
+  "last_status": "Completed",
+  "invoke": "Scheduled"
+ },
+ "pp_fabric_salesforce_ingestion_UAT": {
+  "count": 0
+ },
+ "pp_fabric_salesforce_ingestion_bkp1": {
+  "count": 0
+ },
+ "pp_fabric_salesforce_ingestion_prod": {
+  "count": 100,
+  "last_start": "2026-08-05T15:48:15.5772232",
+  "last_status": "Completed",
+  "invoke": "Manual"
+ },
+ "pp_fact_hist_scheduled": {
+  "count": 0
+ },
+ "pp_load_fact_lot_financials_to_fact_lot_financials_hist": {
+  "count": 0
+ },
+ "pp_load_fact_lot_sgm_to_fact_lot_sgm_hist": {
+  "count": 0
+ },
+ "pp_load_fact_sgm_assumptions_to_fact_sgm_assumptions_hist": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_company": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_company_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_company_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_company_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_division": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_division_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_division_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_division_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_job": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_job_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_job_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_job_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_job_task": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_job_task_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_job_task_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_job_task_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_lot": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_lot_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_lot_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_lot_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_major_minor": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_major_minor_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_major_minor_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_major_minor_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_operating_unit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_operating_unit_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_operating_unit_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_operating_unit_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_period": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_period_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_period_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_project": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_project_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_project_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_project_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_sale": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_sale_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_sale_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_sale_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_sale_transfer": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_sale_transfer_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_sale_transfer_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_sgm_map": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_sgm_map_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_sgm_map_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_dim_sgm_map_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_general_ledger": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_general_ledger_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_general_ledger_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_general_ledger_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_lot_financials": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_lot_financials_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_lot_financials_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_lot_financials_hist": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_lot_financials_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_lot_sgm": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_lot_sgm_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_lot_sgm_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_lot_sgm_hist": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_lot_sgm_no_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_sgm_assumptions": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_sgm_assumptions_audit": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_sgm_assumptions_full": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_sgm_assumptions_hist": {
+  "count": 0
+ },
+ "pp_load_stg_to_fact_sgm_assumptions_no_audit": {
+  "count": 0
+ },
+ "pp_load_view_to_csv": {
+  "count": 100,
+  "last_start": "2026-08-05T16:07:54.7482772",
+  "last_status": "Completed",
+  "invoke": "Manual"
+ },
+ "pp_load_zonda_to_fabric": {
+  "count": 0
+ },
+ "pp_orchestration": {
+  "count": 0
+ },
+ "pp_orchestration_full": {
+  "count": 0
+ },
+ "pp_orchestration_with_pp_audit": {
+  "count": 0
+ },
+ "pp_orchestration_without_pp_audit": {
+  "count": 100,
+  "last_start": "2026-08-05T16:36:01.8490264",
+  "last_status": "InProgress",
+  "invoke": "Scheduled"
+ },
+ "pp_orchestration_without_pp_audit_old": {
+  "count": 0
+ },
+ "pp_orchestrator_test": {
+  "count": 0
+ },
+ "pp_salesforce_fabric_ingestion": {
+  "count": 0
+ },
+ "pp_salesforce_fabric_ingestion_UAT": {
+  "count": 0
+ },
+ "pp_salesforce_fabric_ingestion_bkp1": {
+  "count": 0
+ },
+ "pp_salesforce_fabric_ingestion_prod": {
+  "count": 100,
+  "last_start": "2026-08-05T15:57:50.7183207",
+  "last_status": "Completed",
+  "invoke": "Manual"
+ },
+ "pp_salesforce_fabric_ingestion_test": {
+  "count": 0
+ },
+ "pp_salesforce_orchestrator_prod": {
+  "count": 100,
+  "last_start": "2026-08-05T15:48:02.3190479",
+  "last_status": "Completed",
+  "invoke": "Scheduled"
+ },
+ "pp_temp_schema_discovery": {
+  "count": 0
+ }
+}

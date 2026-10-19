@@ -1,0 +1,43 @@
+# Foundation Development Fabric deploy path (manual approval required)
+# Uses fabric-cicd / fab only after an explicit environment approval.
+# Never targets production Foundation workspace without a separate authorized pipeline.
+
+trigger: none
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: Validate
+    displayName: Validate packages
+    jobs:
+      - job: validate
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: "3.11"
+          - script: |
+              python -m pip install -e ".[dev]"
+              foundation doctor
+              foundation policy --actor cicd --action deploy --workspace "Foundation Development" --name pipeline_ci_probe --environment foundation_development
+            displayName: Policy allow FD deploy probe
+
+  - stage: DeployFoundationDevelopment
+    displayName: Deploy to Foundation Development
+    dependsOn: Validate
+    condition: succeeded()
+    jobs:
+      - deployment: deploy_fd
+        environment: foundation-development-approval
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - script: |
+                    echo "CONFIRMED: placeholder for fabric-cicd apply against Foundation Development only."
+                    echo "Live fab/fabric-cicd execution requires configured service connection and is NOT LIVE-TESTED in CI by default."
+                    echo "Production Foundation workspace is out of scope for this pipeline."
+                  displayName: FD deploy placeholder (no prod)

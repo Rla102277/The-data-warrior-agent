@@ -2,66 +2,41 @@
   {
     "id": "challenge",
     "skill": "the-challenge",
-    "expect": [
-      "one question per turn",
-      "no files"
-    ]
+    "expect": ["one question per turn", "no files"]
   },
   {
     "id": "scroll",
     "skill": "the-scroll",
-    "expect": [
-      "one question per turn",
-      "persist decisions",
-      "supersede contradictions"
-    ]
+    "expect": ["one question per turn", "persist decisions", "supersede contradictions"]
   },
   {
     "id": "battle-map",
     "skill": "the-battle-map",
-    "expect": [
-      "evidence-backed status",
-      "resume"
-    ]
+    "expect": ["evidence-backed status", "resume"]
   },
   {
-    "id": "roles",
-    "skill": "the-campaign",
-    "expect": [
-      "Deshi Ronin Kensei distinct behavior",
-      "permission limits"
-    ]
+    "id": "know-the-ground",
+    "skill": "know-the-ground",
+    "expect": ["one question per turn", "single action", "ground gate"]
   },
   {
     "id": "pipeline",
-    "skill": "forge-the-pipeline",
-    "expect": [
-      "CDC watermark choice",
-      "delete and replay correctness"
-    ]
+    "skill": "the-pipeline",
+    "expect": ["CDC watermark choice", "delete and replay correctness"]
   },
   {
-    "id": "contract",
-    "skill": "forge-a-contract",
-    "expect": [
-      "schema semantics",
-      "compatibility"
-    ]
+    "id": "the-forge",
+    "skill": "the-forge",
+    "expect": ["ground gate", "red before green", "three reviews", "human approve"]
   },
   {
-    "id": "install",
-    "skill": "the-scroll",
-    "expect": [
-      "THE_WAY installed",
-      "host selection"
-    ]
+    "id": "win-the-room",
+    "skill": "win-the-room",
+    "expect": ["decision in one sentence", "no invented agreement"]
   },
   {
-    "id": "tests",
-    "skill": "test-the-steel",
-    "expect": [
-      "real execution",
-      "no fabricated passes"
-    ]
+    "id": "name-the-wind",
+    "skill": "name-the-wind",
+    "expect": ["ten patterns", "stop the line when warranted"]
   }
 ]

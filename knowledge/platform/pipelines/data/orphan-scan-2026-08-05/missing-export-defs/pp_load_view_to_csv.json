@@ -1,0 +1,238 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "lkp_get_ounit_codes",
+        "type": "Lookup",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "sqlReaderQuery": " SELECT DISTINCT OUnitCode                                                                                                                                                                                                                         \n  FROM NSE_WorkOrder_Completions                                                                                                                                                                                                                    \n  WHERE OUnitCode IS NOT NULL  ",
+            "queryTimeout": "02:00:00",
+            "partitionOption": "None"
+          },
+          "firstRowOnly": false,
+          "datasetSettings": {
+            "annotations": [],
+            "linkedService": {
+              "name": "Salesforce_WH",
+              "properties": {
+                "annotations": [],
+                "type": "DataWarehouse",
+                "typeProperties": {
+                  "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                  "artifactId": "adfe4a3b-9adc-4661-a8b7-f4ef7fcf7059",
+                  "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                }
+              }
+            },
+            "type": "DataWarehouseTable",
+            "schema": [],
+            "typeProperties": {}
+          }
+        }
+      },
+      {
+        "name": "foreach_ounit_codes",
+        "type": "ForEach",
+        "dependsOn": [
+          {
+            "activity": "lkp_get_ounit_codes",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "NSE_WorkOrder_Import_to_csv",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "items": {
+            "value": "@activity('lkp_get_ounit_codes').output.value",
+            "type": "Expression"
+          },
+          "batchCount": 5,
+          "activities": [
+            {
+              "name": "NSE_WorkOrder_Completions_to_csv",
+              "type": "Copy",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "source": {
+                  "type": "DataWarehouseSource",
+                  "sqlReaderQuery": {
+                    "value": "SELECT * FROM NSE_WorkOrder_Completions                                                                                                                                                                                                           \n  WHERE OUnitCode = '@{item().OUnitCode}'",
+                    "type": "Expression"
+                  },
+                  "queryTimeout": "02:00:00",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "annotations": [],
+                    "linkedService": {
+                      "name": "Salesforce_WH",
+                      "properties": {
+                        "annotations": [],
+                        "type": "DataWarehouse",
+                        "typeProperties": {
+                          "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                          "artifactId": "adfe4a3b-9adc-4661-a8b7-f4ef7fcf7059",
+                          "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                        }
+                      }
+                    },
+                    "type": "DataWarehouseTable",
+                    "schema": [],
+                    "typeProperties": {}
+                  }
+                },
+                "sink": {
+                  "type": "DelimitedTextSink",
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "formatSettings": {
+                    "type": "DelimitedTextWriteSettings",
+                    "fileExtension": ".txt"
+                  },
+                  "datasetSettings": {
+                    "annotations": [],
+                    "type": "DelimitedText",
+                    "typeProperties": {
+                      "location": {
+                        "type": "AzureBlobFSLocation",
+                        "fileName": {
+                          "value": "@{concat('JobSchedule_',item().OUnitCode,'_SF','.csv')}",
+                          "type": "Expression"
+                        },
+                        "folderPath": "salesforce/NSE_WorkOrder_Completions",
+                        "fileSystem": "integration-files"
+                      },
+                      "columnDelimiter": ",",
+                      "escapeChar": "\\",
+                      "firstRowAsHeader": true,
+                      "quoteChar": "\""
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "9c7c107d-1f76-4a97-8b25-eb61a9923260"
+                    }
+                  }
+                },
+                "enableStaging": false,
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "NSE_WorkOrder_Import_to_csv",
+        "type": "Copy",
+        "state": "Active",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "queryTimeout": "02:00:00",
+            "partitionOption": "None",
+            "datasetSettings": {
+              "annotations": [],
+              "linkedService": {
+                "name": "Salesforce_WH",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "adfe4a3b-9adc-4661-a8b7-f4ef7fcf7059",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              },
+              "type": "DataWarehouseTable",
+              "schema": [],
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "NSE_WorkOrder_Import"
+              }
+            }
+          },
+          "sink": {
+            "type": "DelimitedTextSink",
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings"
+            },
+            "formatSettings": {
+              "type": "DelimitedTextWriteSettings",
+              "fileExtension": ".txt"
+            },
+            "datasetSettings": {
+              "annotations": [],
+              "type": "DelimitedText",
+              "typeProperties": {
+                "location": {
+                  "type": "AzureBlobFSLocation",
+                  "fileName": {
+                    "value": "@concat('EPOExport_SF','.csv')",
+                    "type": "Expression"
+                  },
+                  "folderPath": "salesforce/NSE_WorkOrder_Import",
+                  "fileSystem": "integration-files"
+                },
+                "columnDelimiter": ",",
+                "escapeChar": "\\",
+                "firstRowAsHeader": true,
+                "quoteChar": "\""
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "9c7c107d-1f76-4a97-8b25-eb61a9923260"
+              }
+            }
+          },
+          "enableStaging": false,
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          }
+        }
+      }
+    ]
+  }
+}

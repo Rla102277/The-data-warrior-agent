@@ -1,0 +1,13 @@
+{
+  "name": "data-warrior",
+  "owner": {
+    "name": "Randy Archambault"
+  },
+  "plugins": [
+    {
+      "name": "data-warrior-forge",
+      "source": ".",
+      "description": "Data Warrior skills and Forge line for data engineers and analysts: ground the decision, then build with proof and human approve."
+    }
+  ]
+}

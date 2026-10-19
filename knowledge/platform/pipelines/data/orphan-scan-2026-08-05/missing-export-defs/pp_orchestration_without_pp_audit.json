@@ -1,0 +1,1870 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "If Condition1",
+        "type": "IfCondition",
+        "dependsOn": [
+          {
+            "activity": "pipeline_start_audit_log",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "expression": {
+            "value": "@equals(activity('check_last_run_status').output.firstRow.running_count,0)",
+            "type": "Expression"
+          },
+          "ifFalseActivities": [
+            {
+              "name": "fail_parallel_runs",
+              "type": "Fail",
+              "dependsOn": [],
+              "typeProperties": {
+                "message": {
+                  "value": "The previous run is still in progress !",
+                  "type": "Expression"
+                },
+                "errorCode": "4000"
+              }
+            },
+            {
+              "name": "set_failed_activity_for_parallel_run",
+              "type": "SetVariable",
+              "dependsOn": [],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_failed_activity",
+                "value": "The previous run is still in progress !"
+              }
+            }
+          ],
+          "ifTrueActivities": [
+            {
+              "name": "sp_call_dim_job_task",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_dim_job_task]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_dim_sale_transfer",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_dim_sale_transfer]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "TRUNCATE & LOAD",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_dim_job",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_job_task",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_dim_job]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_dim_sale",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_sale_transfer",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "sp_call_dim_job",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_dim_sale]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_dim_lot",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_sale",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_dim_lot]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_dim_major_minor",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_dim_major_minor]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_fact_general_ledger",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_fact_general_ledger]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_dim_sgm_map",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_major_minor",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_dim_sgm_map]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_fact_lot_financials",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_fact_general_ledger",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "sp_call_dim_sgm_map",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_fact_lot_financials]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_dim_company",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_dim_company]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_dim_division",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_dim_division]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_dim_operating_unit",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_dim_operating_unit]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_dim_project",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_dim_project]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_dim_period",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_dim_period]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "FULL",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "sp_call_fact_sgm_assumptions",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_lot",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "sp_call_fact_lot_financials",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "sp_call_dim_project",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_fact_sgm_assumptions]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "set_failed_activity_to_dim_job_task",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_job_task",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_dim_job_task_failed_activity",
+                "value": "dim_job_task sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_dim_job",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_job",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_dim_job_failed_activity",
+                "value": "dim_job sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_dim_sale",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_sale",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_dim_sale_failed_activity",
+                "value": "dim_sale sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_dim_sale_transfer",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_sale_transfer",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_dim_sale_transfer_failed_activity",
+                "value": "dim_sale_transfer sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_dim_lot",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_lot",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_dim_lot_failed_activity",
+                "value": "dim_lot sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_dim_major_minor",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_major_minor",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_dim_major_minor_failed_activity",
+                "value": "dim_major_minor sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_dim_sgm_map",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_sgm_map",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_dim_sgm_map_failed_activity",
+                "value": "dim_sgm_map sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_fact_general_ledger",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_fact_general_ledger",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_fact_general_ledger_failed_activity",
+                "value": "fact_general_ledger sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_fact_lot_financials",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_fact_lot_financials",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_fact_lot_financials_failed_activity",
+                "value": "fact_lot_financials sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_fact_sgm_assumptions",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_fact_sgm_assumptions",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_fact_sgm_assumptions_failed_activity",
+                "value": "fact_sgm_assumptions sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_dim_project",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_project",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_dim_project_failed_activity",
+                "value": "dim_project sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_dim_company",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_company",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_dim_company_failed_activity",
+                "value": "dim_company sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_dim_division",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_division",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_dim_division_failed_activity",
+                "value": "dim_division sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_dim_operating_unit",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_operating_unit",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_dim_operating_unit_failed_activity",
+                "value": "dim_operating_unit sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activity_to_dim_period",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_dim_period",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_dim_period_failed_activity",
+                "value": "dim_period sp failed"
+              }
+            },
+            {
+              "name": "set_failed_activities",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "set_failed_activity_to_fact_sgm_assumptions",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_dim_job_task",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_dim_sale_transfer",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_dim_job",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_dim_sale",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_dim_lot",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_dim_company",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_dim_division",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_dim_operating_unit",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_dim_period",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_fact_general_ledger",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_dim_sgm_map",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_dim_project",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_fact_lot_financials",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_dim_major_minor",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "set_failed_activity_to_fact_lot_sgm",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_failed_activity",
+                "value": {
+                  "value": "@concat(variables('v_dim_company_failed_activity'),',',variables('v_dim_division_failed_activity'),',',variables('v_dim_job_failed_activity'),',',variables('v_dim_job_task_failed_activity'),',',variables('v_dim_lot_failed_activity'),',',variables('v_dim_major_minor_failed_activity'),',',variables('v_dim_operating_unit_failed_activity'),',',variables('v_dim_period_failed_activity'),',',variables('v_dim_project_failed_activity'),',',variables('v_dim_sale_failed_activity'),',',variables('v_dim_sale_transfer_failed_activity'),',',variables('v_dim_sgm_map_failed_activity'),',',variables('v_fact_general_ledger_failed_activity'),',',variables('v_fact_lot_financials_failed_activity'),',',variables('v_fact_sgm_assumptions_failed_activity'))",
+                  "type": "Expression"
+                }
+              }
+            },
+            {
+              "name": "sp_call_fact_lot_sgm",
+              "type": "SqlServerStoredProcedure",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_fact_sgm_assumptions",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "policy": {
+                "timeout": "0.00:10:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[sp_load_fact_lot_sgm]",
+                "storedProcedureParameters": {
+                  "JobRunId": {
+                    "value": {
+                      "value": "@pipeline().RunId",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "LoadType": {
+                    "value": {
+                      "value": "@variables('v_load_type')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "AuditId": {
+                    "value": {
+                      "value": "@string(variables('v_pipeline_audit_id'))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "OrchestratorAuditId": {
+                    "value": {
+                      "value": "@{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id}",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              }
+            },
+            {
+              "name": "set_failed_activity_to_fact_lot_sgm",
+              "type": "SetVariable",
+              "dependsOn": [
+                {
+                  "activity": "sp_call_fact_lot_sgm",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "variableName": "v_fact_lot_sgm_failed_activity",
+                "value": "fact_lot_sgm sp failed"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "check_last_run_status",
+        "type": "Lookup",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "sqlReaderQuery": "-- IF NOT EXISTS (SELECT 1 FROM [control].[audit_orchestrator_control])\n-- BEGIN\n--     SELECT 'FIRST RUN' AS run_status;\n-- END\n-- ELSE\n-- BEGIN\n--     SELECT run_status FROM [control].[audit_orchestrator_control] WHERE start_time = (SELECT MAX (start_time) FROM [control].[audit_orchestrator_control]);\n-- END;\nSELECT COUNT(orchestrator_audit_id) AS running_count FROM EDW_Silver.control.audit_orchestrator_control WHERE run_status = 'RUNNING';",
+            "queryTimeout": "02:00:00",
+            "partitionOption": "None"
+          },
+          "datasetSettings": {
+            "annotations": [],
+            "linkedService": {
+              "name": "EDW_Silver",
+              "properties": {
+                "annotations": [],
+                "type": "DataWarehouse",
+                "typeProperties": {
+                  "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                  "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                  "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                }
+              }
+            },
+            "type": "DataWarehouseTable",
+            "schema": [],
+            "typeProperties": {}
+          }
+        }
+      },
+      {
+        "name": "pipeline_start_audit_log",
+        "type": "Script",
+        "dependsOn": [
+          {
+            "activity": "generate_audit_key_and_start_time",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "linkedService": {
+          "name": "EDW_Silver",
+          "properties": {
+            "annotations": [],
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+              "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+              "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+            }
+          }
+        },
+        "typeProperties": {
+          "scripts": [
+            {
+              "type": "Query",
+              "text": {
+                "value": "INSERT INTO control.audit_orchestrator_control (\n    orchestrator_audit_id,\n    pipeline_name,\n    pipeline_run_id,\n    start_time,\n    end_time,\n    failed_activity_name,\n    run_status\n) \nVALUES (\n    @{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id},\n    '@{pipeline().PipelineName}',\n    '@{pipeline().RunId}',\n    CAST('@{concat(substring(activity('generate_audit_key_and_start_time').output.firstRow.start_time, 0, 10),' ',replace(replace(substring(activity('generate_audit_key_and_start_time').output.firstRow.start_time, 11, 8),'-', ':'),'Z', ''))}' AS DATETIME2(0)),\n    NULL,  -- End time will be updated at the end\n    '',    -- Failed activity name will be updated only upon failure \n    'RUNNING'  -- Initial status\n);\n",
+                "type": "Expression"
+              }
+            }
+          ],
+          "scriptBlockExecutionTimeout": "02:00:00"
+        }
+      },
+      {
+        "name": "generate_audit_key_and_start_time",
+        "type": "Lookup",
+        "dependsOn": [
+          {
+            "activity": "check_last_run_status",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "sqlReaderQuery": "SELECT CONVERT(BIGINT, CONVERT(VARBINARY, CONCAT(NEWID(), GETDATE()))) AS orchestrator_audit_id, CAST(SYSDATETIME() AS DATETIME2(0)) AS start_time;",
+            "queryTimeout": "02:00:00",
+            "partitionOption": "None"
+          },
+          "datasetSettings": {
+            "annotations": [],
+            "linkedService": {
+              "name": "EDW_Silver",
+              "properties": {
+                "annotations": [],
+                "type": "DataWarehouse",
+                "typeProperties": {
+                  "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                  "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                  "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                }
+              }
+            },
+            "type": "DataWarehouseTable",
+            "schema": [],
+            "typeProperties": {}
+          }
+        }
+      },
+      {
+        "name": "conditionally_update_pp_audit",
+        "type": "IfCondition",
+        "dependsOn": [
+          {
+            "activity": "If Condition1",
+            "dependencyConditions": [
+              "Skipped",
+              "Succeeded",
+              "Failed"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "expression": {
+            "value": "@equals(variables('v_failed_activity'),'')",
+            "type": "Expression"
+          },
+          "ifFalseActivities": [
+            {
+              "name": "pipeline_end_audit_log_on_failure",
+              "type": "Script",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              },
+              "typeProperties": {
+                "scripts": [
+                  {
+                    "type": "Query",
+                    "text": {
+                      "value": "DECLARE @avg_run_time INT;\n\nSELECT @avg_run_time = CASE \n    WHEN EXISTS (\n        SELECT 1 \n        FROM control.audit_orchestrator_control \n        WHERE pipeline_name = '@{pipeline().PipelineName}'\n    )\n    THEN (\n        SELECT avg_runtime_seconds \n        FROM control.vw_pipeline_performance_summary \n        WHERE pipeline_name = '@{pipeline().PipelineName}'\n    )\n    ELSE 0\nEND;\n\nUPDATE control.audit_orchestrator_control \nSET \n    end_time = CAST(SYSDATETIME() as DATETIME2(0)),\n    failed_activity_name = ISNULL('@{variables('v_failed_activity')}',''),\n    run_status = 'FAILURE',\n    duration = \n        CASE \n            WHEN DATEDIFF(SECOND, start_time, SYSDATETIME()) >= 3600 THEN\n                CAST(DATEDIFF(SECOND, start_time, SYSDATETIME()) / 3600 AS VARCHAR) + 'h '\n            ELSE ''\n        END +\n        CASE \n            WHEN DATEDIFF(SECOND, start_time, SYSDATETIME()) % 3600 >= 60 THEN\n                CAST((DATEDIFF(SECOND, start_time, SYSDATETIME()) % 3600) / 60 AS VARCHAR) + 'm '\n            ELSE ''\n        END +\n        CAST(DATEDIFF(SECOND, start_time, SYSDATETIME()) % 60 AS VARCHAR) + 's',\n    pipline_performance = \n        CASE\n            WHEN @avg_run_time = 0 THEN 'Normal'\n            WHEN CAST(DATEDIFF(SECOND, start_time, SYSDATETIME()) AS INT) <= 1.5 * @avg_run_time THEN 'Normal'\n            ELSE 'Abnormal'\n        END\nWHERE orchestrator_audit_id = @{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id};",
+                      "type": "Expression"
+                    }
+                  }
+                ],
+                "scriptBlockExecutionTimeout": "02:00:00"
+              }
+            },
+            {
+              "name": "delete_blocked_log_on_failure",
+              "type": "Script",
+              "dependsOn": [
+                {
+                  "activity": "pipeline_end_audit_log_on_failure",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              },
+              "typeProperties": {
+                "scripts": [
+                  {
+                    "type": "Query",
+                    "text": {
+                      "value": "DELETE FROM control.audit_orchestrator_control WHERE orchestrator_audit_id = @{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id};",
+                      "type": "Expression"
+                    }
+                  }
+                ],
+                "scriptBlockExecutionTimeout": "02:00:00"
+              }
+            },
+            {
+              "name": "failed_to_update_pp_end_audit",
+              "type": "Fail",
+              "dependsOn": [
+                {
+                  "activity": "delete_blocked_log_on_failure",
+                  "dependencyConditions": [
+                    "Completed"
+                  ]
+                }
+              ],
+              "typeProperties": {
+                "message": "Failed to update pipeline end audit (on failure)",
+                "errorCode": "004"
+              }
+            },
+            {
+              "name": "fail_pipeline",
+              "type": "Fail",
+              "dependsOn": [
+                {
+                  "activity": "pipeline_end_audit_log_on_failure",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "typeProperties": {
+                "message": "Inner table load activity failed",
+                "errorCode": "004"
+              }
+            }
+          ],
+          "ifTrueActivities": [
+            {
+              "name": "pipeline_end_audit_log_on_success",
+              "type": "Script",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              },
+              "typeProperties": {
+                "scripts": [
+                  {
+                    "type": "Query",
+                    "text": {
+                      "value": "DECLARE @avg_run_time INT;\n\nSELECT @avg_run_time = CASE \n    WHEN EXISTS (\n        SELECT 1 \n        FROM control.audit_orchestrator_control \n        WHERE pipeline_name = '@{pipeline().PipelineName}'\n    )\n    THEN (\n        SELECT avg_runtime_seconds \n        FROM control.vw_pipeline_performance_summary \n        WHERE pipeline_name = '@{pipeline().PipelineName}'\n    )\n    ELSE 0\nEND;\n\nUPDATE control.audit_orchestrator_control \nSET \n    end_time = CAST(SYSDATETIME() as DATETIME2(0)),\n    failed_activity_name = ISNULL('@{variables('v_failed_activity')}',''),\n    run_status = 'SUCCESS',\n    duration = \n        CASE \n            WHEN DATEDIFF(SECOND, start_time, SYSDATETIME()) >= 3600 THEN\n                CAST(DATEDIFF(SECOND, start_time, SYSDATETIME()) / 3600 AS VARCHAR) + 'h '\n            ELSE ''\n        END +\n        CASE \n            WHEN DATEDIFF(SECOND, start_time, SYSDATETIME()) % 3600 >= 60 THEN\n                CAST((DATEDIFF(SECOND, start_time, SYSDATETIME()) % 3600) / 60 AS VARCHAR) + 'm '\n            ELSE ''\n        END +\n        CAST(DATEDIFF(SECOND, start_time, SYSDATETIME()) % 60 AS VARCHAR) + 's',\n    pipline_performance = \n        CASE\n            WHEN @avg_run_time = 0 THEN 'Normal'\n            WHEN CAST(DATEDIFF(SECOND, start_time, SYSDATETIME()) AS INT) <= 1.5 * @avg_run_time THEN 'Normal'\n            ELSE 'Abnormal'\n        END\nWHERE orchestrator_audit_id = @{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id};",
+                      "type": "Expression"
+                    }
+                  }
+                ],
+                "scriptBlockExecutionTimeout": "02:00:00"
+              }
+            },
+            {
+              "name": "delete_blocked_log_on_success",
+              "type": "Script",
+              "dependsOn": [
+                {
+                  "activity": "pipeline_end_audit_log_on_success",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ],
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "linkedService": {
+                "name": "EDW_Silver",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "cx2knzbh2yrejngvheequwseqy-mpsfzbl7atie7hr6l3lpvtholy.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "afcce380-11a2-4e14-8bd4-89f731a30848",
+                    "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+                  }
+                }
+              },
+              "typeProperties": {
+                "scripts": [
+                  {
+                    "type": "Query",
+                    "text": {
+                      "value": "DELETE FROM control.audit_orchestrator_control WHERE orchestrator_audit_id = @{activity('generate_audit_key_and_start_time').output.firstRow.orchestrator_audit_id};",
+                      "type": "Expression"
+                    }
+                  }
+                ],
+                "scriptBlockExecutionTimeout": "02:00:00"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "variables": {
+      "v_load_type": {
+        "type": "String"
+      },
+      "v_pipeline_audit_id": {
+        "type": "String"
+      },
+      "v_dim_company_failed_activity": {
+        "type": "String"
+      },
+      "v_dim_division_failed_activity": {
+        "type": "String"
+      },
+      "v_dim_period_failed_activity": {
+        "type": "String"
+      },
+      "v_dim_operating_unit_failed_activity": {
+        "type": "String"
+      },
+      "v_dim_project_failed_activity": {
+        "type": "String"
+      },
+      "v_dim_job_task_failed_activity": {
+        "type": "String"
+      },
+      "v_dim_sale_transfer_failed_activity": {
+        "type": "String"
+      },
+      "v_dim_major_minor_failed_activity": {
+        "type": "String"
+      },
+      "v_dim_sgm_map_failed_activity": {
+        "type": "String"
+      },
+      "v_dim_job_failed_activity": {
+        "type": "String"
+      },
+      "v_dim_sale_failed_activity": {
+        "type": "String"
+      },
+      "v_dim_lot_failed_activity": {
+        "type": "String"
+      },
+      "v_fact_general_ledger_failed_activity": {
+        "type": "String"
+      },
+      "v_fact_lot_financials_failed_activity": {
+        "type": "String"
+      },
+      "v_failed_activity": {
+        "type": "String"
+      },
+      "v_fact_sgm_assumptions_failed_activity": {
+        "type": "String"
+      },
+      "v_fact_lot_sgm_failed_activity": {
+        "type": "String"
+      }
+    }
+  }
+}

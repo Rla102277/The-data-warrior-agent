@@ -1,0 +1,91 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "get_credentials",
+        "type": "TridentNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "43c09f0b-3695-48fa-be7f-45ebddf0dd19",
+          "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+        }
+      },
+      {
+        "name": "load_community",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "get_credentials",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "757a3bd4-0ef2-4513-b849-efa761b6a2c3",
+          "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+        }
+      },
+      {
+        "name": "load_plans",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "load_community",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "ad12fc0b-f989-49d4-8cd6-ee0899fda390",
+          "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+        }
+      },
+      {
+        "name": "load_lots",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "load_community",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "2660203c-5410-4ae1-9304-05653bf2bb88",
+          "workspaceId": "855ce463-047f-4fd0-9e3e-5ed6faccee5e"
+        }
+      }
+    ]
+  }
+}
