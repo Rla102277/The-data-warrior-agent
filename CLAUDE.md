@@ -21,6 +21,6 @@ The Forge does not write a spec until the Scroll holds the ground gate: decision
 
 Canonical skill files live only under `skills/`. Use `scripts/link-skills.sh` to symlink into local harness directories. Do not maintain duplicated trees under `.agents/skills` or `.claude/skills` in this repository.
 
-The optional platform package is named **Forge** (`forge` CLI). Job folders default to `forge-line/jobs/`. Production requires a human approve. Layers: raw / stage / control / transform / analytics.
+The Forge is a **file-based software factory process** (default job folder `forge-line/jobs/`). Production requires a human approve in `decision.md`. This repo does not contain Foundation or a Forge platform package.
 
 Read THE_WAY.md. Roles (Deshi, Rōnin, Kensei) change collaboration style, never permissions.

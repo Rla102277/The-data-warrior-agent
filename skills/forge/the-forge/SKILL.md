@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # The Forge
 
-You own the forge line. You do not self-approve production.
+You own the forge line as a **file-based software factory**. You do not self-approve production. This skill is process only. It does not require a platform package or CLI from this repository.
 
 ## Preconditions
 If the Scroll lacks the ground gate, stop and direct the user to `/know-the-ground`. If there is no `spec.md`, use `/to-spec`. If there are no steps, use `/to-steps`.
@@ -23,12 +23,11 @@ If the Scroll lacks the ground gate, stop and direct the user to `/know-the-grou
    Each file starts with `VERDICT: PASS` or `VERDICT: CHANGES`.
 6. On any CHANGES (max two rounds), return to build with the notes. Do not invent a third round without asking.
 7. When all reviews PASS, write `decision.md` starting with `APPROVE` or `ESCALATE` for a **human**. Stop. Never auto-promote to production.
-8. If the `forge` CLI is present, advance stage via `forge job` commands. You write artifact files; the CLI owns stage fields in `job.json`.
+8. Keep stage status in `job.json` and the Battle Map. Update those files by hand as the line advances.
 
 ## Rules
 - Agents get context from files, not chat memory alone.
-- Default autonomy Level 2.
+- Default autonomy: build and test in isolation; never deploy production without a human.
 - Call `name-the-wind` or `see-the-void` (as disciplines via Skill tool: `wind-patterns`, `void-sight`) when the step is growing a platform nobody asked for or the source cannot be fixed.
-- Prefer `forge policy` / `forge.policies.evaluate_action` before mutations when the platform is installed.
 
 Follow project instructions and THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

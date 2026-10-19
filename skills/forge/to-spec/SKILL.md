@@ -16,8 +16,8 @@ Write `forge-line/jobs/<job-id>/spec.md` containing:
 - Input, output, and ownership.
 - Proof criteria: replay, duplicates, deletes, reconciliation as applicable.
 - Layers when relevant: raw / stage / control / transform / analytics.
-- Autonomy level (default 2) and explicit production authorization requirement.
+- Autonomy note (build and test in isolation by default) and explicit production authorization requirement.
 
-Create `job.json` stub with stage `SPECIFICATION` when the `forge` CLI is available (`forge job create`). Otherwise write the files by hand and say so. Do not build.
+Also write a minimal `job.json` with stage `SPECIFICATION`. Create directories as needed. Do not build.
 
 Follow project instructions and THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.
