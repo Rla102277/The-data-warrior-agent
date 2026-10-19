@@ -186,6 +186,8 @@ class JobState(BaseModel):
     stage: WorkflowStage = WorkflowStage.RECEIVED
     autonomy_level: AutonomyLevel = AutonomyLevel.L2_BUILD_TEST_ISOLATED
     platform_profile: str = "forge-default"
+    build_id: str = ""
+    demo_mode: bool = False
     attempt_count: int = 0
     max_attempts: int = 3
     repair_rounds: int = 0

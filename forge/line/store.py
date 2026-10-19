@@ -44,8 +44,18 @@ class JobStore:
                 jobs.append(JobState.model_validate_json((child / "job.json").read_text()))
         return jobs
 
+    def safe_path(self, job_id: str, relative: str) -> Path:
+        rel = Path(relative)
+        if rel.is_absolute() or ".." in rel.parts:
+            raise ValueError(f"refusing path outside job directory: {relative}")
+        root = self.job_dir(job_id).resolve()
+        path = (root / rel).resolve()
+        if not path.is_relative_to(root):
+            raise ValueError(f"refusing path outside job directory: {relative}")
+        return path
+
     def write_artifact(self, job_id: str, name: str, content: str) -> Path:
-        path = self.job_dir(job_id) / name
+        path = self.safe_path(job_id, name)
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content)
         return path

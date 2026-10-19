@@ -40,6 +40,7 @@ Ship a companion skill system and Forge factory that rehearse [The Data Warrior'
 | D-010 | Remove all Foundation/platform code from this repository. Keep only the software-factory *concept* as Forge skills and file-based jobs. Foundation stays in its own project. | User, 2026-10-19. | **Superseded** by D-011. Over-deleted the Forge runtime. | User clarification immediately after. |
 | D-011 | Keep The Forge software factory in this repo (skills + `forge`/`forge-line` runtime). Do **not** bring Foundation estate knowledge (`knowledge/platform`, ops inventories, ADO Fabric estate docs, rebuild ledgers, analytics SQL estates). | User, 2026-10-19: wanted the Forge; none of the existing Foundation knowledge should have been brought in. | Accepted | Restored Forge SDK from `1eb8679` without knowledge/platform, docs/platform, rebuild, automation, dbt, .azuredevops. |
 | D-012 | Align this repo's identity and ground gate to the manuscript mission/vision: technical completion ≠ strategic success; human is the Warrior; two demands (simplicity + discipline); Forge is Tools/instrument; book readable without software; measure decisions changed. | User, 2026-10-19: "reread the manuscript… Align to my mission and vision." | Accepted | Re-read preface, Ch1 working draft, editorial master plan, AGENTS invariants, MASTER_BRIEF philosophy. Updated THE_WAY, README, SCOPE, CLAUDE, AGENTS, know-the-ground, the-forge, ask-the-warrior. |
+| D-013 | Real Forge approval requires a recorded local test execution and three structured reviews bound to that build. Synthetic demo evidence cannot qualify a real job. `--authorized` is an operator attestation, not cryptographic identity. | User, 2026-10-19: finish the Forge evidence system. | Accepted | `forge/line/evidence.py`, adversarial tests, local-orders acceptance stopped at `APPROVAL_PENDING`. |
 
 ## Assumptions
 - "A system like Matthew's" means his product mechanics: user-invoked versus model-invoked, a router, README catalog, plugin manifest, docs pages, and symlink install. **Accepted in D-008.**
@@ -67,6 +68,7 @@ Ship a companion skill system and Forge factory that rehearse [The Data Warrior'
 - [x] Forge runtime restored without Foundation estate knowledge (D-011).
 - [x] Identity docs lead with manuscript mission; Forge positioned as Tools companion (D-012).
 - [x] Ground gate matches Way questions + single-action demand (D-012).
+- [x] Real jobs reject fabricated, stale, tampered, and synthetic evidence before approval (D-013). Local acceptance observed; CI still has to run on the pull request.
 - [ ] Live host transcript for `/know-the-ground` then `/the-forge` that stops if the decision is missing.
 - [ ] Optional: Council-perspective disciplines when manuscript People book is approved.
 

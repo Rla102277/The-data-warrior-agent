@@ -15,4 +15,6 @@ Each file must start with `VERDICT: PASS` or `VERDICT: CHANGES`, then evidence-b
 
 Use lenses from architecture, pipeline engineering, governance, operations, cost, and consumer impact only when they change the verdict. Do not claim multi-agent review unless distinct agents were used.
 
+Also record each review with `forge job review` so the verdict, reviewer, build id, and evidence ids are machine-checkable. Markdown that says `VERDICT: PASS` without that record does not count. Three files from one reviewer are three perspectives, not three independent reviewers. Set `--provenance independent` only when a different reviewer actually ran that review. A review of an earlier build is stale after rework.
+
 Follow project instructions and THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

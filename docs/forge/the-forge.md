@@ -8,7 +8,7 @@ Only after `/know-the-ground` has closed the gate and `/to-spec` plus `/to-steps
 
 ## Common questions
 - Does this replace reading the code? No. Inspect evidence first.
-- Can the model invent an approval? No. Humans approve production. Missing proof or reviews blocks approval.
+- Can the model invent an approval? No. Humans approve production. `forge job verify` rejects missing, failed, stale, tampered, or synthetic evidence. `--authorized` is not cryptographic identity.
 - Where do decisions live? In `SCROLL.md` via The Scroll.
 
 ## It's working if

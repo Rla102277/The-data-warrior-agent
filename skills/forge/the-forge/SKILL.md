@@ -15,15 +15,15 @@ If the Scroll lacks the ground gate from `/know-the-ground`, stop and direct the
 1. Select the current step from the Battle Map.
 2. Call `test-the-steel` to write or run a failing proof for that step first.
 3. Call `draw-the-blade`, and when relevant `the-pipeline` or `the-contract`, to implement only that step.
-4. Re-run proof: replay, duplicates, deletes, reconciliation as named in the spec. Capture command, exit code, and output.
-5. Call `review-the-work` for three independent review files under the job round folder:
+4. Re-run proof with `forge job test --job-id <id> -- <command>`. The recorded exit code is the result. Do not infer success from prose. Replay, duplicates, deletes, and reconciliation stay as named in the spec.
+5. Call `review-the-work`. Keep the three Markdown files and record structured reviews with `forge job review` bound to that test's build:
    - `review-security.md`
    - `review-naming.md`
    - `review-data-quality.md`
    Each file starts with `VERDICT: PASS` or `VERDICT: CHANGES`.
 6. On any CHANGES (max two rounds), return to build with the notes. Do not invent a third round without asking.
 7. When all reviews PASS, write `decision.md` starting with `APPROVE` or `ESCALATE` for a **human**. Stop. Never auto-promote to production.
-8. If the `forge` CLI is present, advance stage via `forge job` commands. You write artifact files; the CLI owns stage fields in `job.json`.
+8. If the `forge` CLI is present, advance stage via `forge job` commands. `forge job verify` must be clean before approval. You write artifact files; the CLI owns stage fields in `job.json`. `--authorized` attests the operator on this host. It is not cryptographic identity.
 
 ## Rules
 - Agents get context from files, not chat memory alone.
