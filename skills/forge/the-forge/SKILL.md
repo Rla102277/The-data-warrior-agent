@@ -9,7 +9,7 @@ disable-model-invocation: true
 The sword is not the warrior. You own the forge line as an instrument of the Way. You do not self-approve production. A green build that does not change the named decision is still a failure.
 
 ## Preconditions
-If the Scroll lacks the ground gate from `/know-the-ground`, stop and direct the user there. If there is no `spec.md`, use `/to-spec`. If there are no steps, use `/to-steps`.
+If the Scroll lacks the ground gate from `/know-the-ground`, stop and direct the user there. If the fight is multi-phase and there is no campaign plan, direct them to `/to-plan` first. If there is no `spec.md`, use `/to-spec`. If there are no steps, use `/to-steps`.
 
 ## Loop
 1. Select the current step from the Battle Map.

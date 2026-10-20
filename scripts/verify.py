@@ -29,6 +29,7 @@ required_commands = {
     "ask-the-warrior",
     "setup-the-forge",
     "know-the-ground",
+    "to-plan",
     "to-spec",
     "to-steps",
     "the-forge",
@@ -87,6 +88,14 @@ assert "alwaysApply: true" in rule.read_text()
 forge = (ROOT / "skills/forge/the-forge/SKILL.md").read_text().lower()
 assert "know-the-ground" in forge
 assert "verdict" in forge
+
+plan = (ROOT / "skills/forge/to-plan/SKILL.md").read_text()
+plan_l = plan.lower()
+assert "aim of this fight" in plan_l
+assert "mindmap" in plan_l or "mind map" in plan_l
+assert "flowchart" in plan_l
+assert "never" in plan_l and "north star" in plan_l  # ban must be explicit
+assert "disable-model-invocation: true" in plan
 
 claude_plugin = ROOT / ".claude-plugin/plugin.json"
 assert claude_plugin.is_file(), "missing .claude-plugin/plugin.json"

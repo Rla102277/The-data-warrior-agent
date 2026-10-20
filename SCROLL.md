@@ -49,6 +49,7 @@ Ship a companion skill system and Forge factory that rehearse [The Data Warrior'
 | D-019 | Setup and ground interviews keep going: finish every setup menu, then ground questions 1–6 without stopping mid-gate. Deshi teaches between questions; every incomplete turn ends with the next numbered ask. | User, 2026-10-20: questions need to keep going; Deshi was stopping after one. | Accepted | know-the-ground / grounding / setup-the-forge keep-going rules. |
 | D-020 | Skills and Forge stay one package; first-class install is Cursor plugin + Claude plugin (`data-warrior-forge`), not a skills-only split. | User, 2026-10-20: keep forge together; live as cursor plugin and claude plugin. | Accepted | `.cursor-plugin/`, `.claude-plugin/`, `scripts/sync-plugin-surface.py`, `docs/INSTALL-PLUGINS.md`. |
 | D-021 | Cursor “install today” is a **copy** into `~/.cursor/plugins/local` (`install-cursor-local.sh`). Out-of-tree symlinks are skipped by Cursor. Official Cursor Marketplace listing is not available until submitted. | User, 2026-10-20: install today doesnt add up. | Accepted | Rewrote INSTALL-PLUGINS.md; removed false symlink / personal GitHub marketplace claims. |
+| D-022 | After ground, optional `/to-plan` writes a rich campaign plan (aim of this fight, locked defaults, Mermaid flowchart + mind map, phases with gates). Ban “north star” wording. Then `/to-spec` → `/to-steps` → `/the-forge`. | User, 2026-10-20: want Cursor-plan-style plans + mind maps; hate “north star”. | Accepted | `skills/forge/to-plan`, `examples/plan/PLAN.md`. |
 
 ## Assumptions
 - "A system like Matthew's" means his product mechanics: user-invoked versus model-invoked, a router, README catalog, plugin manifest, docs pages, and symlink install. **Accepted in D-008.**
@@ -84,6 +85,7 @@ Ship a companion skill system and Forge factory that rehearse [The Data Warrior'
 - [x] Setup + ground keep going through all steps; Deshi teaches between (D-019).
 - [x] First-class Cursor + Claude plugins; Forge stays with skills (D-020).
 - [x] Honest Cursor local install path (copy, not out-of-tree symlink) (D-021).
+- [x] `/to-plan` campaign plans with flowchart + mind map; no “north star” (D-022).
 - [ ] Live host transcript for `/know-the-ground` then `/the-forge` that stops if the decision is missing.
 - [ ] Optional: Council-perspective disciplines when manuscript People book is approved.
 

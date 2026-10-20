@@ -30,6 +30,7 @@ Or copy selected `skills/<bucket>/<name>/` folders into your agent skills direct
 
 - **[win-the-room](./skills/fire/win-the-room/SKILL.md)**: Use when the deliverable is a recommendation that a decision-maker must accept, refuse, or defer.
 - **[the-forge](./skills/forge/the-forge/SKILL.md)**: Use when a grounded action has a forge spec and steps, and the user wants the line to build, prove, review, and stop for human approval.
+- **[to-plan](./skills/forge/to-plan/SKILL.md)**: Use when the ground gate is on the Scroll and the fight needs a rich campaign plan with phases, gates, flowchart, and mind map before a forge spec.
 - **[to-spec](./skills/forge/to-spec/SKILL.md)**: Use when one agreed action exists on the Scroll and must become a forge job specification with proof criteria.
 - **[to-steps](./skills/forge/to-steps/SKILL.md)**: Use when a forge spec exists and must be broken into ordered steps each small enough to build and fail a test.
 - **[know-the-ground](./skills/ground/know-the-ground/SKILL.md)**: Use when a data engineer or analyst is starting a project or task and the real decision, grain, and single action are not yet written.
@@ -129,7 +130,7 @@ Maintainers: `python3 scripts/sync-plugin-surface.py` after skill changes; `pyth
 
 ### 4. Plan and implement
 
-Use `/to-spec` → `/to-steps` → `/the-forge`. Do not mistake a generated review for an independently executed review.
+Use `/to-plan` when the fight needs a campaign plan (flowchart + mind map), then `/to-spec` → `/to-steps` → `/the-forge`. Do not mistake a generated review for an independently executed review.
 
 ### 5. Inspect the Forge runtime (same package)
 

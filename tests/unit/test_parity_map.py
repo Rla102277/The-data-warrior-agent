@@ -21,6 +21,7 @@ MAPPED = [
     "skills/wind/wind-patterns/SKILL.md",
     "skills/void/see-the-void/SKILL.md",
     "skills/void/void-sight/SKILL.md",
+    "skills/forge/to-plan/SKILL.md",
     "skills/forge/to-spec/SKILL.md",
     "skills/forge/to-steps/SKILL.md",
     "skills/forge/the-forge/SKILL.md",

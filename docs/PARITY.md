@@ -37,7 +37,7 @@ Every row names a skill or law that exists in this repo. Existence is not a live
 | 10 Entering the Battle; 23 Leadership and Service | `/win-the-room` |
 | 11 The Battle Map; 34 From Battle Map to Outcome | `the-battle-map` |
 | 12 Execution Under Pressure | `/the-forge`, `draw-the-blade` |
-| 13 Decisions and Tradeoffs | `/to-spec`, `chart-the-path` |
+| 13 Decisions and Tradeoffs | `/to-plan`, `/to-spec`, `chart-the-path` |
 | 14 Knowing When to Stop | `/the-forge` stop rule; `forge job verify` / `approve` |
 | 15 Know the Other Schools | `study-the-wind` |
 | 16 Challenge Assumptions; 21 Intuition; 32 Training Through Challenges | `the-challenge` |

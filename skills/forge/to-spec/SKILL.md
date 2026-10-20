@@ -8,6 +8,8 @@ disable-model-invocation: true
 
 Refuse to run if the Scroll is missing the ground gate fields from `/know-the-ground`. Call `the-scroll` to read them.
 
+If a `PLAN.md` (or job `plan.md`) exists from `/to-plan`, read it and keep the spec aligned to the aim, locked defaults, and current phase. Do not re-litigate the whole campaign inside the spec.
+
 Write `forge-line/jobs/<job-id>/spec.md` containing:
 
 - Single action (verbatim from the Scroll).

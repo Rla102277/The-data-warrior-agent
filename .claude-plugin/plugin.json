@@ -25,6 +25,7 @@
     "./skills/forge/the-contract",
     "./skills/forge/the-forge",
     "./skills/forge/the-pipeline",
+    "./skills/forge/to-plan",
     "./skills/forge/to-spec",
     "./skills/forge/to-steps",
     "./skills/ground/grounding",
