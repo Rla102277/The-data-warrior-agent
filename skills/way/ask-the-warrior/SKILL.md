@@ -17,7 +17,7 @@ You are the router over the **user-invoked** commands in this repo. Prefer the W
 6. The deliverable is a recommendation people must accept → `/win-the-room`.
 7. The work smells like a known failure pattern (tool obsession, complexity as credibility) → `/name-the-wind`.
 8. Politics, incentives, or a broken org may kill the work → `/see-the-void`.
-9. First time in this repo with these skills → `/setup-the-forge`.
+9. First time in this repo, new thread with no setup, or Scroll missing `repo_host` → `/setup-the-forge` (welcome + principles + menus).
 10. The evidence says stop, walk away, or the eighty percent is already enough → do not name `/the-forge`. Say stop.
 
 State the chosen command, why it fits, and what evidence is still missing. Then stop so the user can invoke it. Council perspectives are not commands.

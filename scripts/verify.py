@@ -53,6 +53,18 @@ assert "question per turn" in scroll and "superseded" in scroll
 
 ground = (ROOT / "skills/ground/know-the-ground/SKILL.md").read_text().lower()
 assert "single action" in ground
+assert "repo_host" in ground or "repo host" in ground
+
+setup = (ROOT / "skills/way/setup-the-forge/SKILL.md").read_text().lower()
+assert "repo_host" in setup
+assert "azure devops" in setup or "azure_devops" in setup
+assert "github" in setup
+assert "welcome" in setup
+assert "guiding principles" in setup
+assert "reply with a number" in setup
+welcome = ROOT / "templates" / "WELCOME.md"
+assert welcome.is_file(), "missing templates/WELCOME.md"
+assert "guiding principles" in welcome.read_text().lower()
 
 forge = (ROOT / "skills/forge/the-forge/SKILL.md").read_text().lower()
 assert "know-the-ground" in forge

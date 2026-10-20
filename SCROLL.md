@@ -43,6 +43,8 @@ Ship a companion skill system and Forge factory that rehearse [The Data Warrior'
 | D-013 | Real Forge approval requires a recorded local test execution and three structured reviews bound to that build. Synthetic demo evidence cannot qualify a real job. `--authorized` is an operator attestation, not cryptographic identity. | User, 2026-10-19: finish the Forge evidence system. | Accepted | `forge/line/evidence.py`, adversarial tests, local-orders acceptance stopped at `APPROVAL_PENDING`. |
 | D-014 | Match the manuscript parity contract of 2026-10-19: five rings plus modern extensions, Council as perspectives, Scroll/Battle Map/Chronicle fields, and an honest limit that host behavioral parity is not yet passed. | User, 2026-10-19: manuscript was updated; match theory and practice. | Accepted | Manuscript `AGENT_PARITY_CONTRACT.md` at `16c16a2`. Agent `docs/PARITY.md`. README no longer claims textual PASS notes satisfy the evidence gate. |
 | D-015 | Do not ship a vendor platform. Microsoft Fabric is not a default profile, adapter, discovery path, or dependency. Tools are recorded on the ground and brought in only when the single action needs them. | User, 2026-10-19: remove all Fabric stuff; it belongs to know-the-ground and tools as needed. | Accepted | Removed `forge/fabric`, the Fabric discovery adapter, `fabric-first-foundation`, the `fabric` extra, and Fabric MCP servers. |
+| D-016 | `/setup-the-forge` must ask where the code lives (GitHub, Azure DevOps, etc.) in plain language and record `repo_host` on the Scroll. Do not assume GitHub. User-facing prompts stay non-technical. | User, 2026-10-20: ask for repo type; prompts non-technical friendly. | Accepted | Friendly ask text in setup-the-forge and know-the-ground; Scroll still stores `repo_host`. |
+| D-017 | Project start is menu-driven: welcome + guiding principles, then numbered menus (one per turn). Install drops `WELCOME.md`; `AGENTS.md` requires welcome on first thread. | User, 2026-10-20: menu driven; welcome and guiding principles when project started. | Accepted | `templates/WELCOME.md`, setup-the-forge Turn 0 + menus A–F, install.py. |
 
 ## Assumptions
 - "A system like Matthew's" means his product mechanics: user-invoked versus model-invoked, a router, README catalog, plugin manifest, docs pages, and symlink install. **Accepted in D-008.**
@@ -72,6 +74,8 @@ Ship a companion skill system and Forge factory that rehearse [The Data Warrior'
 - [x] Ground gate matches Way questions + single-action demand (D-012).
 - [x] Real jobs reject fabricated, stale, tampered, and synthetic evidence before approval (D-013). Local acceptance observed; CI still has to run on the pull request.
 - [x] No vendor platform is bundled. Tool choice follows the ground (D-015).
+- [x] Setup asks for repo host / SCM and records `repo_host` (D-016).
+- [x] Project start: welcome, principles, numbered menus (D-017).
 - [ ] Live host transcript for `/know-the-ground` then `/the-forge` that stops if the decision is missing.
 - [ ] Optional: Council-perspective disciplines when manuscript People book is approved.
 

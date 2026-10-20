@@ -31,6 +31,10 @@ def copy(src, dst):
 
 
 copy(ROOT / "THE_WAY.md", target / "THE_WAY.md")
+welcome_src = ROOT / "templates" / "WELCOME.md"
+if welcome_src.is_file():
+    copy(welcome_src, target / "WELCOME.md")
+
 for host in hosts:
     folder = {"cursor": ".agents/skills", "claude": ".claude/skills", "codex": ".agents/skills"}[host]
     for name in selected:
@@ -44,9 +48,27 @@ for host in hosts:
                     f"# /{name}\n\nFollow `.agents/skills/{name}/SKILL.md` and THE_WAY.md.\n"
                 )
                 print("INSTALLED", command)
+
 config = target / "AGENTS.md"
+agents_body = """# Agent project instructions
+
+Role: Rōnin
+
+Read THE_WAY.md and WELCOME.md. Roles affect collaboration, never permissions.
+
+## On project start
+When this project is opened or the human starts a new thread here:
+1. Present the welcome and guiding principles from WELCOME.md (plain language).
+2. If the Scroll has no setup / no `repo_host`, guide them to `/setup-the-forge` — menu-driven, one menu per turn.
+3. Do not assume GitHub, Azure DevOps, or any platform.
+"""
 if not config.exists():
-    config.write_text(
-        "# Agent project instructions\n\nRole: Rōnin\n\nRead THE_WAY.md. Roles affect collaboration, never permissions.\n"
-    )
+    config.write_text(agents_body)
     print("INSTALLED", config)
+elif a.overwrite and "On project start" not in config.read_text():
+    # Preserve custom Role lines; append start block once when overwriting install.
+    text = config.read_text()
+    if "On project start" not in text:
+        config.write_text(text.rstrip() + "\n\n## On project start\n"
+                          "Present WELCOME.md, then `/setup-the-forge` if `repo_host` is missing.\n")
+        print("UPDATED", config)

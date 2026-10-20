@@ -110,9 +110,16 @@ python scripts/install.py ~/data-warrior-sandbox --host cursor
 
 Open the destination project in your chosen host. Read `THE_WAY.md` and `AGENTS.md`. In Cursor, commands are available under `.cursor/commands`. You can instead copy only selected skills by passing their names after the destination.
 
-### 3. Ground an engineering task
+### 3. Setup, then ground
 
-Start with `/know-the-ground` (or ask the agent to follow that skill). Answer one substantive question at a time until the Scroll states the decision, grain, source of truth, risks, and one actionable outcome. Use the Battle Map to retain verified progress and blockers across sessions.
+Install also drops `WELCOME.md`. In the **new project** chat, start with `/setup-the-forge` (or open a new thread — `AGENTS.md` tells the agent to welcome you). You get:
+
+1. Welcome and guiding principles  
+2. Numbered menus (one at a time): where the code lives, where notes/jobs/proof live, autonomy  
+
+Answers land on the Scroll as `repo_host` and related fields. Do not assume GitHub.
+
+Then `/know-the-ground` — one plain question at a time until the Scroll states the decision, terrain, and one actionable outcome.
 
 ### 4. Plan and implement
 

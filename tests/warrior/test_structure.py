@@ -23,7 +23,11 @@ class Structure(unittest.TestCase):
                 r = run(ROOT / "scripts/install.py", d, "the-scroll", "--host", host)
                 self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
                 self.assertTrue((Path(d) / "THE_WAY.md").exists())
-                self.assertIn("Role: Rōnin", (Path(d) / "AGENTS.md").read_text())
+                self.assertTrue((Path(d) / "WELCOME.md").exists())
+                self.assertIn("Guiding principles", (Path(d) / "WELCOME.md").read_text())
+                agents = (Path(d) / "AGENTS.md").read_text()
+                self.assertIn("Role: Rōnin", agents)
+                self.assertIn("On project start", agents)
                 self.assertFalse((Path(d) / "skills").exists())
                 if host in ("cursor", "codex", "all"):
                     self.assertTrue((Path(d) / ".agents/skills/the-scroll/SKILL.md").exists())
