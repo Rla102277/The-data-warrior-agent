@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "./hooks/autostart.py"
+      }
+    ],
+    "beforeSubmitPrompt": [
+      {
+        "command": "./hooks/autostart.py"
+      }
+    ]
+  }
+}

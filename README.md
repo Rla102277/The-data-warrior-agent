@@ -84,48 +84,44 @@ The human is the Data Warrior; the AI host supplies execution assistance. The Wa
 
 ## How to Use It
 
-### 1. Clone and install
+**Skills and the Forge are one first-class plugin** for Cursor and for Claude Code. Full steps: [docs/INSTALL-PLUGINS.md](./docs/INSTALL-PLUGINS.md).
 
-Requires Python 3.11+ and Git. In a terminal:
+### 1. Install the plugin (preferred)
+
+**Cursor:** Add marketplace `Rla102277/The-data-warrior-agent` (repo has `.cursor-plugin/marketplace.json`), install **`data-warrior-forge`**, then open a project and start a **new Agent chat**.
+
+**Claude Code:**
+
+```bash
+claude plugin marketplace add Rla102277/The-data-warrior-agent
+claude plugin install data-warrior-forge@data-warrior
+```
+
+Or load a local checkout: `claude --plugin-dir /path/to/the-data-warrior-agent`.
+
+### 2. Setup, then ground
+
+On chat start you should get welcome, guiding principles, collaboration **level**, setup menus (including files to upload), then ground questions 1–6. Or run `/setup-the-forge` then `/know-the-ground`.
+
+Do not assume GitHub. Answers land on the Scroll / `AGENTS.md` Role.
+
+### 3. Optional: Forge CLI in this repo
 
 ```bash
 git clone https://github.com/Rla102277/The-data-warrior-agent.git
 cd The-data-warrior-agent
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e '.[dev,local]'
-python scripts/verify.py
-pytest -q
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e '.[local]'
+forge doctor
 ```
 
-### 2. Add the skills to an existing project
-
-Create the destination first. This copies skill files and creates host-specific instructions; it does not install a running background agent.
-
-```bash
-mkdir -p ~/data-warrior-sandbox
-python scripts/install.py ~/data-warrior-sandbox --host cursor
-# Or use --host claude, --host codex, or --host all
-```
-
-Open the destination project in your chosen host. Read `THE_WAY.md` and `AGENTS.md`. In Cursor, commands are available under `.cursor/commands`. You can instead copy only selected skills by passing their names after the destination.
-
-### 3. Setup, then ground
-
-Install also drops `WELCOME.md`. In the **new project** chat, start with `/setup-the-forge` (or open a new thread — `AGENTS.md` tells the agent to welcome you). You get:
-
-1. Welcome and guiding principles  
-2. Numbered menus (one at a time): where the code lives, where notes/jobs/proof live, autonomy  
-
-Answers land on the Scroll as `repo_host` and related fields. Do not assume GitHub.
-
-Then `/know-the-ground` — one plain question at a time until the Scroll states the decision, terrain, and one actionable outcome.
+Maintainers: `python3 scripts/sync-plugin-surface.py` after skill changes; `python3 scripts/verify.py`.
 
 ### 4. Plan and implement
 
-Use `/to-spec` to define acceptance criteria and `/to-steps` to create small, testable implementation steps. Invoke `/the-forge` to work through the current step, write tests, implement, validate, and prepare security/naming/data-quality reviews. Do not mistake a generated review for an independently executed review.
+Use `/to-spec` → `/to-steps` → `/the-forge`. Do not mistake a generated review for an independently executed review.
 
-### 5. Inspect the Forge runtime
+### 5. Inspect the Forge runtime (same package)
 
 From the repository root, with the virtual environment active:
 

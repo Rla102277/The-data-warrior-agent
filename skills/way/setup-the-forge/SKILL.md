@@ -1,16 +1,18 @@
 ---
 name: setup-the-forge
-description: Use when starting a project or setting up once — welcome, guiding principles, then menu-driven setup for where code lives and job paths.
+description: Use when starting a project or setting up once — welcome, level menu, guiding principles, then menu-driven paths for code host and jobs.
 disable-model-invocation: true
 ---
 
 # Setup The Forge
 
-This is the start of a project. Speak in plain language. **One menu per turn.** Wait for a number (or a clear pick) before the next menu. Do not assume GitHub or any vendor.
+This is the start of a project. Speak in plain language. **One menu per turn.** Wait for a number before the next menu. Do not assume GitHub or any vendor.
 
-## Turn 0 — Welcome (always first)
+On folder open / new chat, Cursor hooks and `AGENTS.md` already require welcome + **level**. If the human has not picked a level yet, do Turn 0 and Menu Level first.
 
-Before any setup menu, show this welcome (adapt lightly; keep the meaning). If `WELCOME.md` exists in the project, you may open with its contents instead.
+## Turn 0 — Welcome (always first if not already shown)
+
+Show this welcome (or `WELCOME.md` if present). Then wait for continue.
 
 ```text
 Welcome — The Data Warrior
@@ -27,14 +29,24 @@ Guiding principles
 6. One clear question (or menu) at a time while we ground the work.
 7. The sword is not the warrior — you stay in charge.
 
-Reply with 1 to continue to setup.
+Reply with 1 to continue.
 ```
 
-Wait for them to continue. Then run the menus below, **one per turn**.
+## Menu Level — How we work together (required early)
 
-## Menus (one per turn)
+Scroll / AGENTS field: `Role:` (Deshi | Rōnin | Kensei). Styles only — never grant permissions.
 
-Present each as a numbered list. Accept the number or the matching label. If they say “whatever you recommend,” pick the starred default and say which number you chose. After each answer, record the Scroll field.
+```text
+How should we work together on this project?
+Reply with a number:
+1) Deshi — Apprentice: teach me, explain tradeoffs, confirm before big edits
+2) ★ Rōnin — Practitioner: act within the agreed scope and report outcomes
+3) Kensei — Master: anticipate system-wide risk; still no extra permissions
+```
+
+Update `AGENTS.md` Role line after they pick. Default ★ if they say “whatever you recommend” → 2.
+
+## Menus A–F (one per turn)
 
 ### Menu A — Where the code lives
 Scroll field: `repo_host`
@@ -50,23 +62,20 @@ Reply with a number:
 6) Only on this computer for now — nothing shared yet
 ```
 
-If they pick 5, next turn ask only for the name, then set `repo_host: other:<name>`. Map: 1→`github`, 2→`azure_devops`, 3→`gitlab`, 4→`bitbucket`, 6→`local_only`. You may check `git remote -v` only to confirm after they answer — never as a silent default.
+If 5, next turn ask only for the name → `repo_host: other:<name>`. Map: 1→`github`, 2→`azure_devops`, 3→`gitlab`, 4→`bitbucket`, 6→`local_only`. Confirm remotes only after they answer.
 
 ### Menu B — Living notes (Scroll)
-Scroll field: scroll path. Default ★ = `SCROLL.md` at project root.
+Default ★ = `SCROLL.md` at project root.
 
 ```text
 Where should we keep the living notes for this work?
-(A simple file that remembers decisions so the next session does not start from zero.)
 Reply with a number:
 1) ★ Recommended — SCROLL.md at the top of the project
 2) I will name a different file or folder
 ```
 
-If 2, next turn ask for the path only.
-
 ### Menu C — Job folders
-Scroll field: jobs path. Default ★ = `forge-line/jobs/`.
+Default ★ = `forge-line/jobs/`.
 
 ```text
 Where should we keep the work tickets the Forge creates?
@@ -76,11 +85,10 @@ Reply with a number:
 ```
 
 ### Menu D — Proof and reviews
-Scroll field: proof location. Default ★ = inside each job folder.
+Default ★ = inside each job folder.
 
 ```text
 Where should proof and review notes live?
-(The evidence that a step actually worked.)
 Reply with a number:
 1) ★ Recommended — inside each job’s folder
 2) I will name a different place
@@ -98,21 +106,48 @@ Reply with a number:
 ```
 
 ### Menu F — Forge command-line tool
-Scroll field: `forge_cli` yes/no. Prefer checking whether `forge` runs; still confirm with the menu if unclear.
+Scroll field: `forge_cli` yes/no.
 
 ```text
 Is the Forge command-line tool available in this project?
-(It records jobs and proof. Optional if you are not using jobs yet.)
 Reply with a number:
 1) Yes — forge is installed / available
 2) No — not installed here
 3) I am not sure — check for me and tell me what you found
 ```
 
-## After the menus
+### Menu G — Files to share
+Scroll field: `files_to_upload:` `none` | `pending` | `received` (list names when received).
 
-Write a short setup block into `SCROLL.md` (or the chosen scroll path) under a decision id, including `repo_host`. Create missing empty directories only. Summarize the choices in plain language. Do not start a job. Do not set up GitHub Actions, Azure Pipelines, or any host tooling until the ground says that is needed.
+Ask in plain language. Examples of useful files: sample spreadsheets, schema exports, screenshots, requirement docs, pipeline JSON, data dictionaries — whatever helps us see the truth.
 
-Tell them the next command is **`/know-the-ground`** when they are ready to name the real decision.
+```text
+Do you have any files to upload or attach for this work?
+(Spreadsheets, schemas, screenshots, requirement docs, sample data, etc.)
+Reply with a number:
+1) Yes — I will attach them in this chat now (use the paperclip / attach control)
+2) Yes — they are already in this project folder (tell me the path next)
+3) Not now — I may share files later
+4) No files — we will work from conversation only
+```
+
+If they pick 1: wait for the attachment(s) before the next menu or ground question; acknowledge each file by name; set `files_to_upload: received` with names.  
+If they pick 2: next turn ask only for the path(s), then confirm what you can open.  
+If 3 or 4: set `none` or `pending` and continue.  
+At **Deshi**, explain that files reduce guessing — then still continue.
+
+## Keep going — finish every menu
+
+After each menu answer: acknowledge briefly, record the field, **immediately show the next menu** in the same reply. Label progress (`Setup menu C of G`, etc.). Do not stop after Menu A because `repo_host` is set. Complete Level (if needed) and **A–G** unless they explicitly pause.
+
+## After the last setup menu
+
+Write a short setup block into the Scroll under a decision id, including `repo_host`, Role, and `files_to_upload`. Create missing empty directories only.
+
+Then **do not stop**. In the **same reply**, start `/know-the-ground` with **Ground question 1 of 6** (decision). One short “setup saved” line is enough — never a long “project is empty / real work starts later” closing that leaves them without the next question.
+
+At **Deshi**, add one teaching sentence about why we grill the decision next, then ask question 1.
+
+Do not start a Forge job. Do not wire CI until the ground says so.
 
 Follow project instructions and THE_WAY.md. Use native host tools, respect permissions, and distinguish observed evidence from assumptions.

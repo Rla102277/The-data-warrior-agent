@@ -45,6 +45,9 @@ Ship a companion skill system and Forge factory that rehearse [The Data Warrior'
 | D-015 | Do not ship a vendor platform. Microsoft Fabric is not a default profile, adapter, discovery path, or dependency. Tools are recorded on the ground and brought in only when the single action needs them. | User, 2026-10-19: remove all Fabric stuff; it belongs to know-the-ground and tools as needed. | Accepted | Removed `forge/fabric`, the Fabric discovery adapter, `fabric-first-foundation`, the `fabric` extra, and Fabric MCP servers. |
 | D-016 | `/setup-the-forge` must ask where the code lives (GitHub, Azure DevOps, etc.) in plain language and record `repo_host` on the Scroll. Do not assume GitHub. User-facing prompts stay non-technical. | User, 2026-10-20: ask for repo type; prompts non-technical friendly. | Accepted | Friendly ask text in setup-the-forge and know-the-ground; Scroll still stores `repo_host`. |
 | D-017 | Project start is menu-driven: welcome + guiding principles, then numbered menus (one per turn). Install drops `WELCOME.md`; `AGENTS.md` requires welcome on first thread. | User, 2026-10-20: menu driven; welcome and guiding principles when project started. | Accepted | `templates/WELCOME.md`, setup-the-forge Turn 0 + menus A–F, install.py. |
+| D-018 | On folder/chat open, autostart welcome and ask collaboration level (Deshi/Rōnin/Kensei) via Cursor hooks + always-on rule; then setup menus. | User, 2026-10-20: on project open autostart welcome and ask level. | Accepted | `templates/cursor/hooks`, `data-warrior-autostart.mdc`, install copies into targets. |
+| D-019 | Setup and ground interviews keep going: finish every setup menu, then ground questions 1–6 without stopping mid-gate. Deshi teaches between questions; every incomplete turn ends with the next numbered ask. | User, 2026-10-20: questions need to keep going; Deshi was stopping after one. | Accepted | know-the-ground / grounding / setup-the-forge keep-going rules. |
+| D-020 | Skills and Forge stay one package; first-class install is Cursor plugin + Claude plugin (`data-warrior-forge`), not a skills-only split. | User, 2026-10-20: keep forge together; live as cursor plugin and claude plugin. | Accepted | `.cursor-plugin/`, `.claude-plugin/`, `scripts/sync-plugin-surface.py`, `docs/INSTALL-PLUGINS.md`. |
 
 ## Assumptions
 - "A system like Matthew's" means his product mechanics: user-invoked versus model-invoked, a router, README catalog, plugin manifest, docs pages, and symlink install. **Accepted in D-008.**
@@ -76,6 +79,9 @@ Ship a companion skill system and Forge factory that rehearse [The Data Warrior'
 - [x] No vendor platform is bundled. Tool choice follows the ground (D-015).
 - [x] Setup asks for repo host / SCM and records `repo_host` (D-016).
 - [x] Project start: welcome, principles, numbered menus (D-017).
+- [x] Autostart welcome + level ask on folder/chat open (D-018).
+- [x] Setup + ground keep going through all steps; Deshi teaches between (D-019).
+- [x] First-class Cursor + Claude plugins; Forge stays with skills (D-020).
 - [ ] Live host transcript for `/know-the-ground` then `/the-forge` that stops if the decision is missing.
 - [ ] Optional: Council-perspective disciplines when manuscript People book is approved.
 

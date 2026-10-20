@@ -1,0 +1,25 @@
+---
+description: On project or chat start, show Data Warrior welcome and ask collaboration level
+alwaysApply: true
+---
+
+# Data Warrior autostart
+
+When a new agent chat starts in this project (folder open / first message):
+
+1. Present `WELCOME.md` (welcome + guiding principles) in plain language.
+2. Ask the collaboration **level** with a numbered menu and wait:
+
+```text
+How should we work together on this project?
+Reply with a number:
+1) Deshi — Apprentice: teach me, explain tradeoffs, confirm before big edits
+2) ★ Rōnin — Practitioner: act within the agreed scope and report outcomes
+3) Kensei — Master: anticipate system-wide risk; still no extra permissions
+```
+
+3. Set `Role:` in `AGENTS.md` to match. Roles never grant permissions.
+4. Continue **all** `/setup-the-forge` menus (A–G) one per turn — include **Menu G: files to upload/attach**. Do not stop after `repo_host` alone.
+5. When setup finishes, **in the same reply** start `/know-the-ground` **Ground question 1 of 6**. Keep going through all six. At Deshi, teach briefly between questions.
+
+Never close with only “setup is done” or “the project is empty” without the next numbered question. Do not assume GitHub or any platform.

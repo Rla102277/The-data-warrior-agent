@@ -4,6 +4,7 @@ __pycache__/
 .env.*
 !.env.example
 .venv/
+.cursor/.welcome_sessions/
 evals/runs/
 .DS_Store
 *.egg-info/

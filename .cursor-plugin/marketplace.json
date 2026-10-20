@@ -1,0 +1,17 @@
+{
+  "name": "data-warrior",
+  "owner": {
+    "name": "Randy Archambault"
+  },
+  "metadata": {
+    "description": "The Data Warrior \u2014 skills and Forge as one Cursor plugin.",
+    "version": "0.2.0"
+  },
+  "plugins": [
+    {
+      "name": "data-warrior-forge",
+      "source": ".",
+      "description": "Data Warrior skills and Forge software factory together."
+    }
+  ]
+}

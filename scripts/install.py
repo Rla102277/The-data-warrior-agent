@@ -1,6 +1,6 @@
 """Install selected bucketed skills into a target project for one or more hosts."""
 from pathlib import Path
-import argparse, shutil, sys
+import argparse, shutil, stat
 
 ROOT = Path(__file__).resolve().parents[1]
 p = argparse.ArgumentParser()
@@ -21,12 +21,15 @@ for name in selected:
 hosts = ("cursor", "claude", "codex") if a.host == "all" else (a.host,)
 
 
-def copy(src, dst):
+def copy(src: Path, dst: Path, *, executable: bool = False) -> None:
     if dst.exists() and not a.overwrite:
         print("SKIP existing", dst)
         return
     dst.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(src, dst)
+    if executable:
+        mode = dst.stat().st_mode
+        dst.chmod(mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
     print("INSTALLED", dst)
 
 
@@ -49,6 +52,20 @@ for host in hosts:
                 )
                 print("INSTALLED", command)
 
+# Cursor autostart: hooks + always-on rule (welcome + level ask)
+if "cursor" in hosts or a.host == "all":
+    cursor_tpl = ROOT / "templates" / "cursor"
+    copy(cursor_tpl / "hooks.json", target / ".cursor" / "hooks.json")
+    copy(
+        cursor_tpl / "hooks" / "autostart.py",
+        target / ".cursor" / "hooks" / "autostart.py",
+        executable=True,
+    )
+    copy(
+        cursor_tpl / "rules" / "data-warrior-autostart.mdc",
+        target / ".cursor" / "rules" / "data-warrior-autostart.mdc",
+    )
+
 config = target / "AGENTS.md"
 agents_body = """# Agent project instructions
 
@@ -57,18 +74,25 @@ Role: Rōnin
 Read THE_WAY.md and WELCOME.md. Roles affect collaboration, never permissions.
 
 ## On project start
-When this project is opened or the human starts a new thread here:
-1. Present the welcome and guiding principles from WELCOME.md (plain language).
-2. If the Scroll has no setup / no `repo_host`, guide them to `/setup-the-forge` — menu-driven, one menu per turn.
-3. Do not assume GitHub, Azure DevOps, or any platform.
+When this folder is opened or a new agent chat starts:
+1. Present WELCOME.md (welcome + guiding principles).
+2. Ask the collaboration **level** with a numbered menu (Deshi / Rōnin / Kensei) and wait.
+3. Update the Role line above to match. Roles never grant permissions.
+4. Finish **all** `/setup-the-forge` menus (A–G, one per turn), including asking if there are files to upload/attach — do not stop after `repo_host` alone.
+5. Then keep going through `/know-the-ground` questions **1 of 6 through 6 of 6**. At Deshi, teach between questions. Never end a turn without the next numbered question while the gate is incomplete.
+6. Do not assume GitHub, Azure DevOps, or any platform.
 """
 if not config.exists():
     config.write_text(agents_body)
     print("INSTALLED", config)
-elif a.overwrite and "On project start" not in config.read_text():
-    # Preserve custom Role lines; append start block once when overwriting install.
+elif a.overwrite:
     text = config.read_text()
-    if "On project start" not in text:
-        config.write_text(text.rstrip() + "\n\n## On project start\n"
-                          "Present WELCOME.md, then `/setup-the-forge` if `repo_host` is missing.\n")
+    if "1 of 6 through 6 of 6" not in text:
+        config.write_text(
+            text.rstrip()
+            + "\n\n## On project start\n"
+            "Present WELCOME.md, ask level, finish all setup menus, "
+            "then ground questions 1–6 (Deshi teaches between). "
+            "Never stop mid-gate without the next numbered question.\n"
+        )
         print("UPDATED", config)

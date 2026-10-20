@@ -13,6 +13,17 @@ class Structure(unittest.TestCase):
         r = run(ROOT / "scripts/verify.py")
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
 
+    def test_plugin_manifests(self):
+        cursor = ROOT / ".cursor-plugin" / "plugin.json"
+        claude = ROOT / ".claude-plugin" / "plugin.json"
+        self.assertTrue(cursor.is_file())
+        self.assertTrue(claude.is_file())
+        self.assertTrue((ROOT / ".cursor-plugin" / "marketplace.json").is_file())
+        self.assertTrue((ROOT / ".claude-plugin" / "marketplace.json").is_file())
+        self.assertGreaterEqual(len(list((ROOT / "commands").glob("*.md"))), 10)
+        self.assertTrue((ROOT / "hooks" / "hooks.json").is_file())
+        self.assertTrue((ROOT / "rules" / "data-warrior-autostart.mdc").is_file())
+
     def test_sync_check(self):
         r = run(ROOT / "scripts/sync.py", "--check")
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
@@ -28,6 +39,7 @@ class Structure(unittest.TestCase):
                 agents = (Path(d) / "AGENTS.md").read_text()
                 self.assertIn("Role: Rōnin", agents)
                 self.assertIn("On project start", agents)
+                self.assertIn("level", agents.lower())
                 self.assertFalse((Path(d) / "skills").exists())
                 if host in ("cursor", "codex", "all"):
                     self.assertTrue((Path(d) / ".agents/skills/the-scroll/SKILL.md").exists())
@@ -35,6 +47,11 @@ class Structure(unittest.TestCase):
                     self.assertTrue((Path(d) / ".claude/skills/the-scroll/SKILL.md").exists())
                 if host in ("cursor", "all"):
                     self.assertTrue((Path(d) / ".cursor/commands/the-scroll.md").exists())
+                    self.assertTrue((Path(d) / ".cursor/hooks.json").exists())
+                    self.assertTrue((Path(d) / ".cursor/hooks/autostart.py").exists())
+                    self.assertTrue(
+                        (Path(d) / ".cursor/rules/data-warrior-autostart.mdc").exists()
+                    )
 
     def test_preserves_project_instructions(self):
         with tempfile.TemporaryDirectory() as d:

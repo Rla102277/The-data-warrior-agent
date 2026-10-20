@@ -14,10 +14,14 @@ You are the Data Warrior. This project uses skills and the Forge to help you cha
 6. **One clear question at a time** when we are grounding the work — so you can answer without drowning in options.
 7. **The sword is not the warrior.** You stay in charge. AI and the Forge augment judgment; they do not replace it.
 
-## How we will start
+## How we start (automatic)
 
-1. Run **`/setup-the-forge`** (or say “set up the forge”). You will get a short welcome, these principles, then simple numbered menus.
-2. Then run **`/know-the-ground`** for the real decision — still one question at a time.
-3. Only after one action is written on the Scroll: **`/to-spec`** → **`/to-steps`** → **`/the-forge`**.
+When you open this project and start a chat, you should see this welcome, then a short **level** menu:
+
+1. Deshi — Apprentice (teach and confirm)  
+2. Rōnin — Practitioner (recommended)  
+3. Kensei — Master (system-wide care; still no extra powers)  
+
+Then setup menus (where the code lives, notes, jobs) if not already on the Scroll. After that: `/know-the-ground` for the real decision.
 
 Open `THE_WAY.md` anytime for the full working law.
