@@ -45,44 +45,70 @@ Wait for attachments if they pick 1. Record `files_to_upload` on the Scroll. The
 
 ## Role style while grilling
 
-- **Deshi:** Teach between questions. Shorter words. Offer examples and a recommended default. Confirm consequential interpretations before locking them on the Scroll. Still one question per turn — teaching does not replace the next ask.
-- **Rōnin:** Crisp acknowledge + next question.
-- **Kensei:** Crisp acknowledge; name system risks when they appear; still complete all six.
+- **Deshi:** Teach between questions using the why + examples for that step. Confirm consequential interpretations before locking them on the Scroll. Still one question per turn — teaching does not replace the next ask.
+- **Rōnin:** Short acknowledge, then why + ask + examples for the next question.
+- **Kensei:** Same ask shape; name system risks when they appear; still complete all six.
 
 ## Ground gate (required before any forge spec)
 
 Do not call `/to-spec` or `/the-forge` until all six are on the Scroll.
 
+**How to ask each question (all levels):** Label `Ground question N of 6`. In the same turn give (1) one short **why**, (2) the **ask** in plain words, (3) **two example answers** they can imitate. Do not use cryptic slogans (“who chooses first”). Reject vague answers and ask once more with a tighter example.
+
 ### Ground question 1 of 6 — Decision
-**Field:** who decides, and when they decide.  
-**Ask:** “Who will make a real decision differently because of this work? Name a person or job title. When do they usually make that decision (day, meeting, or moment)?”  
-**Deshi add-on:** “We start here so we do not build something nobody uses to decide. Example: ‘Sam, the store manager — every Monday morning before ordering stock.’ Vague answers like ‘leadership’ or ‘whenever’ are not enough yet.”
+**Field:** who will decide differently, and the moment they decide.  
+**Why:** Most data work fails by building something that never changes a real choice. If we cannot name the person and the occasion, we do not have a fight yet.  
+**Ask:** “Who will make a real decision differently if this works? Name a person or job title, and when they usually make that decision.”  
+**Examples:**  
+- “Sam (store manager) — every Monday morning before she places the stock order.”  
+- “The CFO — in the monthly board pack when they approve or cut spend.”  
+**Not enough yet:** “leadership,” “the business,” “users,” “whenever we need it.”
 
 ### Ground question 2 of 6 — Outcome
-**Field:** success as *they* define it — a real-world result, not a deliverable name.  
+**Field:** success as a real-world result, not a deliverable name.  
+**Why:** “A dashboard exists” is not success. Success is what is different in the world after they decide.  
 **Ask:** “What would have to be true afterward for you to say this was worth it?”  
-**Deshi add-on:** “Worth it means a consequence in the world (fewer stockouts, a yes/no call), not ‘a report exists.’”
+**Examples:**  
+- “Stockouts on top 50 SKUs drop by half within one quarter.”  
+- “Accounting can close the books on day 3 without a spreadsheet scramble.”  
+**Not enough yet:** “we have a report,” “visibility,” “better analytics.”
 
 ### Ground question 3 of 6 — Terrain
 **Field:** grain, source of truth, limits, incentives, cost of being wrong.  
-**Ask:** “What is one row or answer about, where does the truth come from, and what goes wrong if we get it wrong?”  
-**Deshi add-on:** “Grain = what one line means. Source of truth = which system we trust when systems disagree.”  
-**Files:** If they still have no samples, add: “If you have a file that shows the real shape (spreadsheet, schema, screenshot), you can upload or attach it with this answer.”
+**Why:** Wrong grain or the wrong system of record produces confident wrong answers. We need the shape of the truth before we build.  
+**Ask:** “What is one answer or one row about? Which system do we trust when systems disagree? What goes wrong if we get it wrong?”  
+**Examples:**  
+- “One row = one store-SKU-day. Trust the POS export over the spreadsheet. Wrong → we under-order and lose sales.”  
+- “One answer = cash by cost center for last closed month. Trust the GL. Wrong → we green-light spend we do not have.”  
+**Files:** If samples are still missing, add: “If you have a file that shows the real shape (spreadsheet, schema, screenshot), attach it with this answer.”  
+**Not enough yet:** “all the data,” “the warehouse,” “it depends.”
 
 ### Ground question 4 of 6 — Falsifiers
 **Field:** what would make us change or stop.  
+**Why:** Without a kill signal we polish a bad plan. Name what would force a rewrite or a stop.  
 **Ask:** “What would we see that would make us change or stop this plan?”  
-**Deshi add-on:** “This keeps us honest. Name one signal that would kill or rewrite the plan.”
+**Examples:**  
+- “If Monday’s POS feed is late more than two weeks in a row, we stop and fix the feed first.”  
+- “If the CFO will not use the number unless Finance signs off, we pause build until that sign-off exists.”  
+**Not enough yet:** “if it doesn’t work,” “bad data,” “nothing.”
 
 ### Ground question 5 of 6 — Owner
 **Field:** who keeps it correct after the build team leaves.  
-**Ask:** “Who keeps this correct after we leave?”  
-**Deshi add-on:** “If nobody owns it, it will rot. Prefer a named role over ‘the team.’”
+**Why:** Unowned work rots. Someone named must keep definitions and feeds honest.  
+**Ask:** “Who keeps this correct after we leave? Prefer a named person or role, not ‘the team.’”  
+**Examples:**  
+- “Jordan in Finance Ops owns the close definition and the weekly check.”  
+- “The store-ops analyst on-call owns the SKU mapping when items change.”  
+**Not enough yet:** “IT,” “the team,” “we’ll figure it out later.”
 
 ### Ground question 6 of 6 — Single action
 **Field:** one action in one sentence.  
+**Why:** If we cannot say the one thing we will do, the analysis is not done — we are still collecting wishes.  
 **Ask:** “In one sentence, what is the one thing we will do?”  
-**Deshi add-on:** “If it takes a paragraph, we are not done. Push for one verb and one object.”
+**Examples:**  
+- “Put last week’s stockout risk by store-SKU on Sam’s Monday ordering screen.”  
+- “Give Accounting a single trusted cash-by-cost-center number on day 2 of close.”  
+**Not enough yet:** a paragraph, a feature list, “improve the pipeline and also…”
 
 Also surface stated-versus-real problem, delete or late-arrival needs, and whether resistance is political or valid when they come up — without skipping the numbered sequence.
 
