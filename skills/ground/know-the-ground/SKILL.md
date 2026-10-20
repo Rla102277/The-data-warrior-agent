@@ -45,70 +45,102 @@ Wait for attachments if they pick 1. Record `files_to_upload` on the Scroll. The
 
 ## Role style while grilling
 
-- **Deshi:** Teach between questions using the why + examples for that step. Confirm consequential interpretations before locking them on the Scroll. Still one question per turn — teaching does not replace the next ask.
-- **Rōnin:** Short acknowledge, then why + ask + examples for the next question.
+- **Deshi:** Use the full deeper template (why, checklist, ask, examples). After their answer, teach what you locked and what you still need if vague. Confirm consequential interpretations before the Scroll. Still one question per turn.
+- **Rōnin:** Full template each turn; keep why tight but do not skip the checklist.
 - **Kensei:** Same ask shape; name system risks when they appear; still complete all six.
 
 ## Ground gate (required before any forge spec)
 
 Do not call `/to-spec` or `/the-forge` until all six are on the Scroll.
 
-**How to ask each question (all levels):** Label `Ground question N of 6`. In the same turn give (1) one short **why**, (2) the **ask** in plain words, (3) **two example answers** they can imitate. Do not use cryptic slogans (“who chooses first”). Reject vague answers and ask once more with a tighter example.
+**How to ask each question (all levels):** Label `Ground question N of 6`. In the same turn give, in order:
+
+1. **Why this matters** — use the deeper why below (2–4 short sentences). Help them understand the trap we are avoiding.
+2. **What a strong answer includes** — the checklist for that step.
+3. **Ask** — plain words; they may answer in a few short lines.
+4. **Examples** — two full answers they can imitate.
+5. **Not enough yet** — show the vague phrases we will push back on.
+
+Do not use cryptic slogans. If their answer is vague, do **not** advance: reflect what you heard, explain what is missing using the checklist, give one tighter example, and ask the same numbered question again.
 
 ### Ground question 1 of 6 — Decision
 **Field:** who will decide differently, and the moment they decide.  
-**Why:** Most data work fails by building something that never changes a real choice. If we cannot name the person and the occasion, we do not have a fight yet.  
-**Ask:** “Who will make a real decision differently if this works? Name a person or job title, and when they usually make that decision.”  
+**Why this matters:** Clever pipelines and pretty dashboards still fail when nobody’s *choice* changes. We are not looking for “stakeholders” or “users of the report.” We are looking for the person who will say yes/no, buy/don’t buy, hire/cut, order more/less — and the recurring moment when they make that call. If we cannot name that person and that moment, we do not have a fight yet; we have a wish. Everything else we build should serve that decision occasion.  
+**What a strong answer includes:**  
+- A person or job title you could email (not a department blob).  
+- The decision they make (approve spend, place an order, close the books, green-light a project).  
+- When that usually happens (day, meeting, deadline, ritual).  
+**Ask:** “If this work succeeds, who will decide something differently — and when do they usually make that decision? Name the person or role, the decision, and the moment.”  
 **Examples:**  
-- “Sam (store manager) — every Monday morning before she places the stock order.”  
-- “The CFO — in the monthly board pack when they approve or cut spend.”  
-**Not enough yet:** “leadership,” “the business,” “users,” “whenever we need it.”
+- “Sam, store manager — she decides how much to reorder each SKU every Monday morning before the supplier cutoff.”  
+- “Priya, CFO — she approves or cuts discretionary spend in the monthly board pack the first Thursday of the month.”  
+**Not enough yet:** “leadership,” “the business,” “users,” “anyone who opens the dashboard,” “whenever we need it.”
 
 ### Ground question 2 of 6 — Outcome
 **Field:** success as a real-world result, not a deliverable name.  
-**Why:** “A dashboard exists” is not success. Success is what is different in the world after they decide.  
-**Ask:** “What would have to be true afterward for you to say this was worth it?”  
+**Why this matters:** Shipping a report is not the same as winning. We need the consequence you would bet your reputation on — something you could observe in the world after the decision-maker acts. That outcome is how we know whether the Forge work was worth the cost. If success is only “we have visibility,” we will never know when to stop building.  
+**What a strong answer includes:**  
+- A change you could notice without looking at our code (behavior, money, time, risk, trust).  
+- Roughly when you would expect to see it.  
+- Optionally how you would know (a number, a deadline met, a fight that stops happening).  
+**Ask:** “Imagine we are looking back in a few months. What would have to be true in the real world for you to say this was worth it — not that a report exists, but that something out there got better?”  
 **Examples:**  
-- “Stockouts on top 50 SKUs drop by half within one quarter.”  
-- “Accounting can close the books on day 3 without a spreadsheet scramble.”  
-**Not enough yet:** “we have a report,” “visibility,” “better analytics.”
+- “Stockouts on our top 50 SKUs drop by about half within one quarter, and Sam stops emergency mid-week orders.”  
+- “Accounting closes the books on day 3 without a weekend spreadsheet scramble, three closes in a row.”  
+**Not enough yet:** “we have a report,” “visibility,” “better analytics,” “one source of truth,” “stakeholders are happy.”
 
 ### Ground question 3 of 6 — Terrain
 **Field:** grain, source of truth, limits, incentives, cost of being wrong.  
-**Why:** Wrong grain or the wrong system of record produces confident wrong answers. We need the shape of the truth before we build.  
-**Ask:** “What is one answer or one row about? Which system do we trust when systems disagree? What goes wrong if we get it wrong?”  
+**Why this matters:** Wrong grain (what one row means) or the wrong system of record produces *confident* wrong answers — the most expensive kind. Before we build, we need the shape of the truth: what one answer is about, which system wins when systems disagree, and what it costs the decision-maker if we are wrong. Also notice incentives: if someone is rewarded for a flattering number, that is part of the terrain.  
+**What a strong answer includes:**  
+- **Grain:** what one row or one answer means (one store-SKU-day, one invoice, one employee-month).  
+- **Source of truth:** which system we trust when two systems disagree.  
+- **Cost of being wrong:** what the decision-maker suffers if our number lies (lost sales, bad spend, compliance, trust).  
+- Optional: known limits (late feeds, missing stores, manual overrides) or incentive pressure.  
+**Ask:** “Help me see the ground: (1) What is one answer or one row about? (2) When two systems disagree, which one do we trust? (3) If we get it wrong, what bad thing happens to the person who decides?”  
 **Examples:**  
-- “One row = one store-SKU-day. Trust the POS export over the spreadsheet. Wrong → we under-order and lose sales.”  
-- “One answer = cash by cost center for last closed month. Trust the GL. Wrong → we green-light spend we do not have.”  
-**Files:** If samples are still missing, add: “If you have a file that shows the real shape (spreadsheet, schema, screenshot), attach it with this answer.”  
-**Not enough yet:** “all the data,” “the warehouse,” “it depends.”
+- “One row = one store–SKU–day. Trust the POS export over the Excel forecast. Wrong → Sam under-orders and we lose sales; over-order and we tie up cash.”  
+- “One answer = cash by cost center for the last closed month. Trust the GL, not the project tracker. Wrong → Priya green-lights spend we do not have.”  
+**Files:** If samples are still missing, add: “If you have a spreadsheet, schema, or screenshot that shows the real shape, attach it with this answer — it beats describing from memory.”  
+**Not enough yet:** “all the data,” “the warehouse,” “it depends,” “we’ll clean it later,” listing tools with no grain.
 
 ### Ground question 4 of 6 — Falsifiers
 **Field:** what would make us change or stop.  
-**Why:** Without a kill signal we polish a bad plan. Name what would force a rewrite or a stop.  
-**Ask:** “What would we see that would make us change or stop this plan?”  
+**Why this matters:** Without a kill signal we polish a bad plan. A falsifier is not “if it doesn’t work” — it is a specific observation that would force us to rewrite the approach or stop the fight. Naming it keeps us honest when ego and sunk cost want to keep building.  
+**What a strong answer includes:**  
+- Something you could actually observe (a feed late N times, a person who refuses to use the number, a definition fight that won’t die).  
+- What we would do if we saw it (pause, fix the feed first, get sign-off, walk away).  
+**Ask:** “What would we see — a concrete signal — that would make us change this plan or stop? And what would we do if we saw it?”  
 **Examples:**  
-- “If Monday’s POS feed is late more than two weeks in a row, we stop and fix the feed first.”  
-- “If the CFO will not use the number unless Finance signs off, we pause build until that sign-off exists.”  
-**Not enough yet:** “if it doesn’t work,” “bad data,” “nothing.”
+- “If Monday’s POS feed is late more than two weeks in a row, we stop feature work and fix the feed first.”  
+- “If Priya will not use the number unless Finance signs the definition, we pause the build until that sign-off exists.”  
+**Not enough yet:** “if it doesn’t work,” “bad data,” “nothing,” “we’ll adapt,” “low adoption” with no threshold.
 
 ### Ground question 5 of 6 — Owner
 **Field:** who keeps it correct after the build team leaves.  
-**Why:** Unowned work rots. Someone named must keep definitions and feeds honest.  
-**Ask:** “Who keeps this correct after we leave? Prefer a named person or role, not ‘the team.’”  
+**Why this matters:** Definitions drift, feeds break, and mappings rot. Unowned work dies slowly while still looking “done.” The owner is not “whoever built it” and not a whole department — it is the person who will notice when the number is wrong and has the authority (or duty) to fix the meaning. If nobody owns it, say so; that may be a reason to refuse or shrink the fight.  
+**What a strong answer includes:**  
+- A named person or a specific on-call role.  
+- What they own (definition, feed check, mapping, weekly reconciliation).  
+- Roughly how often they touch it.  
+**Ask:** “After we leave, who is responsible for keeping this correct — the meaning of the numbers and the feeds behind them? Name a person or role, and what they own.”  
 **Examples:**  
-- “Jordan in Finance Ops owns the close definition and the weekly check.”  
-- “The store-ops analyst on-call owns the SKU mapping when items change.”  
-**Not enough yet:** “IT,” “the team,” “we’ll figure it out later.”
+- “Jordan in Finance Ops owns the close definition and runs a weekly reconciliation check every Tuesday.”  
+- “The store-ops analyst on-call owns SKU mapping when items change; they update the mapping table the same day.”  
+**Not enough yet:** “IT,” “the data team,” “the team,” “shared ownership,” “we’ll figure it out later.”
 
 ### Ground question 6 of 6 — Single action
 **Field:** one action in one sentence.  
-**Why:** If we cannot say the one thing we will do, the analysis is not done — we are still collecting wishes.  
-**Ask:** “In one sentence, what is the one thing we will do?”  
+**Why this matters:** If we cannot say the *one* thing we will do, we are still collecting wishes. The single action is the bridge from diagnosis to the Forge: one verb, one object, aimed at the decision-maker and the moment from question 1. Feature lists and “and also…” mean we have not chosen yet. Choosing one action is how we protect focus and know when V1 is done.  
+**What a strong answer includes:**  
+- One sentence.  
+- One clear verb (put, give, show, stop, wire…).  
+- Who it is for and, if possible, when they use it — tying back to question 1.  
+**Ask:** “In one sentence only: what is the single thing we will do so that person can decide better at that moment? If you need ‘and,’ we probably still have two fights.”  
 **Examples:**  
-- “Put last week’s stockout risk by store-SKU on Sam’s Monday ordering screen.”  
-- “Give Accounting a single trusted cash-by-cost-center number on day 2 of close.”  
-**Not enough yet:** a paragraph, a feature list, “improve the pipeline and also…”
+- “Put last week’s stockout risk by store–SKU on Sam’s Monday ordering screen before the supplier cutoff.”  
+- “Give Accounting one trusted cash-by-cost-center number on day 2 of close, sourced from the GL.”  
+**Not enough yet:** a paragraph, a roadmap, a feature list, “improve the pipeline and also rebuild the model…”
 
 Also surface stated-versus-real problem, delete or late-arrival needs, and whether resistance is political or valid when they come up — without skipping the numbered sequence.
 
