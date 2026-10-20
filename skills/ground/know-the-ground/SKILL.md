@@ -54,9 +54,9 @@ Wait for attachments if they pick 1. Record `files_to_upload` on the Scroll. The
 Do not call `/to-spec` or `/the-forge` until all six are on the Scroll.
 
 ### Ground question 1 of 6 — Decision
-**Field:** whose choice improves, and when they choose.  
-**Ask:** “If this works, whose choice gets better — and when do they make that choice?”  
-**Deshi add-on:** “We start here so we do not build a dashboard nobody decides from. Name a person (or role) and a moment — for example, ‘the store manager every Monday morning.’”
+**Field:** who decides, and when they decide.  
+**Ask:** “Who will make a real decision differently because of this work? Name a person or job title. When do they usually make that decision (day, meeting, or moment)?”  
+**Deshi add-on:** “We start here so we do not build something nobody uses to decide. Example: ‘Sam, the store manager — every Monday morning before ordering stock.’ Vague answers like ‘leadership’ or ‘whenever’ are not enough yet.”
 
 ### Ground question 2 of 6 — Outcome
 **Field:** success as *they* define it — a real-world result, not a deliverable name.  
