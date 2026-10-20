@@ -48,6 +48,7 @@ Ship a companion skill system and Forge factory that rehearse [The Data Warrior'
 | D-018 | On folder/chat open, autostart welcome and ask collaboration level (Deshi/Rōnin/Kensei) via Cursor hooks + always-on rule; then setup menus. | User, 2026-10-20: on project open autostart welcome and ask level. | Accepted | `templates/cursor/hooks`, `data-warrior-autostart.mdc`, install copies into targets. |
 | D-019 | Setup and ground interviews keep going: finish every setup menu, then ground questions 1–6 without stopping mid-gate. Deshi teaches between questions; every incomplete turn ends with the next numbered ask. | User, 2026-10-20: questions need to keep going; Deshi was stopping after one. | Accepted | know-the-ground / grounding / setup-the-forge keep-going rules. |
 | D-020 | Skills and Forge stay one package; first-class install is Cursor plugin + Claude plugin (`data-warrior-forge`), not a skills-only split. | User, 2026-10-20: keep forge together; live as cursor plugin and claude plugin. | Accepted | `.cursor-plugin/`, `.claude-plugin/`, `scripts/sync-plugin-surface.py`, `docs/INSTALL-PLUGINS.md`. |
+| D-021 | Cursor “install today” is a **copy** into `~/.cursor/plugins/local` (`install-cursor-local.sh`). Out-of-tree symlinks are skipped by Cursor. Official Cursor Marketplace listing is not available until submitted. | User, 2026-10-20: install today doesnt add up. | Accepted | Rewrote INSTALL-PLUGINS.md; removed false symlink / personal GitHub marketplace claims. |
 
 ## Assumptions
 - "A system like Matthew's" means his product mechanics: user-invoked versus model-invoked, a router, README catalog, plugin manifest, docs pages, and symlink install. **Accepted in D-008.**
@@ -82,6 +83,7 @@ Ship a companion skill system and Forge factory that rehearse [The Data Warrior'
 - [x] Autostart welcome + level ask on folder/chat open (D-018).
 - [x] Setup + ground keep going through all steps; Deshi teaches between (D-019).
 - [x] First-class Cursor + Claude plugins; Forge stays with skills (D-020).
+- [x] Honest Cursor local install path (copy, not out-of-tree symlink) (D-021).
 - [ ] Live host transcript for `/know-the-ground` then `/the-forge` that stops if the decision is missing.
 - [ ] Optional: Council-perspective disciplines when manuscript People book is approved.
 

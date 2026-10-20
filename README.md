@@ -88,16 +88,26 @@ The human is the Data Warrior; the AI host supplies execution assistance. The Wa
 
 ### 1. Install the plugin (preferred)
 
-**Cursor:** Add marketplace `Rla102277/The-data-warrior-agent` (repo has `.cursor-plugin/marketplace.json`), install **`data-warrior-forge`**, then open a project and start a **new Agent chat**.
+Details and “what works today”: [docs/INSTALL-PLUGINS.md](./docs/INSTALL-PLUGINS.md).
 
-**Claude Code:**
+**Cursor (works today):** copy into local plugins — do not symlink the repo out-of-tree:
 
 ```bash
-claude plugin marketplace add Rla102277/The-data-warrior-agent
+git clone https://github.com/Rla102277/The-data-warrior-agent.git
+cd The-data-warrior-agent
+./scripts/install-cursor-local.sh
+```
+
+Reload Window → Customize → confirm **data-warrior-forge** → open a work project → **new Agent chat**.
+
+**Claude Code (works today):**
+
+```bash
+claude plugin marketplace add https://github.com/Rla102277/The-data-warrior-agent
 claude plugin install data-warrior-forge@data-warrior
 ```
 
-Or load a local checkout: `claude --plugin-dir /path/to/the-data-warrior-agent`.
+Or: `claude --plugin-dir /path/to/the-data-warrior-agent`.
 
 ### 2. Setup, then ground
 

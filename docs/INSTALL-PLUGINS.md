@@ -1,50 +1,87 @@
 # Install — Cursor plugin and Claude plugin
 
-**Skills and the Forge ship as one package.** Do not install “skills only” without the Forge doctrine and factory companions in this repo.
+**Skills and the Forge ship as one package** (`data-warrior-forge`).
 
-## Cursor (first-class)
+Be honest about what works **today** vs what is still waiting on a marketplace listing.
 
-### A. Local / team marketplace (GitHub repo)
+| Path | Works today? | Who it is for |
+| --- | --- | --- |
+| Cursor **local plugin copy** (`scripts/install-cursor-local.sh`) | **Yes** | Anyone on Cursor |
+| Cursor **project copy** (`scripts/install.py`) | **Yes** | Sandbox folder without plugins |
+| Claude Code **marketplace add** this GitHub repo | **Yes** (Claude Code CLI) | Anyone with Claude Code |
+| Claude Code `--plugin-dir` | **Yes** | Local checkout |
+| Cursor **official Marketplace** listing | **No** — not submitted/listed yet | Later |
+| Cursor “add GitHub marketplace” like Claude | **Only Teams/Enterprise** team marketplaces — not a personal one-click for everyone | Orgs on Teams+ |
 
-1. In Cursor: **Customize → Plugins / Marketplaces** (wording varies by version).
-2. Add marketplace from GitHub: `Rla102277/The-data-warrior-agent`  
-   (repo root has `.cursor-plugin/marketplace.json`).
-3. Install **`data-warrior-forge`** at **user** or **project** scope.
-4. Open a project → **new Agent chat**. Expect welcome, level menu, then setup/ground.
+---
 
-### B. Develop / test from this checkout
+## Cursor — what to do today
+
+### 1. Local plugin (recommended)
+
+From a clone of this repo:
 
 ```bash
-mkdir -p ~/.cursor/plugins/local
-ln -sfn "$(pwd)" ~/.cursor/plugins/local/data-warrior-forge
+cd /path/to/the-data-warrior-agent
+./scripts/install-cursor-local.sh
 ```
 
-Reload Cursor. The plugin name is `data-warrior-forge`.
+That **copies** the repo into `~/.cursor/plugins/local/data-warrior-forge/`.
 
-### C. Official Cursor Marketplace
+Do **not** `ln -s` this repo into `plugins/local`. Cursor **skips** symlinks that point outside that folder.
 
-Submit this repository for review when ready ([Cursor plugins](https://cursor.com/docs/plugins)). Until listed, use A or B.
+Then:
 
-## Claude Code (first-class)
+1. **Developer: Reload Window** (or restart Cursor).
+2. Open **Customize** and confirm **data-warrior-forge** (skills / rules / commands).
+3. Open your **work** project (not only this repo).
+4. Start a **new Agent chat**. Expect welcome → level → setup menus → ground.
 
-### A. Marketplace from this repo
+To update after we push changes: pull this repo, run `./scripts/install-cursor-local.sh` again, reload.
+
+### 2. Project folder copy (sandbox)
+
+If you want skills copied into one project instead of a user plugin:
 
 ```bash
-claude plugin marketplace add Rla102277/The-data-warrior-agent
+mkdir -p ~/Projects/my-warrior-trial
+python3 scripts/install.py ~/Projects/my-warrior-trial --host cursor --overwrite
+```
+
+Open that folder in Cursor → new Agent chat.
+
+### 3. Not available yet
+
+- Official [Cursor Marketplace](https://cursor.com/marketplace) listing — submit when ready: [publish](https://cursor.com/marketplace/publish).
+- Personal “add any GitHub repo as marketplace” — that flow is for **Team marketplaces** (Teams/Enterprise), not a substitute for (1) above.
+
+---
+
+## Claude Code — what to do today
+
+### 1. Marketplace from this GitHub repo
+
+```bash
+claude plugin marketplace add https://github.com/Rla102277/The-data-warrior-agent
 claude plugin install data-warrior-forge@data-warrior
 ```
 
-Or in a session: `/plugin` → Marketplaces → add this GitHub repo → install **data-warrior-forge**.
+Marketplace name in this repo: `data-warrior` (see `.claude-plugin/marketplace.json`).  
+Plugin name: `data-warrior-forge`.
 
-### B. Load from a local checkout (no marketplace)
+Or in a session: `/plugin` → Marketplaces → add the GitHub URL → install **data-warrior-forge**.
+
+### 2. Load a local checkout
 
 ```bash
 claude --plugin-dir /path/to/the-data-warrior-agent
 ```
 
-### C. After install
+### 3. After Claude install
 
-Start a session in your work project. Run `/setup-the-forge` (or rely on welcome guidance). Then `/know-the-ground`. The Forge CLI remains optional for job persistence:
+Work in your project folder. Run `/setup-the-forge` if welcome does not start. Then `/know-the-ground`.
+
+Optional Forge CLI (same package, separate Python install):
 
 ```bash
 cd /path/to/the-data-warrior-agent
@@ -53,24 +90,12 @@ pip install -e '.[local]'
 forge doctor
 ```
 
-## Keep the surface in sync (maintainers)
+---
 
-After adding or renaming skills:
+## Maintainers
 
 ```bash
 python3 scripts/sync-plugin-surface.py
 python3 scripts/verify.py
+./scripts/install-cursor-local.sh   # refresh your own Cursor local install
 ```
-
-That regenerates `commands/`, `hooks/`, `rules/`, `.cursor-plugin/plugin.json`, and `.claude-plugin/plugin.json` from canonical `skills/`.
-
-## Project copy install (still supported)
-
-For a sandbox folder without plugin hosts:
-
-```bash
-mkdir -p ~/Projects/my-warrior-trial
-python3 scripts/install.py ~/Projects/my-warrior-trial --host cursor --overwrite
-```
-
-Prefer plugins for day-to-day use so updates come through the marketplace.
